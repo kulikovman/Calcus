@@ -1,0 +1,31 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="calcButtonGray" parent="Theme.AppCompat.Light">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/button_gray</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@drawable/button_gray_text_color</item>
+        <item name="android:fontFamily">sans-serif-thin</item>
+    </style>
+
+    <style name="calcButtonBlue" parent="Theme.AppCompat.Light">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/button_blue</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@drawable/button_blue_text_color</item>
+        <item name="android:fontFamily">sans-serif-thin</item>
+    </style>
+
+</resources>

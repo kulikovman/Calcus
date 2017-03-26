@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Calcus</string>
+    <string name="delete"><![CDATA[<]]></string>
+    <string name="devision">÷</string>
+    <string name="multiplication">×</string>
+    <string name="subtraction">-</string>
+    <string name="dot">.</string>
+    <string name="calculate">=</string>
+    <string name="addition">+</string>
+    <string name="calculateExample">128 + 268 / 12 + 784 =</string>
+</resources>
