@@ -9,23 +9,23 @@
     <TextView
         android:id="@+id/textCalculation"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:textSize="14sp"
-        android:gravity="bottom|end"
+        android:layout_height="30dp"
         android:layout_marginEnd="10sp"
         android:fontFamily="sans-serif-light"
-        android:text="@string/calculateExample" />
+        android:gravity="bottom|end"
+        android:text="@string/calculateExample"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/textResult"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:textColor="#0288D1"
-        android:textSize="47sp"
-        android:gravity="center_vertical|end"
+        android:layout_height="70dp"
         android:layout_marginEnd="10sp"
         android:fontFamily="sans-serif-light"
-        android:text="6758" />
+        android:gravity="center_vertical|end"
+        android:text="6758"
+        android:textColor="#0288D1"
+        android:textSize="47sp" />
 
 
     <LinearLayout
@@ -36,28 +36,19 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_reset"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:paddingStart="36sp"
+            android:id="@+id/btn_sinus"
             style="@style/calcButtonBlue"
-            android:text="Сброс" />
+            android:text="sin" />
 
         <Button
-            android:id="@+id/btn_delete"
-            android:layout_weight="3"
+            android:id="@+id/btn_cosine"
             style="@style/calcButtonBlue"
-            android:hapticFeedbackEnabled="true"
-            android:onClick="btnDelete"
-            android:text="@string/delete" />
-    </LinearLayout>
+            android:text="cos" />
 
-    <LinearLayout
-        android:id="@+id/groupButton2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_tangent"
+            style="@style/calcButtonBlue"
+            android:text="tan" />
 
         <Button
             android:id="@+id/btn_7"
@@ -75,17 +66,37 @@
             android:text="9" />
 
         <Button
-            android:id="@+id/btn_devision"
+            android:id="@+id/btn_reset"
             style="@style/calcButtonBlue"
-            android:text="@string/devision" />
+            android:text="С" />
+
+        <Button
+            android:id="@+id/btn_delete"
+            style="@style/calcButtonBlue"
+            android:text="@string/delete" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/groupButton3"
+        android:id="@+id/groupButton2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_natural_logarithm"
+            style="@style/calcButtonBlue"
+            android:text="ln" />
+
+        <Button
+            android:id="@+id/btn_logarithm"
+            style="@style/calcButtonBlue"
+            android:text="log" />
+
+        <Button
+            android:id="@+id/btn_exclamation"
+            style="@style/calcButtonBlue"
+            android:text="!" />
 
         <Button
             android:id="@+id/btn_4"
@@ -103,17 +114,37 @@
             android:text="6" />
 
         <Button
+            android:id="@+id/btn_addition"
+            style="@style/calcButtonBlue"
+            android:text="@string/addition" />
+
+        <Button
             android:id="@+id/btn_multiplication"
             style="@style/calcButtonBlue"
             android:text="@string/multiplication" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/groupButton4"
+        android:id="@+id/groupButton3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_pi"
+            style="@style/calcButtonBlue"
+            android:text="π" />
+
+        <Button
+            android:id="@+id/btn_e"
+            style="@style/calcButtonBlue"
+            android:text="e" />
+
+        <Button
+            android:id="@+id/btn_circumflex"
+            style="@style/calcButtonBlue"
+            android:text="^" />
 
         <Button
             android:id="@+id/btn_1"
@@ -134,6 +165,11 @@
             android:id="@+id/btn_subtraction"
             style="@style/calcButtonBlue"
             android:text="@string/subtraction" />
+
+        <Button
+            android:id="@+id/btn_devision"
+            style="@style/calcButtonBlue"
+            android:text="@string/devision" />
     </LinearLayout>
 
     <LinearLayout
@@ -141,27 +177,57 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:weightSum="8"
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_0"
-            style="@style/calcButtonGray"
-            android:text="0" />
+            android:id="@+id/btn_opening_bracket"
+            style="@style/calcButtonBlue"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="(" />
+
+        <Button
+            android:id="@+id/btn_closing_bracket"
+            style="@style/calcButtonBlue"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text=")" />
+
+        <Button
+            android:id="@+id/btn_square_root"
+            style="@style/calcButtonBlue"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="√" />
 
         <Button
             android:id="@+id/btn_dot"
             style="@style/calcButtonGray"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:text="@string/dot" />
+
+        <Button
+            android:id="@+id/btn_0"
+            style="@style/calcButtonGray"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="0" />
+
+        <Button
+            android:id="@+id/btn_000"
+            style="@style/calcButtonGray"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="000" />
 
         <Button
             android:id="@+id/btn_calculate"
             style="@style/calcButtonGray"
+            android:layout_width="0dp"
+            android:layout_weight="2"
             android:text="@string/calculate" />
-
-        <Button
-            android:id="@+id/btn_addition"
-            style="@style/calcButtonBlue"
-            android:text="@string/addition" />
     </LinearLayout>
 
 </LinearLayout>
