@@ -16,7 +16,6 @@
         <item name="android:textSize">28sp</item>
         <item name="android:textColor">@drawable/button_gray_text_color</item>
         <item name="android:fontFamily">sans-serif-thin</item>
-        <item name="android:hapticFeedbackEnabled">true</item>
     </style>
 
     <style name="calcButtonBlue" parent="Theme.AppCompat.Light">
@@ -27,7 +26,6 @@
         <item name="android:textSize">28sp</item>
         <item name="android:textColor">@drawable/button_blue_text_color</item>
         <item name="android:fontFamily">sans-serif-thin</item>
-        <item name="android:hapticFeedbackEnabled">true</item>
     </style>
 
 </resources>

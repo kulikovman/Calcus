@@ -8,13 +8,16 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0, btn_000,
+    private Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0,
             btn_addition, btn_subtraction, btn_multiplication, btn_devision,
-            btn_dot, btn_reset, btn_delete, btn_calculate, btn_sinus, btn_cosine, btn_tangent,
-            btn_natural_logarithm, btn_logarithm, btn_exclamation, btn_pi, btn_e, btn_circumflex,
+            btn_dot, btn_reset, btn_delete, btn_calculate;
+
+    private Button btn_000, btn_sinus, btn_cosine, btn_tangent, btn_circumflex,
+            btn_natural_logarithm, btn_logarithm, btn_exclamation, btn_pi, btn_e,
             btn_opening_bracket, btn_closing_bracket, btn_square_root;
 
     private TextView textResult, textCalculation;
+
     private int temp = 0;
 
     @Override
@@ -22,21 +25,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initAllElements();
+        initAllItems();
     }
 
     @Override
     public void onClick(View v) {
-        v.setHapticFeedbackEnabled(true);
-        v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+        //View view = findViewById(v.getId());
+        //view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
 
-        if (v.getId() == R.id.btn_reset) {
-            temp++;
-            textResult.setText(String.valueOf(temp));
+        switch (v.getId()) {
+            case R.id.btn_1:
+                temp += 1;
+                textResult.setText(String.valueOf(temp));
+                break;
+            case R.id.btn_2:
+                temp += 2;
+                textResult.setText(String.valueOf(temp));
+                break;
         }
     }
 
-    private void initAllElements() {
+    private void initAllItems() {
         //initializing all items
         btn_1 = (Button) findViewById(R.id.btn_1);
         btn_2 = (Button) findViewById(R.id.btn_2);
@@ -83,7 +92,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_8.setOnClickListener(this);
         btn_9.setOnClickListener(this);
         btn_0.setOnClickListener(this);
-        btn_000.setOnClickListener(this);
         btn_addition.setOnClickListener(this);
         btn_subtraction.setOnClickListener(this);
         btn_multiplication.setOnClickListener(this);
@@ -92,6 +100,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_reset.setOnClickListener(this);
         btn_delete.setOnClickListener(this);
         btn_calculate.setOnClickListener(this);
+        textResult.setOnClickListener(this);
+
+        //кнопки альбомного режима не получается активировать...
+        /*btn_000.setOnClickListener(this);
         btn_sinus.setOnClickListener(this);
         btn_cosine.setOnClickListener(this);
         btn_tangent.setOnClickListener(this);
@@ -103,8 +115,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_circumflex.setOnClickListener(this);
         btn_opening_bracket.setOnClickListener(this);
         btn_closing_bracket.setOnClickListener(this);
-        btn_square_root.setOnClickListener(this);
-        textResult.setOnClickListener(this);
-        //textCalculation.setOnClickListener(this);
+        btn_square_root.setOnClickListener(this);*/
     }
 }

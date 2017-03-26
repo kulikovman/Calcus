@@ -8,4 +8,13 @@
     <string name="calculate">=</string>
     <string name="addition">+</string>
     <string name="calculateExample">128 + 268 / 12 + 784 =</string>
+    <string name="btn_logarithm">log</string>
+    <string name="btn_exclamation">!</string>
+    <string name="btn_pi">π</string>
+    <string name="btn_e">e</string>
+    <string name="btn_circumflex">^</string>
+    <string name="btn_opening_bracket">(</string>
+    <string name="btn_closing_bracket">)</string>
+    <string name="btn_square_root">√</string>
+    <string name="textResult">6758</string>
 </resources>

@@ -23,7 +23,7 @@
         android:layout_marginEnd="10sp"
         android:fontFamily="sans-serif-light"
         android:gravity="center_vertical|end"
-        android:text="6758"
+        android:text="@string/textResult"
         android:textColor="#0288D1"
         android:textSize="47sp" />
 
@@ -91,12 +91,12 @@
         <Button
             android:id="@+id/btn_logarithm"
             style="@style/calcButtonBlue"
-            android:text="log" />
+            android:text="@string/btn_logarithm" />
 
         <Button
             android:id="@+id/btn_exclamation"
             style="@style/calcButtonBlue"
-            android:text="!" />
+            android:text="@string/btn_exclamation" />
 
         <Button
             android:id="@+id/btn_4"
@@ -134,17 +134,17 @@
         <Button
             android:id="@+id/btn_pi"
             style="@style/calcButtonBlue"
-            android:text="π" />
+            android:text="@string/btn_pi" />
 
         <Button
             android:id="@+id/btn_e"
             style="@style/calcButtonBlue"
-            android:text="e" />
+            android:text="@string/btn_e" />
 
         <Button
             android:id="@+id/btn_circumflex"
             style="@style/calcButtonBlue"
-            android:text="^" />
+            android:text="@string/btn_circumflex" />
 
         <Button
             android:id="@+id/btn_1"
@@ -185,21 +185,21 @@
             style="@style/calcButtonBlue"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="(" />
+            android:text="@string/btn_opening_bracket" />
 
         <Button
             android:id="@+id/btn_closing_bracket"
             style="@style/calcButtonBlue"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text=")" />
+            android:text="@string/btn_closing_bracket" />
 
         <Button
             android:id="@+id/btn_square_root"
             style="@style/calcButtonBlue"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="√" />
+            android:text="@string/btn_square_root" />
 
         <Button
             android:id="@+id/btn_dot"

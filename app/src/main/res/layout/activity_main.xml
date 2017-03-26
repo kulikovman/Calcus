@@ -47,8 +47,6 @@
             android:id="@+id/btn_delete"
             android:layout_weight="3"
             style="@style/calcButtonBlue"
-            android:hapticFeedbackEnabled="true"
-            android:onClick="btnDelete"
             android:text="@string/delete" />
     </LinearLayout>
 
