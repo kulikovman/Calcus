@@ -13,19 +13,20 @@
         android:layout_marginEnd="10sp"
         android:fontFamily="sans-serif-light"
         android:gravity="bottom|end"
-        android:text="@string/calculateExample"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:text="@string/calculateExample"/>
 
     <TextView
         android:id="@+id/textResult"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginEnd="10sp"
-        android:fontFamily="sans-serif-light"
         android:gravity="center_vertical|end"
-        android:text="@string/textResult"
+        android:fontFamily="sans-serif-light"
         android:textColor="#0288D1"
-        android:textSize="47sp" />
+        android:textSize="47sp"
+        android:onClick="onClick"
+        android:text="@string/textResult"/>
 
 
     <LinearLayout
@@ -177,8 +178,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:weightSum="8"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="8">
 
         <Button
             android:id="@+id/btn_opening_bracket"

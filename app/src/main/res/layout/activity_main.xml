@@ -10,21 +10,22 @@
         android:id="@+id/textCalculation"
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:textSize="14sp"
         android:gravity="bottom|end"
         android:layout_marginEnd="10sp"
         android:fontFamily="sans-serif-light"
+        android:textSize="14sp"
         android:text="@string/calculateExample" />
 
     <TextView
         android:id="@+id/textResult"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:textColor="#0288D1"
-        android:textSize="47sp"
         android:gravity="center_vertical|end"
         android:layout_marginEnd="10sp"
         android:fontFamily="sans-serif-light"
+        android:textColor="#0288D1"
+        android:textSize="47sp"
+        android:onClick="onClick"
         android:text="6758" />
 
 
