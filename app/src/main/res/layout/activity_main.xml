@@ -8,25 +8,21 @@
 
     <TextView
         android:id="@+id/textCalculation"
-        android:layout_width="match_parent"
+        style="@style/commonTextViewSettings"
         android:layout_height="35dp"
         android:gravity="bottom|end"
-        android:layout_marginEnd="10sp"
-        android:fontFamily="sans-serif-light"
         android:textSize="14sp"
         android:text="@string/calculateExample" />
 
     <TextView
         android:id="@+id/textResult"
-        android:layout_width="match_parent"
+        style="@style/commonTextViewSettings"
         android:layout_height="80dp"
         android:gravity="center_vertical|end"
-        android:layout_marginEnd="10sp"
-        android:fontFamily="sans-serif-light"
         android:textColor="#0288D1"
         android:textSize="47sp"
         android:onClick="onClick"
-        android:text="6758" />
+        android:text="@string/textResult" />
 
 
     <LinearLayout
@@ -34,6 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        style="common"
         android:orientation="horizontal">
 
         <Button
@@ -42,12 +39,12 @@
             android:gravity="center_vertical"
             android:paddingStart="35sp"
             style="@style/blueButtonStyle"
-            android:text="Сброс" />
+            android:text="@string/btn_reset" />
 
         <Button
             android:id="@+id/btn_delete"
-            android:layout_weight="3"
             style="@style/blueButtonStyle"
+            android:layout_weight="3"
             android:text="@string/btn_delete" />
     </LinearLayout>
 
@@ -61,17 +58,17 @@
         <Button
             android:id="@+id/btn_7"
             style="@style/grayButtonStyle"
-            android:text="7" />
+            android:text="@string/btn_7" />
 
         <Button
             android:id="@+id/btn_8"
             style="@style/grayButtonStyle"
-            android:text="8" />
+            android:text="@string/btn_8" />
 
         <Button
             android:id="@+id/btn_9"
             style="@style/grayButtonStyle"
-            android:text="9" />
+            android:text="@string/btn_9" />
 
         <Button
             android:id="@+id/btn_devision"
@@ -89,17 +86,17 @@
         <Button
             android:id="@+id/btn_4"
             style="@style/grayButtonStyle"
-            android:text="4" />
+            android:text="@string/btn_4" />
 
         <Button
             android:id="@+id/btn_5"
             style="@style/grayButtonStyle"
-            android:text="5" />
+            android:text="@string/btn_5" />
 
         <Button
             android:id="@+id/btn_6"
             style="@style/grayButtonStyle"
-            android:text="6" />
+            android:text="@string/btn_6" />
 
         <Button
             android:id="@+id/btn_multiplication"
@@ -117,17 +114,17 @@
         <Button
             android:id="@+id/btn_1"
             style="@style/grayButtonStyle"
-            android:text="1" />
+            android:text="@string/btn_1" />
 
         <Button
             android:id="@+id/btn_2"
             style="@style/grayButtonStyle"
-            android:text="2" />
+            android:text="@string/btn_2" />
 
         <Button
             android:id="@+id/btn_3"
             style="@style/grayButtonStyle"
-            android:text="3" />
+            android:text="@string/btn_3" />
 
         <Button
             android:id="@+id/btn_subtraction"
@@ -145,7 +142,7 @@
         <Button
             android:id="@+id/btn_0"
             style="@style/grayButtonStyle"
-            android:text="0" />
+            android:text="@string/btn_0" />
 
         <Button
             android:id="@+id/btn_dot"

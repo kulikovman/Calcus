@@ -16,4 +16,22 @@
     <string name="btn_opening_bracket">(</string>
     <string name="btn_closing_bracket">)</string>
     <string name="btn_square_root">√</string>
+    <string name="btn_0">0</string>
+    <string name="btn_3">3</string>
+    <string name="btn_2">2</string>
+    <string name="btn_1">1</string>
+    <string name="btn_6">6</string>
+    <string name="btn_5">5</string>
+    <string name="btn_4">4</string>
+    <string name="btn_9">9</string>
+    <string name="btn_8">8</string>
+    <string name="btn_7">7</string>
+    <string name="btn_reset">Сброс</string>
+    <string name="btn_000">000</string>
+    <string name="btn_logarithm">log</string>
+    <string name="btn_natural_logarithm">ln</string>
+    <string name="btn_reset_short">С</string>
+    <string name="btn_tangent">tan</string>
+    <string name="btn_cosine">cos</string>
+    <string name="btn_sinus">sin</string>
 </resources>

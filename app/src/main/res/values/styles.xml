@@ -8,6 +8,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="commonTextViewSettings" parent="Theme.AppCompat.Light">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:paddingStart">10sp</item>
+        <item name="android:paddingEnd">10sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
     <style name="commonButtonSettings" parent="Theme.AppCompat.Light">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>

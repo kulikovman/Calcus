@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void initItems() {
         textResult = (TextView) findViewById(R.id.textResult);
+        textResult.setText(R.string.textResult);
         textCalculation = (TextView) findViewById(R.id.textCalculation);
+        textCalculation.setText(R.string.calculateExample);
     }
 }
