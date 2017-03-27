@@ -47,7 +47,7 @@
             android:id="@+id/btn_delete"
             android:layout_weight="3"
             style="@style/calcButtonBlue"
-            android:text="@string/delete" />
+            android:text="@string/btn_delete" />
     </LinearLayout>
 
     <LinearLayout
@@ -75,7 +75,7 @@
         <Button
             android:id="@+id/btn_devision"
             style="@style/calcButtonBlue"
-            android:text="@string/devision" />
+            android:text="@string/btn_devision" />
     </LinearLayout>
 
     <LinearLayout
@@ -103,7 +103,7 @@
         <Button
             android:id="@+id/btn_multiplication"
             style="@style/calcButtonBlue"
-            android:text="@string/multiplication" />
+            android:text="@string/btn_multiplication" />
     </LinearLayout>
 
     <LinearLayout
@@ -131,7 +131,7 @@
         <Button
             android:id="@+id/btn_subtraction"
             style="@style/calcButtonBlue"
-            android:text="@string/subtraction" />
+            android:text="@string/btn_subtraction" />
     </LinearLayout>
 
     <LinearLayout
@@ -149,17 +149,17 @@
         <Button
             android:id="@+id/btn_dot"
             style="@style/calcButtonGray"
-            android:text="@string/dot" />
+            android:text="@string/btn_dot" />
 
         <Button
             android:id="@+id/btn_calculate"
             style="@style/calcButtonGray"
-            android:text="@string/calculate" />
+            android:text="@string/btn_calculate" />
 
         <Button
             android:id="@+id/btn_addition"
             style="@style/calcButtonBlue"
-            android:text="@string/addition" />
+            android:text="@string/btn_addition" />
     </LinearLayout>
 
 </LinearLayout>

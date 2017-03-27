@@ -73,7 +73,7 @@
         <Button
             android:id="@+id/btn_delete"
             style="@style/calcButtonBlue"
-            android:text="@string/delete" />
+            android:text="@string/btn_delete" />
     </LinearLayout>
 
     <LinearLayout
@@ -91,12 +91,12 @@
         <Button
             android:id="@+id/btn_logarithm"
             style="@style/calcButtonBlue"
-            android:text="@string/btn_logarithm" />
+            android:text="log" />
 
         <Button
             android:id="@+id/btn_percent"
             style="@style/calcButtonBlue"
-            android:text="@string/btn_btn_percent" />
+            android:text="@string/btn_percent" />
 
         <Button
             android:id="@+id/btn_4"
@@ -116,12 +116,12 @@
         <Button
             android:id="@+id/btn_addition"
             style="@style/calcButtonBlue"
-            android:text="@string/addition" />
+            android:text="@string/btn_addition" />
 
         <Button
             android:id="@+id/btn_multiplication"
             style="@style/calcButtonBlue"
-            android:text="@string/multiplication" />
+            android:text="@string/btn_multiplication" />
     </LinearLayout>
 
     <LinearLayout
@@ -142,7 +142,7 @@
             android:text="@string/btn_e" />
 
         <Button
-            android:id="@+id/btn_circumflex"
+            android:id="@+id/btn_power"
             style="@style/calcButtonBlue"
             android:text="@string/btn_power" />
 
@@ -164,12 +164,12 @@
         <Button
             android:id="@+id/btn_subtraction"
             style="@style/calcButtonBlue"
-            android:text="@string/subtraction" />
+            android:text="@string/btn_subtraction" />
 
         <Button
             android:id="@+id/btn_devision"
             style="@style/calcButtonBlue"
-            android:text="@string/devision" />
+            android:text="@string/btn_devision" />
     </LinearLayout>
 
     <LinearLayout
@@ -206,7 +206,7 @@
             style="@style/calcButtonGray"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="@string/dot" />
+            android:text="@string/btn_dot" />
 
         <Button
             android:id="@+id/btn_0"
@@ -227,7 +227,7 @@
             style="@style/calcButtonGray"
             android:layout_width="0dp"
             android:layout_weight="2"
-            android:text="@string/calculate" />
+            android:text="@string/btn_calculate" />
     </LinearLayout>
 
 </LinearLayout>
