@@ -94,9 +94,9 @@
             android:text="@string/btn_logarithm" />
 
         <Button
-            android:id="@+id/btn_exclamation"
+            android:id="@+id/btn_percent"
             style="@style/calcButtonBlue"
-            android:text="@string/btn_exclamation" />
+            android:text="@string/btn_btn_percent" />
 
         <Button
             android:id="@+id/btn_4"
@@ -144,7 +144,7 @@
         <Button
             android:id="@+id/btn_circumflex"
             style="@style/calcButtonBlue"
-            android:text="@string/btn_circumflex" />
+            android:text="@string/btn_power" />
 
         <Button
             android:id="@+id/btn_1"

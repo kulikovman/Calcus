@@ -11,8 +11,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0,
             btn_addition, btn_subtraction, btn_multiplication, btn_devision,
             btn_dot, btn_reset, btn_delete, btn_calculate;
-    private Button btn_000, btn_sinus, btn_cosine, btn_tangent, btn_circumflex,
-            btn_natural_logarithm, btn_logarithm, btn_exclamation, btn_pi, btn_e,
+    private Button btn_000, btn_sinus, btn_cosine, btn_tangent, btn_power,
+            btn_natural_logarithm, btn_logarithm, btn_percent, btn_pi, btn_e,
             btn_opening_bracket, btn_closing_bracket, btn_square_root;
     private TextView textResult, textCalculation;
     private int temp = 0;
@@ -72,10 +72,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_tangent = (Button) findViewById(R.id.btn_tangent);
         btn_natural_logarithm = (Button) findViewById(R.id.btn_natural_logarithm);
         btn_logarithm = (Button) findViewById(R.id.btn_logarithm);
-        btn_exclamation = (Button) findViewById(R.id.btn_exclamation);
+        btn_percent = (Button) findViewById(R.id.btn_percent);
         btn_pi = (Button) findViewById(R.id.btn_pi);
         btn_e = (Button) findViewById(R.id.btn_e);
-        btn_circumflex = (Button) findViewById(R.id.btn_circumflex);
+        btn_power = (Button) findViewById(R.id.btn_power);
         btn_opening_bracket = (Button) findViewById(R.id.btn_opening_bracket);
         btn_closing_bracket = (Button) findViewById(R.id.btn_closing_bracket);
         btn_square_root = (Button) findViewById(R.id.btn_square_root);*/
@@ -109,10 +109,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_tangent.setOnClickListener(this);
         btn_natural_logarithm.setOnClickListener(this);
         btn_logarithm.setOnClickListener(this);
-        btn_exclamation.setOnClickListener(this);
+        btn_percent.setOnClickListener(this);
         btn_pi.setOnClickListener(this);
         btn_e.setOnClickListener(this);
-        btn_circumflex.setOnClickListener(this);
+        btn_power.setOnClickListener(this);
         btn_opening_bracket.setOnClickListener(this);
         btn_closing_bracket.setOnClickListener(this);
         btn_square_root.setOnClickListener(this);*/
