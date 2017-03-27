@@ -8,26 +8,27 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="calcButtonGray" parent="Theme.AppCompat.Light">
+    <style name="commonButtonSettings" parent="Theme.AppCompat.Light">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:background">@drawable/button_gray</item>
         <item name="android:textSize">28sp</item>
-        <item name="android:textColor">@drawable/button_gray_text_color</item>
         <item name="android:fontFamily">sans-serif-thin</item>
         <item name="android:onClick">onClick</item>
     </style>
 
-    <style name="calcButtonBlue" parent="Theme.AppCompat.Light">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">1</item>
+    <style name="blueButtonStyle" parent="commonButtonSettings">
         <item name="android:background">@drawable/button_blue</item>
-        <item name="android:textSize">28sp</item>
         <item name="android:textColor">@drawable/button_blue_text_color</item>
+        <item name="android:textSize">28sp</item>
         <item name="android:fontFamily">sans-serif-thin</item>
-        <item name="android:onClick">onClick</item>
+    </style>
+
+    <style name="grayButtonStyle" parent="commonButtonSettings">
+        <item name="android:background">@drawable/button_gray</item>
+        <item name="android:textColor">@drawable/button_gray_text_color</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:fontFamily">sans-serif-thin</item>
     </style>
 
 </resources>
