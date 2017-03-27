@@ -7,15 +7,18 @@ import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String TEXT_RESULT = "result";
+    public static final String TEXT_CALCULATION = "text_Calculation";
     private TextView textResult, textCalculation;
-    private int temp = 0;
+    private int temp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initItems();
+        textResult = (TextView) findViewById(R.id.textResult);
+        textCalculation = (TextView) findViewById(R.id.textCalculation);
     }
 
     public void onClick(View view) {
@@ -34,10 +37,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void initItems() {
-        textResult = (TextView) findViewById(R.id.textResult);
-        textResult.setText(R.string.textResult);
-        textCalculation = (TextView) findViewById(R.id.textCalculation);
-        textCalculation.setText(R.string.calculateExample);
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(TEXT_RESULT, textResult.getText().toString());
+        outState.putString(TEXT_CALCULATION, textCalculation.getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        textResult.setText(savedInstanceState.getString(TEXT_RESULT));
+        textCalculation.setText(savedInstanceState.getString(TEXT_CALCULATION));
     }
 }

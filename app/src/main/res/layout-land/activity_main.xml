@@ -12,7 +12,7 @@
         android:layout_height="30dp"
         android:gravity="bottom|end"
         android:textSize="14sp"
-        android:text="@string/calculateExample"/>
+        />
 
     <TextView
         android:id="@+id/textResult"
@@ -22,7 +22,7 @@
         android:textColor="#0288D1"
         android:textSize="47sp"
         android:onClick="onClick"
-        android:text="@string/textResult"/>
+        />
 
 
     <LinearLayout
