@@ -10,7 +10,6 @@ public class MainActivity extends AppCompatActivity {
     public static final String TEXT_RESULT = "result";
     public static final String TEXT_CALCULATION = "text_Calculation";
     private TextView textResult, textCalculation;
-    private int temp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,14 +25,109 @@ public class MainActivity extends AppCompatActivity {
         view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
 
         switch (view.getId()) {
+            //базовые кнопки
             case R.id.btn_1:
-                temp += 1;
-                textResult.setText(String.valueOf(temp));
+
                 break;
             case R.id.btn_2:
-                temp += 2;
-                textResult.setText(String.valueOf(temp));
+
                 break;
+            case R.id.btn_3:
+
+                break;
+            case R.id.btn_4:
+
+                break;
+            case R.id.btn_5:
+
+                break;
+            case R.id.btn_6:
+
+                break;
+            case R.id.btn_7:
+
+                break;
+            case R.id.btn_8:
+
+                break;
+            case R.id.btn_9:
+
+                break;
+            case R.id.btn_0:
+
+                break;
+            case R.id.btn_000:
+
+                break;
+            case R.id.btn_dot:
+
+                break;
+
+            //базовые операции
+            case R.id.btn_reset:
+
+                break;
+            case R.id.btn_delete:
+
+                break;
+            case R.id.btn_addition:
+
+                break;
+            case R.id.btn_subtraction:
+
+                break;
+            case R.id.btn_multiplication:
+
+                break;
+            case R.id.btn_devision:
+
+                break;
+
+            //дополнительные операции
+            case R.id.btn_percent:
+
+                break;
+            case R.id.btn_power:
+
+                break;
+            case R.id.btn_square_root:
+
+                break;
+            case R.id.btn_opening_bracket:
+
+                break;
+            case R.id.btn_closing_bracket:
+
+                break;
+
+            //математические операции
+            case R.id.btn_sinus:
+
+                break;
+            case R.id.btn_cosine:
+
+                break;
+            case R.id.btn_tangent:
+
+                break;
+            case R.id.btn_natural_logarithm:
+
+                break;
+            case R.id.btn_logarithm:
+
+                break;
+            case R.id.btn_pi:
+
+                break;
+            case R.id.btn_e:
+
+                break;
+
+            //окончательный рассчет
+            case R.id.btn_calculate:
+
+                break;
+
         }
     }
 
