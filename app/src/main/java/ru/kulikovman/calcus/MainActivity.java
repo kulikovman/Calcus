@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
 
                     String temp = getResult() + " =";
                     calculationField.setText(temp);
-                    resultField.setText("125");
+                    resultField.setText("RESULT");
                     isResult = true;
                 }
                 break;
@@ -196,7 +196,6 @@ public class MainActivity extends AppCompatActivity {
         return temp[temp.length - 1];
     }
 
-    // TODO: 28.03.2017 исправить
     private int getNumberOfElements() {
         String[] temp = getResult().split(" ");
         if (isOperation()) return temp.length - 1;
@@ -267,19 +266,6 @@ public class MainActivity extends AppCompatActivity {
         String temp = resultField.getText().toString() + s;
         resultField.setText(temp);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
