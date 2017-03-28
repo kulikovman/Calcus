@@ -7,7 +7,7 @@
     tools:context="ru.kulikovman.calcus.MainActivity">
 
     <TextView
-        android:id="@+id/textCalculation"
+        android:id="@+id/calculationField"
         style="@style/commonTextViewSettings"
         android:layout_height="35dp"
         android:gravity="bottom|end"
@@ -15,7 +15,7 @@
         />
 
     <TextView
-        android:id="@+id/textResult"
+        android:id="@+id/resultField"
         style="@style/commonTextViewSettings"
         android:layout_height="80dp"
         android:gravity="center_vertical|end"
@@ -39,13 +39,13 @@
             android:gravity="center_vertical"
             android:paddingStart="35sp"
             style="@style/blueButtonStyle"
-            android:text="@string/btn_reset" />
+            android:text="@string/reset" />
 
         <Button
             android:id="@+id/btn_delete"
             style="@style/blueButtonStyle"
             android:layout_weight="3"
-            android:text="@string/btn_delete" />
+            android:text="@string/delete" />
     </LinearLayout>
 
     <LinearLayout
@@ -73,7 +73,7 @@
         <Button
             android:id="@+id/btn_devision"
             style="@style/blueButtonStyle"
-            android:text="@string/btn_devision" />
+            android:text="@string/devision" />
     </LinearLayout>
 
     <LinearLayout
@@ -101,7 +101,7 @@
         <Button
             android:id="@+id/btn_multiplication"
             style="@style/blueButtonStyle"
-            android:text="@string/btn_multiplication" />
+            android:text="@string/multiplication" />
     </LinearLayout>
 
     <LinearLayout
@@ -129,7 +129,7 @@
         <Button
             android:id="@+id/btn_subtraction"
             style="@style/blueButtonStyle"
-            android:text="@string/btn_subtraction" />
+            android:text="@string/subtraction" />
     </LinearLayout>
 
     <LinearLayout
@@ -147,17 +147,17 @@
         <Button
             android:id="@+id/btn_dot"
             style="@style/grayButtonStyle"
-            android:text="@string/btn_dot" />
+            android:text="@string/dot" />
 
         <Button
             android:id="@+id/btn_calculate"
             style="@style/grayButtonStyle"
-            android:text="@string/btn_calculate" />
+            android:text="@string/calculate" />
 
         <Button
             android:id="@+id/btn_addition"
             style="@style/blueButtonStyle"
-            android:text="@string/btn_addition" />
+            android:text="@string/addition" />
     </LinearLayout>
 
 </LinearLayout>

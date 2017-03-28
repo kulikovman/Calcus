@@ -7,7 +7,7 @@
     tools:context="ru.kulikovman.calcus.MainActivity">
 
     <TextView
-        android:id="@+id/textCalculation"
+        android:id="@+id/calculationField"
         style="@style/commonTextViewSettings"
         android:layout_height="30dp"
         android:gravity="bottom|end"
@@ -15,7 +15,7 @@
         />
 
     <TextView
-        android:id="@+id/textResult"
+        android:id="@+id/resultField"
         style="@style/commonTextViewSettings"
         android:layout_height="70dp"
         android:gravity="center_vertical|end"
@@ -35,17 +35,17 @@
         <Button
             android:id="@+id/btn_sinus"
             style="@style/blueButtonStyle"
-            android:text="@string/btn_sinus" />
+            android:text="@string/sinus" />
 
         <Button
             android:id="@+id/btn_cosine"
             style="@style/blueButtonStyle"
-            android:text="@string/btn_cosine" />
+            android:text="@string/cosine" />
 
         <Button
             android:id="@+id/btn_tangent"
             style="@style/blueButtonStyle"
-            android:text="@string/btn_tangent" />
+            android:text="@string/tangent" />
 
         <Button
             android:id="@+id/btn_7"
@@ -65,12 +65,12 @@
         <Button
             android:id="@+id/btn_reset"
             style="@style/blueButtonStyle"
-            android:text="@string/btn_reset_short" />
+            android:text="@string/reset_short" />
 
         <Button
             android:id="@+id/btn_delete"
             style="@style/blueButtonStyle"
-            android:text="@string/btn_delete" />
+            android:text="@string/delete" />
     </LinearLayout>
 
     <LinearLayout
@@ -83,17 +83,17 @@
         <Button
             android:id="@+id/btn_natural_logarithm"
             style="@style/blueButtonStyle"
-            android:text="@string/btn_natural_logarithm" />
+            android:text="@string/natural_logarithm" />
 
         <Button
             android:id="@+id/btn_logarithm"
             style="@style/blueButtonStyle"
-            android:text="@string/btn_logarithm" />
+            android:text="@string/logarithm" />
 
         <Button
             android:id="@+id/btn_percent"
             style="@style/blueButtonStyle"
-            android:text="@string/btn_percent" />
+            android:text="@string/percent" />
 
         <Button
             android:id="@+id/btn_4"
@@ -113,12 +113,12 @@
         <Button
             android:id="@+id/btn_addition"
             style="@style/blueButtonStyle"
-            android:text="@string/btn_addition" />
+            android:text="@string/addition" />
 
         <Button
             android:id="@+id/btn_multiplication"
             style="@style/blueButtonStyle"
-            android:text="@string/btn_multiplication" />
+            android:text="@string/multiplication" />
     </LinearLayout>
 
     <LinearLayout
@@ -131,17 +131,17 @@
         <Button
             android:id="@+id/btn_pi"
             style="@style/blueButtonStyle"
-            android:text="@string/btn_pi" />
+            android:text="@string/pi" />
 
         <Button
             android:id="@+id/btn_e"
             style="@style/blueButtonStyle"
-            android:text="@string/btn_e" />
+            android:text="@string/e" />
 
         <Button
             android:id="@+id/btn_power"
             style="@style/blueButtonStyle"
-            android:text="@string/btn_power" />
+            android:text="@string/power" />
 
         <Button
             android:id="@+id/btn_1"
@@ -161,12 +161,12 @@
         <Button
             android:id="@+id/btn_subtraction"
             style="@style/blueButtonStyle"
-            android:text="@string/btn_subtraction" />
+            android:text="@string/subtraction" />
 
         <Button
             android:id="@+id/btn_devision"
             style="@style/blueButtonStyle"
-            android:text="@string/btn_devision" />
+            android:text="@string/devision" />
     </LinearLayout>
 
     <LinearLayout
@@ -182,28 +182,28 @@
             style="@style/blueButtonStyle"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="@string/btn_opening_bracket" />
+            android:text="@string/opening_bracket" />
 
         <Button
             android:id="@+id/btn_closing_bracket"
             style="@style/blueButtonStyle"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="@string/btn_closing_bracket" />
+            android:text="@string/closing_bracket" />
 
         <Button
             android:id="@+id/btn_square_root"
             style="@style/blueButtonStyle"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="@string/btn_square_root" />
+            android:text="@string/square_root" />
 
         <Button
             android:id="@+id/btn_dot"
             style="@style/grayButtonStyle"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="@string/btn_dot" />
+            android:text="@string/dot" />
 
         <Button
             android:id="@+id/btn_0"
@@ -224,7 +224,7 @@
             style="@style/grayButtonStyle"
             android:layout_width="0dp"
             android:layout_weight="2"
-            android:text="@string/btn_calculate" />
+            android:text="@string/calculate" />
     </LinearLayout>
 
 </LinearLayout>

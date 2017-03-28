@@ -1,21 +1,19 @@
 <resources>
     <string name="app_name">Calcus</string>
-    <string name="calculateExample">128 + 268 / 12 + 784 =</string>
-    <string name="textResult">6758</string>
-    <string name="btn_delete"><![CDATA[<]]></string>
-    <string name="btn_devision">÷</string>
-    <string name="btn_multiplication">×</string>
-    <string name="btn_subtraction">-</string>
-    <string name="btn_dot">.</string>
-    <string name="btn_calculate">=</string>
-    <string name="btn_addition">+</string>
-    <string name="btn_percent">%</string>
-    <string name="btn_pi">π</string>
-    <string name="btn_e">e</string>
-    <string name="btn_power">^</string>
-    <string name="btn_opening_bracket">(</string>
-    <string name="btn_closing_bracket">)</string>
-    <string name="btn_square_root">√</string>
+    <string name="delete"><![CDATA[<]]></string>
+    <string name="devision">÷</string>
+    <string name="multiplication">×</string>
+    <string name="subtraction">-</string>
+    <string name="dot">.</string>
+    <string name="calculate">=</string>
+    <string name="addition">+</string>
+    <string name="percent">%</string>
+    <string name="pi">π</string>
+    <string name="e">e</string>
+    <string name="power">^</string>
+    <string name="opening_bracket">(</string>
+    <string name="closing_bracket">)</string>
+    <string name="square_root">√</string>
     <string name="btn_0">0</string>
     <string name="btn_3">3</string>
     <string name="btn_2">2</string>
@@ -26,12 +24,12 @@
     <string name="btn_9">9</string>
     <string name="btn_8">8</string>
     <string name="btn_7">7</string>
-    <string name="btn_reset">Сброс</string>
+    <string name="reset">Сброс</string>
     <string name="btn_000">000</string>
-    <string name="btn_logarithm">log</string>
-    <string name="btn_natural_logarithm">ln</string>
-    <string name="btn_reset_short">С</string>
-    <string name="btn_tangent">tan</string>
-    <string name="btn_cosine">cos</string>
-    <string name="btn_sinus">sin</string>
+    <string name="logarithm">log</string>
+    <string name="natural_logarithm">ln</string>
+    <string name="reset_short">С</string>
+    <string name="tangent">tan</string>
+    <string name="cosine">cos</string>
+    <string name="sinus">sin</string>
 </resources>
