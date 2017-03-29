@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_multiplication:
                 removeExcessElements();
                 if (isNumber() || isClosingBracket()) {
-                    toJoin(" * ");
+                    toJoin(" × ");
                     isResult = false;
                 }
                 break;
@@ -325,7 +325,7 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean isOperation() {
         return getLastElement().equals("+") || getLastElement().equals("-")
-                || getLastElement().equals("*") || getLastElement().equals("/")
+                || getLastElement().equals("×") || getLastElement().equals("/")
                 || getLastElement().equals("^");
     }
 
