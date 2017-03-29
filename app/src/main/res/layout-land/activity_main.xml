@@ -11,18 +11,18 @@
         style="@style/commonTextViewSettings"
         android:layout_height="30dp"
         android:gravity="bottom|end"
-        android:textSize="14sp"
-        />
+        android:inputType="number"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/resultField"
         style="@style/commonTextViewSettings"
         android:layout_height="70dp"
         android:gravity="center_vertical|end"
-        android:textColor="#0288D1"
-        android:textSize="47sp"
+        android:inputType="number"
         android:onClick="onClick"
-        />
+        android:textColor="#0288D1"
+        android:textSize="47sp" />
 
 
     <LinearLayout

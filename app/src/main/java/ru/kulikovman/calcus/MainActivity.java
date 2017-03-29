@@ -29,50 +29,59 @@ public class MainActivity extends AppCompatActivity {
             //базовые кнопки
             case R.id.btn_1:
                 if (isResult) removeResult();
-                if (!isClosingBracket()) toJoin("1");
+                if (isZero()) toJoin(".1");
+                else if (!isClosingBracket()) toJoin("1");
                 break;
             case R.id.btn_2:
                 if (isResult) removeResult();
-                if (!isClosingBracket()) toJoin("2");
+                if (isZero()) toJoin(".2");
+                else if (!isClosingBracket()) toJoin("2");
                 break;
             case R.id.btn_3:
                 if (isResult) removeResult();
-                if (!isClosingBracket()) toJoin("3");
+                if (isZero()) toJoin(".6");
+                else if (!isClosingBracket()) toJoin("3");
                 break;
             case R.id.btn_4:
                 if (isResult) removeResult();
-                if (!isClosingBracket()) toJoin("4");
+                if (isZero()) toJoin(".4");
+                else if (!isClosingBracket()) toJoin("4");
                 break;
             case R.id.btn_5:
                 if (isResult) removeResult();
-                if (!isClosingBracket()) toJoin("5");
+                if (isZero()) toJoin(".5");
+                else if (!isClosingBracket()) toJoin("5");
                 break;
             case R.id.btn_6:
                 if (isResult) removeResult();
-                if (!isClosingBracket()) toJoin("6");
+                if (isZero()) toJoin(".6");
+                else if (!isClosingBracket()) toJoin("6");
                 break;
             case R.id.btn_7:
                 if (isResult) removeResult();
-                if (!isClosingBracket()) toJoin("7");
+                if (isZero()) toJoin(".7");
+                else if (!isClosingBracket()) toJoin("7");
                 break;
             case R.id.btn_8:
                 if (isResult) removeResult();
-                if (!isClosingBracket()) toJoin("8");
+                if (isZero()) toJoin(".8");
+                else if (!isClosingBracket()) toJoin("8");
                 break;
             case R.id.btn_9:
                 if (isResult) removeResult();
-                if (!isClosingBracket()) toJoin("9");
+                if (isZero()) toJoin(".9");
+                else if (!isClosingBracket()) toJoin("9");
                 break;
             case R.id.btn_0:
                 if (isResult) removeResult();
-                if (getResult().equals("0")) toJoin(".0");
-                else if (!isPercent() && !isClosingBracket()) toJoin("0");
+                if (isZero()) toJoin(".0");
+                else if (!isClosingBracket()) toJoin("0");
                 break;
             case R.id.btn_000:
                 if (isResult) removeResult();
-                if (isNull()) toJoin("0.00");
-                else if (getResult().equals("0")) toJoin(".000");
+                if (isZero()) toJoin(".000");
                 else if (isNumber()) toJoin("000");
+                else if (!isClosingBracket()) toJoin("0.00");
                 break;
             case R.id.btn_dot:
                 if (isResult) removeResult();
@@ -87,36 +96,36 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_delete:
                 if (isResult) removeResult();
                 if (getResult().length() > 1) {
-                    if (isSpace()) removeLastOperation();
+                    if (isOperation()) removeLastOperation();
                     else removeLastSymbol();
                 } else {
                     resultField.setText(" ");
                 }
                 break;
             case R.id.btn_addition:
-                removeExcessZeroAfterDot();
-                if (isNumber() || isClosingBracket()) {
+                removeExcessElements();
+                if (!isNull()) {
                     toJoin(" + ");
                     isResult = false;
                 }
                 break;
             case R.id.btn_subtraction:
-                removeExcessZeroAfterDot();
-                if (isNumber() || isClosingBracket()) {
+                removeExcessElements();
+                if (!isNull()) {
                     toJoin(" - ");
                     isResult = false;
                 }
                 break;
             case R.id.btn_multiplication:
-                removeExcessZeroAfterDot();
-                if (isNumber() || isClosingBracket()) {
+                removeExcessElements();
+                if (!isNull()) {
                     toJoin(" * ");
                     isResult = false;
                 }
                 break;
             case R.id.btn_devision:
-                removeExcessZeroAfterDot();
-                if (isNumber() || isClosingBracket()) {
+                removeExcessElements();
+                if (!isNull()) {
                     toJoin(" / ");
                     isResult = false;
                 }
@@ -164,18 +173,13 @@ public class MainActivity extends AppCompatActivity {
 
             //окончательный рассчет
             case R.id.btn_calculate:
+                removeExcessElements();
                 if (getNumberOfElements() > 1) {
-                    if (isOperation()) removeLastOperation();
-                    if (isDot()) removeLastSymbol();
-                    removeExcessZeroAfterDot();
-
-                    String temp = getResult() + " =";
-                    calculationField.setText(temp);
+                    calculationField.setText(String.valueOf(getResult() + " ="));
                     resultField.setText("RESULT");
                     isResult = true;
                 }
                 break;
-
         }
     }
 
@@ -217,18 +221,22 @@ public class MainActivity extends AppCompatActivity {
         isResult = false;
     }
 
-    private void removeExcessZeroAfterDot() {
-        if (getLastElement().contains(".")){
+    private void removeExcessElements() {
+        if (getLastElement().contains(".")) {
             while (getLastSymbol().equals("0")) {
                 removeLastSymbol();
             }
         }
-
         if (isDot()) removeLastSymbol();
+        if (isOperation()) removeLastOperation();
     }
 
     private boolean isNull() {
-        return getResult().equals("") || getResult().equals(" ");
+        return getResult().equals("") || getResult().equals(" ") || getResult().equals("0");
+    }
+
+    private boolean isZero() {
+        return getLastElement().equals("0");
     }
 
     private boolean isDot() {

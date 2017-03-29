@@ -11,34 +11,33 @@
         style="@style/commonTextViewSettings"
         android:layout_height="35dp"
         android:gravity="bottom|end"
-        android:textSize="14sp"
-        />
+        android:inputType="number"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/resultField"
         style="@style/commonTextViewSettings"
         android:layout_height="80dp"
         android:gravity="center_vertical|end"
-        android:textColor="#0288D1"
-        android:textSize="47sp"
+        android:inputType="number"
         android:onClick="onClick"
-        />
-
+        android:textColor="#0288D1"
+        android:textSize="47sp" />
 
     <LinearLayout
         android:id="@+id/groupButton1"
+        style="common"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        style="common"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_reset"
+            style="@style/blueButtonStyle"
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:paddingStart="35sp"
-            style="@style/blueButtonStyle"
             android:text="@string/reset" />
 
         <Button
