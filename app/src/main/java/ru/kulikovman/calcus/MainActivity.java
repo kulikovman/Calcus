@@ -1,10 +1,14 @@
 package ru.kulikovman.calcus;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TEXT_RESULT = "result";
@@ -129,6 +133,13 @@ public class MainActivity extends AppCompatActivity {
                     toJoin(" / ");
                     isResult = false;
                 }
+                break;
+            case R.id.resultField:
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText(TEXT_RESULT, getResult());
+                clipboard.setPrimaryClip(clip);
+
+                Toast.makeText(this, R.string.copy_co_clipboard, Toast.LENGTH_SHORT).show();
                 break;
 
             //дополнительные операции
