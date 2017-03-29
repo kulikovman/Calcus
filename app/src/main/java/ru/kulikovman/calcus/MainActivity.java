@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_000:
                 if (isResult) removeResult();
                 if (isZero()) toJoin(".000");
-                else if (isNumber()) toJoin("000");
+                else if (isNumber() || isDot()) toJoin("000");
                 else if (!isClosingBracket()) toJoin("0.00");
                 break;
             case R.id.btn_dot:
@@ -108,28 +108,28 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.btn_addition:
                 removeExcessElements();
-                if (!isNull()) {
+                if (isNumber() || isClosingBracket()) {
                     toJoin(" + ");
                     isResult = false;
                 }
                 break;
             case R.id.btn_subtraction:
                 removeExcessElements();
-                if (!isNull()) {
+                if (isNumber() || isClosingBracket()) {
                     toJoin(" - ");
                     isResult = false;
                 }
                 break;
             case R.id.btn_multiplication:
                 removeExcessElements();
-                if (!isNull()) {
+                if (isNumber() || isClosingBracket()) {
                     toJoin(" * ");
                     isResult = false;
                 }
                 break;
             case R.id.btn_devision:
                 removeExcessElements();
-                if (!isNull()) {
+                if (isNumber() || isClosingBracket()) {
                     toJoin(" / ");
                     isResult = false;
                 }
@@ -243,7 +243,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean isNull() {
-        return getResult().equals("") || getResult().equals(" ") || getResult().equals("0");
+        return getResult().equals("") || getResult().equals(" ");
     }
 
     private boolean isZero() {
