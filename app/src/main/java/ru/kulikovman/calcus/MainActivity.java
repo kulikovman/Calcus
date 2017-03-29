@@ -11,8 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String TEXT_RESULT = "result";
-    public static final String TEXT_CALCULATION = "text_Calculation";
+    public static final String RESULT_FIELD = "result";
+    public static final String CALCULATION_FIELD = "calculation";
     private boolean isResult = false;
     private TextView resultField, calculationField;
 
@@ -92,6 +92,14 @@ public class MainActivity extends AppCompatActivity {
                 if (isNull()) toJoin("0.");
                 else if (isNumber() && !getLastElement().contains(".")) toJoin(".");
                 break;
+            case R.id.btn_pi:
+                if (isResult) removeResult();
+                if (isNull() || isOperation()) toJoin("3.14159265359");
+                break;
+            case R.id.btn_e:
+                if (isResult) removeResult();
+                if (isNull() || isOperation()) toJoin("2.71828182846");
+                break;
 
             //базовые операции
             case R.id.btn_reset:
@@ -134,24 +142,73 @@ public class MainActivity extends AppCompatActivity {
                     isResult = false;
                 }
                 break;
-            case R.id.resultField:
-                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText(TEXT_RESULT, getResult());
-                clipboard.setPrimaryClip(clip);
-
-                Toast.makeText(this, R.string.copy_co_clipboard, Toast.LENGTH_SHORT).show();
+            case R.id.btn_power:
+                removeExcessElements();
+                if (isNumber() || isClosingBracket()) {
+                    toJoin(" ^ ");
+                    isResult = false;
+                }
                 break;
 
             //дополнительные операции
             case R.id.btn_percent:
-
-                break;
-            case R.id.btn_power:
-
+                removeExcessElements();
+                if (getNumberOfElements() > 1) {
+                    calculationField.setText(String.valueOf(getResult() + "% ="));
+                    resultField.setText("RESULT");
+                    isResult = true;
+                }
                 break;
             case R.id.btn_square_root:
-
+                removeExcessElements();
+                if (getNumberOfElements() >= 1 && !isZero()) {
+                    calculationField.setText(String.valueOf("√ (" + getResult() + ") ="));
+                    resultField.setText("RESULT");
+                    isResult = true;
+                }
                 break;
+            case R.id.btn_sinus:
+                removeExcessElements();
+                if (getNumberOfElements() >= 1) {
+                    calculationField.setText(String.valueOf("sin (" + getResult() + ") ="));
+                    resultField.setText("RESULT");
+                    isResult = true;
+                }
+                break;
+            case R.id.btn_cosine:
+                removeExcessElements();
+                if (getNumberOfElements() >= 1) {
+                    calculationField.setText(String.valueOf("cos (" + getResult() + ") ="));
+                    resultField.setText("RESULT");
+                    isResult = true;
+                }
+                break;
+            case R.id.btn_tangent:
+                removeExcessElements();
+                if (getNumberOfElements() >= 1) {
+                    calculationField.setText(String.valueOf("tan (" + getResult() + ") ="));
+                    resultField.setText("RESULT");
+                    isResult = true;
+                }
+                break;
+            case R.id.btn_natural_logarithm:
+                removeExcessElements();
+                if (getNumberOfElements() >= 1) {
+                    calculationField.setText(String.valueOf("ln (" + getResult() + ") ="));
+                    resultField.setText("RESULT");
+                    isResult = true;
+                }
+                break;
+            case R.id.btn_logarithm:
+                removeExcessElements();
+                if (getNumberOfElements() >= 1) {
+                    calculationField.setText(String.valueOf("log (" + getResult() + ") ="));
+                    resultField.setText("RESULT");
+                    isResult = true;
+                }
+                break;
+
+
             case R.id.btn_opening_bracket:
 
                 break;
@@ -160,29 +217,16 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             //математические операции
-            case R.id.btn_sinus:
 
-                break;
-            case R.id.btn_cosine:
-
-                break;
-            case R.id.btn_tangent:
-
-                break;
-            case R.id.btn_natural_logarithm:
-
-                break;
-            case R.id.btn_logarithm:
-
-                break;
-            case R.id.btn_pi:
-
-                break;
-            case R.id.btn_e:
-
-                break;
 
             //окончательный рассчет
+            case R.id.resultField:
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText(RESULT_FIELD, getResult());
+                clipboard.setPrimaryClip(clip);
+
+                Toast.makeText(this, R.string.copy_co_clipboard, Toast.LENGTH_SHORT).show();
+                break;
             case R.id.btn_calculate:
                 removeExcessElements();
                 if (getNumberOfElements() > 1) {
@@ -258,6 +302,10 @@ public class MainActivity extends AppCompatActivity {
         return getLastSymbol().equals(" ");
     }
 
+    private boolean isPercent() {
+        return getLastSymbol().equals("%");
+    }
+
     private boolean isNumber() {
         try {
             int number = Integer.parseInt(getLastSymbol());
@@ -267,8 +315,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private boolean isPercent() {
-        return getLastSymbol().equals("%");
+    private boolean openingBracket() {
+        return getLastSymbol().equals("(");
     }
 
     private boolean isClosingBracket() {
@@ -286,17 +334,25 @@ public class MainActivity extends AppCompatActivity {
         resultField.setText(temp);
     }
 
+    private void toCalculate(String s) {
+        if (getNumberOfElements() > 1) {
+            calculationField.setText(String.valueOf(getResult() + s));
+            resultField.setText("RESULT");
+            isResult = true;
+        }
+    }
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString(TEXT_RESULT, resultField.getText().toString());
-        outState.putString(TEXT_CALCULATION, calculationField.getText().toString());
+        outState.putString(RESULT_FIELD, resultField.getText().toString());
+        outState.putString(CALCULATION_FIELD, calculationField.getText().toString());
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        resultField.setText(savedInstanceState.getString(TEXT_RESULT));
-        calculationField.setText(savedInstanceState.getString(TEXT_CALCULATION));
+        resultField.setText(savedInstanceState.getString(RESULT_FIELD));
+        calculationField.setText(savedInstanceState.getString(CALCULATION_FIELD));
     }
 }
