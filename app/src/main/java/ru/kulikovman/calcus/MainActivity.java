@@ -34,62 +34,62 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_1:
                 if (isResult) removeResult();
                 if (isZero()) toJoin(".1");
-                else if (!isClosingBracket()) toJoin("1");
+                else toJoin("1");
                 break;
             case R.id.btn_2:
                 if (isResult) removeResult();
                 if (isZero()) toJoin(".2");
-                else if (!isClosingBracket()) toJoin("2");
+                else toJoin("2");
                 break;
             case R.id.btn_3:
                 if (isResult) removeResult();
                 if (isZero()) toJoin(".6");
-                else if (!isClosingBracket()) toJoin("3");
+                else toJoin("3");
                 break;
             case R.id.btn_4:
                 if (isResult) removeResult();
                 if (isZero()) toJoin(".4");
-                else if (!isClosingBracket()) toJoin("4");
+                else toJoin("4");
                 break;
             case R.id.btn_5:
                 if (isResult) removeResult();
                 if (isZero()) toJoin(".5");
-                else if (!isClosingBracket()) toJoin("5");
+                else toJoin("5");
                 break;
             case R.id.btn_6:
                 if (isResult) removeResult();
                 if (isZero()) toJoin(".6");
-                else if (!isClosingBracket()) toJoin("6");
+                else toJoin("6");
                 break;
             case R.id.btn_7:
                 if (isResult) removeResult();
                 if (isZero()) toJoin(".7");
-                else if (!isClosingBracket()) toJoin("7");
+                else toJoin("7");
                 break;
             case R.id.btn_8:
                 if (isResult) removeResult();
                 if (isZero()) toJoin(".8");
-                else if (!isClosingBracket()) toJoin("8");
+                else toJoin("8");
                 break;
             case R.id.btn_9:
                 if (isResult) removeResult();
                 if (isZero()) toJoin(".9");
-                else if (!isClosingBracket()) toJoin("9");
+                else toJoin("9");
                 break;
             case R.id.btn_0:
                 if (isResult) removeResult();
                 if (isZero()) toJoin(".0");
-                else if (!isClosingBracket()) toJoin("0");
+                else toJoin("0");
                 break;
             case R.id.btn_000:
                 if (isResult) removeResult();
                 if (isZero()) toJoin(".000");
                 else if (isNumber() || isDot()) toJoin("000");
-                else if (!isClosingBracket()) toJoin("0.00");
+                else toJoin("0.00");
                 break;
             case R.id.btn_dot:
                 if (isResult) removeResult();
-                if (isNull()) toJoin("0.");
+                if (isNull() || isOperation()) toJoin("0.");
                 else if (isNumber() && !getLastElement().contains(".")) toJoin(".");
                 break;
             case R.id.btn_pi:
@@ -209,17 +209,15 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
 
-            case R.id.btn_opening_bracket:
+            case R.id.btn_memory_copy:
 
                 break;
-            case R.id.btn_closing_bracket:
+            case R.id.btn_memory_past:
 
                 break;
 
-            //математические операции
 
-
-            //окончательный рассчет
+            //копирование результата в буфер
             case R.id.resultField:
                 ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                 ClipData clip = ClipData.newPlainText(RESULT_FIELD, getResult());
@@ -227,6 +225,8 @@ public class MainActivity extends AppCompatActivity {
 
                 Toast.makeText(this, R.string.copy_co_clipboard, Toast.LENGTH_SHORT).show();
                 break;
+
+            //окончательный рассчет
             case R.id.btn_calculate:
                 removeExcessElements();
                 if (getNumberOfElements() > 1) {
@@ -284,6 +284,11 @@ public class MainActivity extends AppCompatActivity {
         }
         if (isDot()) removeLastSymbol();
         if (isOperation()) removeLastOperation();
+
+        if (isOpeningBracket()) {
+            removeLastSymbol();
+            if (isOperation()) removeLastOperation();
+        }
     }
 
     private boolean isNull() {
@@ -315,7 +320,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private boolean openingBracket() {
+    private boolean isOpeningBracket() {
         return getLastSymbol().equals("(");
     }
 

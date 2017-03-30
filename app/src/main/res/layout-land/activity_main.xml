@@ -33,19 +33,19 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_sinus"
+            android:id="@+id/btn_memory_copy"
             style="@style/blueButtonStyle"
-            android:text="@string/sinus" />
+            android:text="@string/memory_copy" />
 
         <Button
-            android:id="@+id/btn_cosine"
+            android:id="@+id/btn_memory_past"
             style="@style/blueButtonStyle"
-            android:text="@string/cosine" />
+            android:text="@string/memory_past" />
 
         <Button
-            android:id="@+id/btn_tangent"
+            android:id="@+id/btn_percent"
             style="@style/blueButtonStyle"
-            android:text="@string/tangent" />
+            android:text="@string/percent" />
 
         <Button
             android:id="@+id/btn_7"
@@ -81,19 +81,19 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_natural_logarithm"
+            android:id="@+id/btn_sinus"
             style="@style/blueButtonStyle"
-            android:text="@string/natural_logarithm" />
+            android:text="@string/sinus" />
 
         <Button
-            android:id="@+id/btn_logarithm"
+            android:id="@+id/btn_cosine"
             style="@style/blueButtonStyle"
-            android:text="@string/logarithm" />
+            android:text="@string/cosine" />
 
         <Button
-            android:id="@+id/btn_percent"
+            android:id="@+id/btn_tangent"
             style="@style/blueButtonStyle"
-            android:text="@string/percent" />
+            android:text="@string/tangent" />
 
         <Button
             android:id="@+id/btn_4"
@@ -129,14 +129,14 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_pi"
+            android:id="@+id/btn_natural_logarithm"
             style="@style/blueButtonStyle"
-            android:text="@string/pi" />
+            android:text="@string/natural_logarithm" />
 
         <Button
-            android:id="@+id/btn_e"
+            android:id="@+id/btn_logarithm"
             style="@style/blueButtonStyle"
-            android:text="@string/e" />
+            android:text="@string/logarithm" />
 
         <Button
             android:id="@+id/btn_power"
@@ -178,18 +178,18 @@
         android:weightSum="8">
 
         <Button
-            android:id="@+id/btn_opening_bracket"
+            android:id="@+id/btn_pi"
             style="@style/blueButtonStyle"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="@string/opening_bracket" />
+            android:text="@string/pi" />
 
         <Button
-            android:id="@+id/btn_closing_bracket"
+            android:id="@+id/btn_e"
             style="@style/blueButtonStyle"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="@string/closing_bracket" />
+            android:text="@string/e" />
 
         <Button
             android:id="@+id/btn_square_root"

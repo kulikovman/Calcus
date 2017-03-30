@@ -26,14 +26,14 @@
         <item name="android:background">@drawable/button_blue</item>
         <item name="android:textColor">@drawable/button_blue_text_color</item>
         <item name="android:textSize">28sp</item>
-        <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
     <style name="grayButtonStyle" parent="commonButtonSettings">
         <item name="android:background">@drawable/button_gray</item>
         <item name="android:textColor">@drawable/button_gray_text_color</item>
         <item name="android:textSize">28sp</item>
-        <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
 </resources>

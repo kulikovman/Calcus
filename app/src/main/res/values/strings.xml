@@ -12,8 +12,8 @@
     <string name="pi">π</string>
     <string name="e">e</string>
     <string name="power">^</string>
-    <string name="opening_bracket">(</string>
-    <string name="closing_bracket">)</string>
+    <string name="memory_copy">Mc</string>
+    <string name="memory_past">Mp</string>
     <string name="square_root">√</string>
     <string name="btn_0">0</string>
     <string name="btn_3">3</string>
