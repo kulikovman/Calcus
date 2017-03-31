@@ -83,15 +83,6 @@ public class MainActivity extends AppCompatActivity {
                 else if (isNumber() || isDot()) toAdd("000");
                 else toAdd("0.00");
                 break;
-
-
-
-
-            case R.id.btn_dot:
-                if (isResult) removeResult();
-                if (isNull() || isEndOperation()) toAdd("0.");
-                else if (isNumber() && !getLastElement().contains(".")) toAdd(".");
-                break;
             case R.id.btn_pi:
                 if (isResult) removeResult();
                 if (isNull() || isEndOperation()) toAdd("3.14159265359");
@@ -99,6 +90,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_e:
                 if (isResult) removeResult();
                 if (isNull() || isEndOperation()) toAdd("2.71828182846");
+                break;
+            case R.id.btn_dot:
+                if (isResult) removeResult();
+                if (isNull() || isEndOperation()) toAdd("0.");
+                else if (isNumber() && !getLastElement().contains(".")) toAdd(".");
                 break;
 
 
@@ -168,10 +164,13 @@ public class MainActivity extends AppCompatActivity {
             //дополнительные операции
             case R.id.btn_percent:
                 removeExcessElements();
-                if (isComplete() && (getOperation().equals("+") || getOperation().equals("-")
-                        || getOperation().equals("×") || getOperation().equals("/"))) {
-                    calculationField.setText(String.valueOf(getResult() + "% ="));
-                    toCalculate();
+                String[] temp = getResult().split(" ");
+                if (isComplete()) {
+                    if (temp[1].equals("+") || temp[1].equals("-")
+                            || temp[1].equals("×") || temp[1].equals("÷")) {
+                        calculationField.setText(String.valueOf(getResult() + "% ="));
+                        toCalculate();
+                    }
                 }
                 break;
             case R.id.btn_square_root:
@@ -181,8 +180,6 @@ public class MainActivity extends AppCompatActivity {
                     toCalculate();
                 }
                 break;
-
-
             case R.id.btn_sinus:
                 removeExcessElements();
                 if (!isNull() && !isComplete()) {
@@ -260,7 +257,6 @@ public class MainActivity extends AppCompatActivity {
         resultField.setText(temp);
     }
 
-
     //всевозможные проверки
     private boolean isComplete() {
         String[] temp = getResult().split(" ");
@@ -289,22 +285,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean isEndOperation() {
-        String result = resultField.getText().toString().trim();
-        return result.endsWith("+") || result.endsWith("-")
-                || result.endsWith("×") || result.endsWith("÷")
-                || result.endsWith("^");
+        return getResult().endsWith("+") || getResult().endsWith("-")
+                || getResult().endsWith("×") || getResult().endsWith("÷")
+                || getResult().endsWith("^");
     }
-
 
     //удаление данных
     private void removeLastSymbol() {
-        String deleteLastOperation = getResult().substring(0, getResult().length() - 1);
-        resultField.setText(deleteLastOperation);
+        resultField.setText(getResult().substring(0, getResult().length() - 1));
     }
 
     private void removeOperation() {
-        String deleteLastOperation = getResult().substring(0, getResult().length() - 2);
-        resultField.setText(deleteLastOperation);
+        resultField.setText(getResult().substring(0, getResult().length() - 2));
     }
 
     private void removeResult() {
@@ -329,11 +321,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String getLastSymbol() {
-        if (isNull()) return "";
-        else {
-            String temp = resultField.getText().toString();
-            return temp.substring(temp.length() - 1);
-        }
+        String temp = resultField.getText().toString();
+        return temp.substring(temp.length() - 1);
+
     }
 
     private String getLastElement() {
@@ -341,12 +331,6 @@ public class MainActivity extends AppCompatActivity {
         return temp[temp.length - 1];
     }
 
-
-
-    public String getOperation() {
-        String[] temp = getResult().split(" ");
-        return temp[1];
-    }
 
     //все расчеты производятся в этом методе!
     private void toCalculate() {
@@ -480,7 +464,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //сохранение информации в полях
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
