@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String CALCULATION_FIELD = "calculation";
     private TextView resultField, calculationField, memoryField;
     private boolean isResult = false;
+    double num, first, second;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,52 +37,44 @@ public class MainActivity extends AppCompatActivity {
             //базовые кнопки
             case R.id.btn_1:
                 if (isResult) removeResult();
-                if (isZero()) toAdd(".1");
-                else toAdd("1");
+                toAdd("1");
                 break;
             case R.id.btn_2:
                 if (isResult) removeResult();
-                if (isZero()) toAdd(".2");
-                else toAdd("2");
+                toAdd("2");
                 break;
             case R.id.btn_3:
                 if (isResult) removeResult();
-                if (isZero()) toAdd(".6");
-                else toAdd("3");
+                toAdd("3");
                 break;
             case R.id.btn_4:
                 if (isResult) removeResult();
-                if (isZero()) toAdd(".4");
-                else toAdd("4");
+                toAdd("4");
                 break;
             case R.id.btn_5:
                 if (isResult) removeResult();
-                if (isZero()) toAdd(".5");
-                else toAdd("5");
+                toAdd("5");
                 break;
             case R.id.btn_6:
                 if (isResult) removeResult();
-                if (isZero()) toAdd(".6");
-                else toAdd("6");
+                toAdd("6");
                 break;
             case R.id.btn_7:
                 if (isResult) removeResult();
-                if (isZero()) toAdd(".7");
-                else toAdd("7");
+                toAdd("7");
                 break;
             case R.id.btn_8:
                 if (isResult) removeResult();
-                if (isZero()) toAdd(".8");
-                else toAdd("8");
+                toAdd("8");
                 break;
             case R.id.btn_9:
                 if (isResult) removeResult();
-                if (isZero()) toAdd(".9");
-                else toAdd("9");
+                toAdd("9");
                 break;
             case R.id.btn_0:
                 if (isResult) removeResult();
-                if (isZero()) toAdd(".0");
+                if (isNull()) toAdd("0.");
+                else if (isZero()) toAdd(".0");
                 else toAdd("0");
                 break;
             case R.id.btn_000:
@@ -90,6 +83,10 @@ public class MainActivity extends AppCompatActivity {
                 else if (isNumber() || isDot()) toAdd("000");
                 else toAdd("0.00");
                 break;
+
+
+
+
             case R.id.btn_dot:
                 if (isResult) removeResult();
                 if (isNull() || isEndOperation()) toAdd("0.");
@@ -125,8 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 removeExcessElements();
                 if (isComplete()) {
                     calculationField.setText(String.valueOf(getResult() + " ="));
-                    resultField.setText(toCompact(getCalculate()));
-                    removeExcessElements();
+                    toCalculate();
                     toAdd(" + ");
                 } else if (!isNull()) toAdd(" + ");
                 isResult = false;
@@ -135,8 +131,7 @@ public class MainActivity extends AppCompatActivity {
                 removeExcessElements();
                 if (isComplete()) {
                     calculationField.setText(String.valueOf(getResult() + " ="));
-                    resultField.setText(toCompact(getCalculate()));
-                    removeExcessElements();
+                    toCalculate();
                     toAdd(" - ");
                 } else if (!isNull()) toAdd(" - ");
                 isResult = false;
@@ -145,8 +140,7 @@ public class MainActivity extends AppCompatActivity {
                 removeExcessElements();
                 if (isComplete()) {
                     calculationField.setText(String.valueOf(getResult() + " ="));
-                    resultField.setText(toCompact(getCalculate()));
-                    removeExcessElements();
+                    toCalculate();
                     toAdd(" × ");
                 } else if (!isNull()) toAdd(" × ");
                 isResult = false;
@@ -155,8 +149,7 @@ public class MainActivity extends AppCompatActivity {
                 removeExcessElements();
                 if (isComplete()) {
                     calculationField.setText(String.valueOf(getResult() + " ="));
-                    resultField.setText(toCompact(getCalculate()));
-                    removeExcessElements();
+                    toCalculate();
                     toAdd(" ÷ ");
                 } else if (!isNull()) toAdd(" ÷ ");
                 isResult = false;
@@ -165,8 +158,7 @@ public class MainActivity extends AppCompatActivity {
                 removeExcessElements();
                 if (isComplete()) {
                     calculationField.setText(String.valueOf(getResult() + " ="));
-                    resultField.setText(toCompact(getCalculate()));
-                    removeExcessElements();
+                    toCalculate();
                     toAdd(" ^ ");
                 } else if (!isNull()) toAdd(" ^ ");
                 isResult = false;
@@ -178,81 +170,52 @@ public class MainActivity extends AppCompatActivity {
                 removeExcessElements();
                 if (isComplete() && (getOperation().equals("+") || getOperation().equals("-")
                         || getOperation().equals("×") || getOperation().equals("/"))) {
-
-                    double result = 0;
-                    switch (getOperation()) {
-                        case "+":
-                            result = getFirst() + (getFirst() / 100 * getSecond());
-                            break;
-                        case "-":
-                            result = getFirst() - (getFirst() / 100 * getSecond());
-                            break;
-                        case "×":
-                            result = getFirst() * (getFirst() / 100 * getSecond());
-                            break;
-                        case "÷":
-                            result = getFirst() / (getFirst() / 100 * getSecond());
-                            break;
-                    }
-
                     calculationField.setText(String.valueOf(getResult() + "% ="));
-                    resultField.setText(String.valueOf(result));
-                    removeExcessElements();
-                    isResult = true;
+                    toCalculate();
                 }
                 break;
             case R.id.btn_square_root:
                 removeExcessElements();
                 if (!isNull() && !isComplete()) {
                     calculationField.setText(String.valueOf("√ " + getResult() + " ="));
-                    resultField.setText(String.valueOf(Math.sqrt(getFirst())));
-                    removeExcessElements();
-                    isResult = true;
+                    toCalculate();
                 }
                 break;
+
+
             case R.id.btn_sinus:
                 removeExcessElements();
                 if (!isNull() && !isComplete()) {
                     calculationField.setText(String.valueOf("sin (" + getResult() + ") ="));
-                    resultField.setText(String.valueOf(Math.sin(getFirst())));
-                    removeExcessElements();
-                    isResult = true;
+                    toCalculate();
                 }
                 break;
             case R.id.btn_cosine:
                 removeExcessElements();
                 if (!isNull() && !isComplete()) {
                     calculationField.setText(String.valueOf("cos (" + getResult() + ") ="));
-                    resultField.setText(String.valueOf(Math.cos(getFirst())));
-                    removeExcessElements();
-                    isResult = true;
+                    toCalculate();
                 }
                 break;
             case R.id.btn_tangent:
                 removeExcessElements();
                 if (!isNull() && !isComplete()) {
                     calculationField.setText(String.valueOf("tan (" + getResult() + ") ="));
-                    resultField.setText(String.valueOf(Math.tan(getFirst())));
-                    removeExcessElements();
-                    isResult = true;
+                    toCalculate();
                 }
                 break;
             case R.id.btn_natural_logarithm:
                 removeExcessElements();
                 if (!isNull() && !isComplete()) {
                     calculationField.setText(String.valueOf("ln (" + getResult() + ") ="));
-                    resultField.setText(String.valueOf(Math.log(getFirst())));
-                    removeExcessElements();
-                    isResult = true;
+                    toCalculate();
                 }
                 break;
             case R.id.btn_logarithm:
                 removeExcessElements();
                 if (!isNull() && !isComplete()) {
                     calculationField.setText(String.valueOf("log (" + getResult() + ") ="));
-                    resultField.setText(String.valueOf(Math.log10(getFirst())));
-                    removeExcessElements();
-                    isResult = true;
+                    toCalculate();
                 }
                 break;
 
@@ -284,21 +247,10 @@ public class MainActivity extends AppCompatActivity {
                 removeExcessElements();
                 if (isComplete()) {
                     calculationField.setText(String.valueOf(getResult() + " ="));
-                    resultField.setText(toCompact(getCalculate()));
-                    removeExcessElements();
-                    isResult = true;
+                    toCalculate();
                 }
                 break;
         }
-    }
-
-    private String toCompact(double d) {
-        String temp = String.valueOf(d);
-        if (temp.length() > 13) {
-            temp = temp.substring(0, 13);
-        }
-
-        return temp;
     }
 
 
@@ -337,9 +289,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean isEndOperation() {
-        return getResult().endsWith("+") || getResult().endsWith("-")
-                || getResult().endsWith("×") || getResult().endsWith("÷")
-                || getResult().endsWith("^");
+        String result = resultField.getText().toString().trim();
+        return result.endsWith("+") || result.endsWith("-")
+                || result.endsWith("×") || result.endsWith("÷")
+                || result.endsWith("^");
     }
 
 
@@ -388,54 +341,142 @@ public class MainActivity extends AppCompatActivity {
         return temp[temp.length - 1];
     }
 
-    public double getFirst() {
-        removeExcessElements();
-        String[] temp = getResult().split(" ");
 
-        double numberFirst;
-        if (temp[0].contains(".")) numberFirst = Double.parseDouble(temp[0]);
-        else numberFirst = Integer.parseInt(temp[0]);
-
-        return numberFirst;
-    }
-
-    public double getSecond() {
-        removeExcessElements();
-        String[] temp = getResult().split(" ");
-
-        double numberSecond;
-        if (temp[2].contains(".")) numberSecond = Double.parseDouble(temp[2]);
-        else numberSecond = Integer.parseInt(temp[2]);
-
-        return numberSecond;
-    }
 
     public String getOperation() {
         String[] temp = getResult().split(" ");
         return temp[1];
     }
 
-    private double getCalculate() {
-        double result = 0;
-        switch (getOperation()) {
-            case "+":
-                result = getFirst() + getSecond();
-                break;
-            case "-":
-                result = getFirst() - getSecond();
-                break;
-            case "×":
-                result = getFirst() * getSecond();
-                break;
-            case "÷":
-                result = getFirst() / getSecond();
-                break;
-            case "^":
-                result = Math.pow(getFirst(), getSecond());
-                break;
+    //все расчеты производятся в этом методе!
+    private void toCalculate() {
+        String s = calculationField.getText().toString();
+        String[] temp = s.split(" ");
+
+        String result = "ОШИБКА";
+
+        try {
+            if (s.contains("%")) {
+                if (temp[0].contains(".")) first = Double.parseDouble(temp[0]);
+                else first = Integer.parseInt(temp[0]);
+
+                if (temp[2].contains("."))
+                    second = Double.parseDouble(temp[2].substring(0, temp[2].length() - 1));
+                else second = Integer.parseInt(temp[2].substring(0, temp[2].length() - 1));
+
+                switch (temp[1]) {
+                    case "+":
+                        result = String.valueOf(first + (first / 100 * second));
+                        break;
+                    case "-":
+                        result = String.valueOf(first - (first / 100 * second));
+                        break;
+                    case "×":
+                        result = String.valueOf(first * (first / 100 * second));
+                        break;
+                    case "÷":
+                        result = String.valueOf(first / (first / 100 * second));
+                        break;
+                }
+
+
+            } else if (s.contains("sin")) {
+                if (temp[1].contains("."))
+                    num = Double.parseDouble(temp[1].substring(1, temp[1].length() - 1));
+                else num = Integer.parseInt(temp[1].substring(1, temp[1].length() - 1));
+
+                result = String.valueOf(Math.sin(num));
+
+
+            } else if (s.contains("cos")) {
+                if (temp[1].contains("."))
+                    num = Double.parseDouble(temp[1].substring(1, temp[1].length() - 1));
+                else num = Integer.parseInt(temp[1].substring(1, temp[1].length() - 1));
+
+                result = String.valueOf(Math.cos(num));
+
+
+            } else if (s.contains("tan")) {
+                if (temp[1].contains("."))
+                    num = Double.parseDouble(temp[1].substring(1, temp[1].length() - 1));
+                else num = Integer.parseInt(temp[1].substring(1, temp[1].length() - 1));
+
+                result = String.valueOf(Math.tan(num));
+
+
+            } else if (s.contains("log")) {
+                if (temp[1].contains("."))
+                    num = Double.parseDouble(temp[1].substring(1, temp[1].length() - 1));
+                else num = Integer.parseInt(temp[1].substring(1, temp[1].length() - 1));
+
+                result = String.valueOf(Math.log10(num));
+
+
+            } else if (s.contains("ln")) {
+                if (temp[1].contains("."))
+                    num = Double.parseDouble(temp[1].substring(1, temp[1].length() - 1));
+                else num = Integer.parseInt(temp[1].substring(1, temp[1].length() - 1));
+
+                result = String.valueOf(Math.log(num));
+
+
+            } else if (s.contains("√")) {
+                if (temp[1].contains(".")) num = Double.parseDouble(temp[1]);
+                else num = Integer.parseInt(temp[1]);
+
+                result = String.valueOf(Math.sqrt(num));
+
+
+                //подсчет обычных чисел
+            } else {
+                if (temp[0].contains(".")) first = Double.parseDouble(temp[0]);
+                else first = Integer.parseInt(temp[0]);
+
+                if (temp[2].contains(".")) second = Double.parseDouble(temp[2]);
+                else second = Integer.parseInt(temp[2]);
+
+                switch (temp[1]) {
+                    case "+":
+                        result = String.valueOf(first + second);
+                        break;
+                    case "-":
+                        result = String.valueOf(first - second);
+                        break;
+                    case "×":
+                        result = String.valueOf(first * second);
+                        break;
+                    case "÷":
+                        result = String.valueOf(first / second);
+                        break;
+                    case "^":
+                        result = String.valueOf(Math.pow(first, second));
+                        break;
+                }
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
         }
 
-        return result;
+
+        //избавляем результат от лишних нулей
+        if (result.contains(".")) {
+            while (result.endsWith("0")) {
+                result = result.substring(0, result.length() - 1);
+            }
+
+            if (result.endsWith(".")) {
+                result = result.substring(0, result.length() - 1);
+            }
+        }
+
+        //сокращаем длину результата
+        if (result.length() > 13) {
+            result = result.substring(0, 13);
+        }
+
+        //записываем результат и ставим флаг
+        resultField.setText(result);
+        isResult = true;
     }
 
 
