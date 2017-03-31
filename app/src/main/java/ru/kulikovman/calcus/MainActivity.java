@@ -13,7 +13,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     public static final String RESULT_FIELD = "result";
     public static final String CALCULATION_FIELD = "calculation";
-    private TextView resultField, calculationField;
+    private TextView resultField, calculationField, memoryField;
     private boolean isResult = false;
 
     @Override
@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         resultField = (TextView) findViewById(R.id.resultField);
         calculationField = (TextView) findViewById(R.id.calculationField);
+        memoryField = (TextView) findViewById(R.id.memoryField);
     }
 
 
@@ -256,11 +257,15 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
 
+            //работа с памятью
             case R.id.btn_memory_copy:
-
+                removeExcessElements();
+                if (!isNull() && !isComplete()) memoryField.setText(getResult());
+                else if (isNull()) memoryField.setText(" ");
                 break;
             case R.id.btn_memory_past:
-
+                if (isResult) removeResult();
+                if (isNull() || isEndOperation()) toAdd(memoryField.getText().toString());
                 break;
 
 
