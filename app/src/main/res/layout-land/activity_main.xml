@@ -11,16 +11,16 @@
         style="common"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="3"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="3">
 
         <TextView
             android:id="@+id/memoryField"
             style="@style/commonTextViewSettings"
-            android:layout_height="35dp"
-            android:gravity="bottom|start"
             android:layout_width="0dp"
+            android:layout_height="35dp"
             android:layout_weight="1"
+            android:gravity="bottom|start"
             android:inputType="number"
             android:textColor="#FF5722"
             android:textSize="16sp" />
@@ -28,10 +28,10 @@
         <TextView
             android:id="@+id/calculationField"
             style="@style/commonTextViewSettings"
-            android:layout_height="35dp"
-            android:gravity="bottom|end"
             android:layout_width="0dp"
+            android:layout_height="35dp"
             android:layout_weight="2"
+            android:gravity="bottom|end"
             android:inputType="number"
             android:textSize="16sp" />
     </LinearLayout>
