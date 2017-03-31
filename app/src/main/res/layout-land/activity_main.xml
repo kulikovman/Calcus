@@ -22,7 +22,7 @@
             android:layout_weight="1"
             android:gravity="bottom|start"
             android:inputType="number"
-            android:textColor="#FF5722"
+            android:textColor="#03A9F4"
             android:textSize="16sp" />
 
         <TextView
@@ -56,42 +56,42 @@
 
         <Button
             android:id="@+id/btn_memory_copy"
-            style="@style/blueButtonStyle"
+            style="@style/blueButtonLandscape"
             android:text="@string/memory_copy" />
 
         <Button
             android:id="@+id/btn_memory_past"
-            style="@style/blueButtonStyle"
+            style="@style/blueButtonLandscape"
             android:text="@string/memory_past" />
 
         <Button
             android:id="@+id/btn_percent"
-            style="@style/blueButtonStyle"
+            style="@style/blueButtonLandscape"
             android:text="@string/percent" />
 
         <Button
             android:id="@+id/btn_7"
-            style="@style/grayButtonStyle"
+            style="@style/grayButtonLandscape"
             android:text="@string/btn_7" />
 
         <Button
             android:id="@+id/btn_8"
-            style="@style/grayButtonStyle"
+            style="@style/grayButtonLandscape"
             android:text="@string/btn_8" />
 
         <Button
             android:id="@+id/btn_9"
-            style="@style/grayButtonStyle"
+            style="@style/grayButtonLandscape"
             android:text="@string/btn_9" />
 
         <Button
             android:id="@+id/btn_reset"
-            style="@style/blueButtonStyle"
+            style="@style/blueButtonLandscape"
             android:text="@string/reset_short" />
 
         <Button
             android:id="@+id/btn_delete"
-            style="@style/blueButtonStyle"
+            style="@style/blueButtonLandscape"
             android:text="@string/delete" />
     </LinearLayout>
 
@@ -104,42 +104,42 @@
 
         <Button
             android:id="@+id/btn_sinus"
-            style="@style/blueButtonStyle"
+            style="@style/blueButtonLandscape"
             android:text="@string/sinus" />
 
         <Button
             android:id="@+id/btn_cosine"
-            style="@style/blueButtonStyle"
+            style="@style/blueButtonLandscape"
             android:text="@string/cosine" />
 
         <Button
             android:id="@+id/btn_tangent"
-            style="@style/blueButtonStyle"
+            style="@style/blueButtonLandscape"
             android:text="@string/tangent" />
 
         <Button
             android:id="@+id/btn_4"
-            style="@style/grayButtonStyle"
+            style="@style/grayButtonLandscape"
             android:text="@string/btn_4" />
 
         <Button
             android:id="@+id/btn_5"
-            style="@style/grayButtonStyle"
+            style="@style/grayButtonLandscape"
             android:text="@string/btn_5" />
 
         <Button
             android:id="@+id/btn_6"
-            style="@style/grayButtonStyle"
+            style="@style/grayButtonLandscape"
             android:text="@string/btn_6" />
 
         <Button
             android:id="@+id/btn_addition"
-            style="@style/blueButtonStyle"
+            style="@style/blueButtonLandscape"
             android:text="@string/addition" />
 
         <Button
             android:id="@+id/btn_multiplication"
-            style="@style/blueButtonStyle"
+            style="@style/blueButtonLandscape"
             android:text="@string/multiplication" />
     </LinearLayout>
 
@@ -152,42 +152,42 @@
 
         <Button
             android:id="@+id/btn_natural_logarithm"
-            style="@style/blueButtonStyle"
+            style="@style/blueButtonLandscape"
             android:text="@string/natural_logarithm" />
 
         <Button
             android:id="@+id/btn_logarithm"
-            style="@style/blueButtonStyle"
+            style="@style/blueButtonLandscape"
             android:text="@string/logarithm" />
 
         <Button
             android:id="@+id/btn_power"
-            style="@style/blueButtonStyle"
+            style="@style/blueButtonLandscape"
             android:text="@string/power" />
 
         <Button
             android:id="@+id/btn_1"
-            style="@style/grayButtonStyle"
+            style="@style/grayButtonLandscape"
             android:text="@string/btn_1" />
 
         <Button
             android:id="@+id/btn_2"
-            style="@style/grayButtonStyle"
+            style="@style/grayButtonLandscape"
             android:text="@string/btn_2" />
 
         <Button
             android:id="@+id/btn_3"
-            style="@style/grayButtonStyle"
+            style="@style/grayButtonLandscape"
             android:text="@string/btn_3" />
 
         <Button
             android:id="@+id/btn_subtraction"
-            style="@style/blueButtonStyle"
+            style="@style/blueButtonLandscape"
             android:text="@string/subtraction" />
 
         <Button
             android:id="@+id/btn_devision"
-            style="@style/blueButtonStyle"
+            style="@style/blueButtonLandscape"
             android:text="@string/devision" />
     </LinearLayout>
 
@@ -201,49 +201,49 @@
 
         <Button
             android:id="@+id/btn_pi"
-            style="@style/blueButtonStyle"
+            style="@style/blueButtonLandscape"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="@string/pi" />
 
         <Button
             android:id="@+id/btn_e"
-            style="@style/blueButtonStyle"
+            style="@style/blueButtonLandscape"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="@string/e" />
 
         <Button
             android:id="@+id/btn_square_root"
-            style="@style/blueButtonStyle"
+            style="@style/blueButtonLandscape"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="@string/square_root" />
 
         <Button
             android:id="@+id/btn_dot"
-            style="@style/grayButtonStyle"
+            style="@style/grayButtonLandscape"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="@string/dot" />
 
         <Button
             android:id="@+id/btn_0"
-            style="@style/grayButtonStyle"
+            style="@style/grayButtonLandscape"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="@string/btn_0" />
 
         <Button
             android:id="@+id/btn_000"
-            style="@style/grayButtonStyle"
+            style="@style/grayButtonLandscape"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="@string/btn_000" />
 
         <Button
             android:id="@+id/btn_calculate"
-            style="@style/grayButtonStyle"
+            style="@style/grayButtonLandscape"
             android:layout_width="0dp"
             android:layout_weight="2"
             android:text="@string/calculate" />

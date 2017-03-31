@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                 removeExcessElements();
                 if (isComplete()) {
                     calculationField.setText(String.valueOf(getResult() + " ="));
-                    resultField.setText(String.valueOf(getCalculate()));
+                    resultField.setText(toCompact(getCalculate()));
                     removeExcessElements();
                     toAdd(" + ");
                 } else if (!isNull()) toAdd(" + ");
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
                 removeExcessElements();
                 if (isComplete()) {
                     calculationField.setText(String.valueOf(getResult() + " ="));
-                    resultField.setText(String.valueOf(getCalculate()));
+                    resultField.setText(toCompact(getCalculate()));
                     removeExcessElements();
                     toAdd(" - ");
                 } else if (!isNull()) toAdd(" - ");
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
                 removeExcessElements();
                 if (isComplete()) {
                     calculationField.setText(String.valueOf(getResult() + " ="));
-                    resultField.setText(String.valueOf(getCalculate()));
+                    resultField.setText(toCompact(getCalculate()));
                     removeExcessElements();
                     toAdd(" × ");
                 } else if (!isNull()) toAdd(" × ");
@@ -155,17 +155,17 @@ public class MainActivity extends AppCompatActivity {
                 removeExcessElements();
                 if (isComplete()) {
                     calculationField.setText(String.valueOf(getResult() + " ="));
-                    resultField.setText(String.valueOf(getCalculate()));
+                    resultField.setText(toCompact(getCalculate()));
                     removeExcessElements();
-                    toAdd(" / ");
-                } else if (!isNull()) toAdd(" / ");
+                    toAdd(" ÷ ");
+                } else if (!isNull()) toAdd(" ÷ ");
                 isResult = false;
                 break;
             case R.id.btn_power:
                 removeExcessElements();
                 if (isComplete()) {
                     calculationField.setText(String.valueOf(getResult() + " ="));
-                    resultField.setText(String.valueOf(getCalculate()));
+                    resultField.setText(toCompact(getCalculate()));
                     removeExcessElements();
                     toAdd(" ^ ");
                 } else if (!isNull()) toAdd(" ^ ");
@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
                         case "×":
                             result = getFirst() * (getFirst() / 100 * getSecond());
                             break;
-                        case "/":
+                        case "÷":
                             result = getFirst() / (getFirst() / 100 * getSecond());
                             break;
                     }
@@ -284,12 +284,21 @@ public class MainActivity extends AppCompatActivity {
                 removeExcessElements();
                 if (isComplete()) {
                     calculationField.setText(String.valueOf(getResult() + " ="));
-                    resultField.setText(String.valueOf(getCalculate()));
+                    resultField.setText(toCompact(getCalculate()));
                     removeExcessElements();
                     isResult = true;
                 }
                 break;
         }
+    }
+
+    private String toCompact(double d) {
+        String temp = String.valueOf(d);
+        if (temp.length() > 13) {
+            temp = temp.substring(0, 13);
+        }
+
+        return temp;
     }
 
 
@@ -329,7 +338,7 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean isEndOperation() {
         return getResult().endsWith("+") || getResult().endsWith("-")
-                || getResult().endsWith("×") || getResult().endsWith("/")
+                || getResult().endsWith("×") || getResult().endsWith("÷")
                 || getResult().endsWith("^");
     }
 
@@ -418,7 +427,7 @@ public class MainActivity extends AppCompatActivity {
             case "×":
                 result = getFirst() * getSecond();
                 break;
-            case "/":
+            case "÷":
                 result = getFirst() / getSecond();
                 break;
             case "^":
