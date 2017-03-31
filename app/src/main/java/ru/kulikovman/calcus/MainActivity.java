@@ -79,9 +79,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.btn_000:
                 if (isResult) removeResult();
-                if (isZero()) toAdd(".000");
-                else if (isNumber() || isDot()) toAdd("000");
-                else toAdd("0.00");
+                if (isNull() || isEndOperation()) toAdd("0.00");
+                else toAdd("000");
                 break;
             case R.id.btn_pi:
                 if (isResult) removeResult();
@@ -441,6 +440,10 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        //сокращаем длину результата
+        if (result.length() > 13) {
+            result = result.substring(0, 13);
+        }
 
         //избавляем результат от лишних нулей
         if (result.contains(".")) {
@@ -451,11 +454,6 @@ public class MainActivity extends AppCompatActivity {
             if (result.endsWith(".")) {
                 result = result.substring(0, result.length() - 1);
             }
-        }
-
-        //сокращаем длину результата
-        if (result.length() > 13) {
-            result = result.substring(0, 13);
         }
 
         //записываем результат и ставим флаг
