@@ -12,7 +12,8 @@
         android:layout_height="35dp"
         android:gravity="bottom|end"
         android:inputType="number"
-        android:textSize="16sp" />
+        android:textColor="#424242"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/resultField"
@@ -23,6 +24,11 @@
         android:onClick="onClick"
         android:textColor="#0288D1"
         android:textSize="47sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="@color/dividerColor" />
 
     <LinearLayout
         android:id="@+id/groupButton1"

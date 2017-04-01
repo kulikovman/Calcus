@@ -37,50 +37,50 @@ public class MainActivity extends AppCompatActivity {
             //базовые кнопки
             case R.id.btn_1:
                 if (isResult) removeResult();
-                toAdd("1");
+                if (getLenght() < 13) toAdd("1");
                 break;
             case R.id.btn_2:
                 if (isResult) removeResult();
-                toAdd("2");
+                if (getLenght() < 13) toAdd("2");
                 break;
             case R.id.btn_3:
                 if (isResult) removeResult();
-                toAdd("3");
+                if (getLenght() < 13) toAdd("3");
                 break;
             case R.id.btn_4:
                 if (isResult) removeResult();
-                toAdd("4");
+                if (getLenght() < 13) toAdd("4");
                 break;
             case R.id.btn_5:
                 if (isResult) removeResult();
-                toAdd("5");
+                if (getLenght() < 13) toAdd("5");
                 break;
             case R.id.btn_6:
                 if (isResult) removeResult();
-                toAdd("6");
+                if (getLenght() < 13) toAdd("6");
                 break;
             case R.id.btn_7:
                 if (isResult) removeResult();
-                toAdd("7");
+                if (getLenght() < 13) toAdd("7");
                 break;
             case R.id.btn_8:
                 if (isResult) removeResult();
-                toAdd("8");
+                if (getLenght() < 13) toAdd("8");
                 break;
             case R.id.btn_9:
                 if (isResult) removeResult();
-                toAdd("9");
+                if (getLenght() < 13) toAdd("9");
                 break;
             case R.id.btn_0:
                 if (isResult) removeResult();
                 if (isNull()) toAdd("0.");
                 else if (isZero()) toAdd(".0");
-                else toAdd("0");
+                else if (getLenght() < 13) toAdd("0");
                 break;
             case R.id.btn_000:
                 if (isResult) removeResult();
                 if (isNull() || isEndOperation()) toAdd("0.00");
-                else toAdd("000");
+                else if (getLenght() < 10) toAdd("000");
                 break;
             case R.id.btn_pi:
                 if (isResult) removeResult();
@@ -287,6 +287,10 @@ public class MainActivity extends AppCompatActivity {
         return getResult().endsWith("+") || getResult().endsWith("-")
                 || getResult().endsWith("×") || getResult().endsWith("÷")
                 || getResult().endsWith("^");
+    }
+
+    private int getLenght() {
+        return getLastElement().length();
     }
 
     //удаление данных

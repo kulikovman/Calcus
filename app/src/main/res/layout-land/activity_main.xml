@@ -22,8 +22,8 @@
             android:layout_weight="1"
             android:gravity="bottom|start"
             android:inputType="number"
-            android:textColor="#03A9F4"
-            android:textSize="16sp" />
+            android:textColor="#757575"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/calculationField"
@@ -33,7 +33,8 @@
             android:layout_weight="2"
             android:gravity="bottom|end"
             android:inputType="number"
-            android:textSize="16sp" />
+            android:textColor="#424242"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <TextView
@@ -45,6 +46,11 @@
         android:onClick="onClick"
         android:textColor="#0288D1"
         android:textSize="47sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="@color/dividerColor" />
 
 
     <LinearLayout
