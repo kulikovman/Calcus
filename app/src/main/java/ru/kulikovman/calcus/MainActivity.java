@@ -3,6 +3,7 @@ package ru.kulikovman.calcus;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.icu.math.BigDecimal;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.HapticFeedbackConstants;
@@ -15,7 +16,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String CALCULATION_FIELD = "calculation";
     private TextView resultField, calculationField, memoryField;
     private boolean isResult = false;
-    double num, first, second;
+    private double num, first, second;
+    private BigDecimal bigDecimal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -344,12 +346,8 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             if (s.contains("%")) {
-                if (temp[0].contains(".")) first = Double.parseDouble(temp[0]);
-                else first = Integer.parseInt(temp[0]);
-
-                if (temp[2].contains("."))
-                    second = Double.parseDouble(temp[2].substring(0, temp[2].length() - 1));
-                else second = Integer.parseInt(temp[2].substring(0, temp[2].length() - 1));
+                first = Double.parseDouble(temp[0]);
+                second = Double.parseDouble(temp[2].substring(0, temp[2].length() - 1));
 
                 switch (temp[1]) {
                     case "+":
@@ -368,59 +366,39 @@ public class MainActivity extends AppCompatActivity {
 
 
             } else if (s.contains("sin")) {
-                if (temp[1].contains("."))
-                    num = Double.parseDouble(temp[1].substring(1, temp[1].length() - 1));
-                else num = Integer.parseInt(temp[1].substring(1, temp[1].length() - 1));
-
+                num = Double.parseDouble(temp[1].substring(1, temp[1].length() - 1));
                 result = String.valueOf(Math.sin(num));
 
 
             } else if (s.contains("cos")) {
-                if (temp[1].contains("."))
-                    num = Double.parseDouble(temp[1].substring(1, temp[1].length() - 1));
-                else num = Integer.parseInt(temp[1].substring(1, temp[1].length() - 1));
-
+                num = Double.parseDouble(temp[1].substring(1, temp[1].length() - 1));
                 result = String.valueOf(Math.cos(num));
 
 
             } else if (s.contains("tan")) {
-                if (temp[1].contains("."))
-                    num = Double.parseDouble(temp[1].substring(1, temp[1].length() - 1));
-                else num = Integer.parseInt(temp[1].substring(1, temp[1].length() - 1));
-
+                num = Double.parseDouble(temp[1].substring(1, temp[1].length() - 1));
                 result = String.valueOf(Math.tan(num));
 
 
             } else if (s.contains("log")) {
-                if (temp[1].contains("."))
-                    num = Double.parseDouble(temp[1].substring(1, temp[1].length() - 1));
-                else num = Integer.parseInt(temp[1].substring(1, temp[1].length() - 1));
-
+                num = Double.parseDouble(temp[1].substring(1, temp[1].length() - 1));
                 result = String.valueOf(Math.log10(num));
 
 
             } else if (s.contains("ln")) {
-                if (temp[1].contains("."))
-                    num = Double.parseDouble(temp[1].substring(1, temp[1].length() - 1));
-                else num = Integer.parseInt(temp[1].substring(1, temp[1].length() - 1));
-
+                num = Double.parseDouble(temp[1].substring(1, temp[1].length() - 1));
                 result = String.valueOf(Math.log(num));
 
 
             } else if (s.contains("√")) {
-                if (temp[1].contains(".")) num = Double.parseDouble(temp[1]);
-                else num = Integer.parseInt(temp[1]);
-
+                num = Double.parseDouble(temp[1]);
                 result = String.valueOf(Math.sqrt(num));
 
 
                 //подсчет обычных чисел
             } else {
-                if (temp[0].contains(".")) first = Double.parseDouble(temp[0]);
-                else first = Integer.parseInt(temp[0]);
-
-                if (temp[2].contains(".")) second = Double.parseDouble(temp[2]);
-                else second = Integer.parseInt(temp[2]);
+                first = Double.parseDouble(temp[0]);
+                second = Double.parseDouble(temp[2]);
 
                 switch (temp[1]) {
                     case "+":
