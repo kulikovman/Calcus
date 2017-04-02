@@ -3,7 +3,6 @@ package ru.kulikovman.calcus;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.icu.math.BigDecimal;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.HapticFeedbackConstants;
@@ -17,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView resultField, calculationField, memoryField;
     private boolean isResult = false;
     private double num, first, second;
-    private BigDecimal bigDecimal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -342,7 +340,7 @@ public class MainActivity extends AppCompatActivity {
         String s = calculationField.getText().toString();
         String[] temp = s.split(" ");
 
-        String result = "ОШИБКА";
+        String result = "Error";
 
         try {
             if (s.contains("%")) {
