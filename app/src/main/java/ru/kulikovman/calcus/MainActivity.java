@@ -424,7 +424,11 @@ public class MainActivity extends AppCompatActivity {
 
         //сокращаем длину результата
         if (result.length() > 13) {
-            result = result.substring(0, 13);
+            if (result.toLowerCase().contains("e")) {
+                result = "Too long result";
+            } else {
+                result = result.substring(0, 13);
+            }
         }
 
         //избавляем результат от лишних нулей
