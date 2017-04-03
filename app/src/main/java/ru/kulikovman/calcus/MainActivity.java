@@ -3,6 +3,8 @@ package ru.kulikovman.calcus;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.HapticFeedbackConstants;
@@ -349,6 +351,13 @@ public class MainActivity extends AppCompatActivity {
         return temp[temp.length - 1];
     }
 
+    public static double toRound(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
+    }
 
     //все расчеты производятся в этом методе!
     private void toCalculate() {
@@ -364,16 +373,16 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (temp[1]) {
                     case "+":
-                        result = String.valueOf(first + (first / 100 * second));
+                        result = String.valueOf(toRound(first + (first / 100 * second), 11));
                         break;
                     case "-":
-                        result = String.valueOf(first - (first / 100 * second));
+                        result = String.valueOf(toRound(first - (first / 100 * second), 11));
                         break;
                     case "×":
-                        result = String.valueOf(first * (first / 100 * second));
+                        result = String.valueOf(toRound(first * (first / 100 * second), 11));
                         break;
                     case "÷":
-                        result = String.valueOf(first / (first / 100 * second));
+                        result = String.valueOf(toRound(first / (first / 100 * second), 11));
                         break;
                 }
 
@@ -415,16 +424,16 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (temp[1]) {
                     case "+":
-                        result = String.valueOf(first + second);
+                        result = String.valueOf(toRound(first + second, 11));
                         break;
                     case "-":
-                        result = String.valueOf(first - second);
+                        result = String.valueOf(toRound(first - second, 11));
                         break;
                     case "×":
-                        result = String.valueOf(first * second);
+                        result = String.valueOf(toRound(first * second, 11));
                         break;
                     case "÷":
-                        result = String.valueOf(first / second);
+                        result = String.valueOf(toRound(first / second, 11));
                         break;
                     case "^":
                         result = String.valueOf(Math.pow(first, second));
