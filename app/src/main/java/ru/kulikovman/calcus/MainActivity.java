@@ -295,7 +295,7 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean isError() {
         return getResult().contains("Error") || getResult().contains("Too long result")
-                || getResult().contains("Infinity");
+                || getResult().contains("Infinity") || getResult().contains("NaN");
     }
 
     private boolean isEndOperation() {
