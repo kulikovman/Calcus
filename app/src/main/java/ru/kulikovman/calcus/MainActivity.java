@@ -36,23 +36,23 @@ public class MainActivity extends AppCompatActivity {
         switch (view.getId()) {
             //базовые кнопки
             case R.id.btn_1:
-                if (isResult) removeResult();
+                if (isResult || isError()) removeResult();
                 if (getLenght() < 13) toAdd("1");
                 break;
             case R.id.btn_2:
-                if (isResult) removeResult();
+                if (isResult || isError()) removeResult();
                 if (getLenght() < 13) toAdd("2");
                 break;
             case R.id.btn_3:
-                if (isResult) removeResult();
+                if (isResult || isError()) removeResult();
                 if (getLenght() < 13) toAdd("3");
                 break;
             case R.id.btn_4:
-                if (isResult) removeResult();
+                if (isResult || isError()) removeResult();
                 if (getLenght() < 13) toAdd("4");
                 break;
             case R.id.btn_5:
-                if (isResult) removeResult();
+                if (isResult || isError()) removeResult();
                 if (getLenght() < 13) toAdd("5");
                 break;
             case R.id.btn_6:
@@ -60,38 +60,38 @@ public class MainActivity extends AppCompatActivity {
                 if (getLenght() < 13) toAdd("6");
                 break;
             case R.id.btn_7:
-                if (isResult) removeResult();
+                if (isResult || isError()) removeResult();
                 if (getLenght() < 13) toAdd("7");
                 break;
             case R.id.btn_8:
-                if (isResult) removeResult();
+                if (isResult || isError()) removeResult();
                 if (getLenght() < 13) toAdd("8");
                 break;
             case R.id.btn_9:
-                if (isResult) removeResult();
+                if (isResult || isError()) removeResult();
                 if (getLenght() < 13) toAdd("9");
                 break;
             case R.id.btn_0:
-                if (isResult) removeResult();
+                if (isResult || isError()) removeResult();
                 if (isNull()) toAdd("0.");
                 else if (isZero()) toAdd(".0");
                 else if (getLenght() < 13) toAdd("0");
                 break;
             case R.id.btn_000:
-                if (isResult) removeResult();
+                if (isResult || isError()) removeResult();
                 if (isNull() || isEndOperation()) toAdd("0.00");
-                else if (getLenght() < 10) toAdd("000");
+                else if (getLenght() < 11) toAdd("000");
                 break;
             case R.id.btn_pi:
-                if (isResult) removeResult();
+                if (isResult || isError()) removeResult();
                 if (isNull() || isEndOperation()) toAdd("3.14159265359");
                 break;
             case R.id.btn_e:
-                if (isResult) removeResult();
+                if (isResult || isError()) removeResult();
                 if (isNull() || isEndOperation()) toAdd("2.71828182846");
                 break;
             case R.id.btn_dot:
-                if (isResult) removeResult();
+                if (isResult || isError()) removeResult();
                 if (isNull() || isEndOperation()) toAdd("0.");
                 else if (isNumber() && !getLastElement().contains(".")) toAdd(".");
                 break;
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 removeResult();
                 break;
             case R.id.btn_delete:
-                if (isResult) removeResult();
+                if (isResult || isError()) removeResult();
                 if (getResult().length() > 1) {
                     if (isEndOperation()) removeOperation();
                     else removeLastSymbol();
@@ -115,48 +115,58 @@ public class MainActivity extends AppCompatActivity {
             //базовые операции
             case R.id.btn_addition:
                 removeExcessElements();
-                if (isComplete()) {
-                    calculationField.setText(String.valueOf(getResult() + " ="));
-                    toCalculate();
-                    toAdd(" + ");
-                } else if (!isNull()) toAdd(" + ");
-                isResult = false;
+                if (!isError()) {
+                    if (isComplete() && isNumber()) {
+                        calculationField.setText(String.valueOf(getResult() + " ="));
+                        toCalculate();
+                        toAdd(" + ");
+                    } else if (!isNull()) toAdd(" + ");
+                    isResult = false;
+                }
                 break;
             case R.id.btn_subtraction:
                 removeExcessElements();
-                if (isComplete()) {
-                    calculationField.setText(String.valueOf(getResult() + " ="));
-                    toCalculate();
-                    toAdd(" - ");
-                } else if (!isNull()) toAdd(" - ");
-                isResult = false;
+                if (!isError()) {
+                    if (isComplete() && isNumber()) {
+                        calculationField.setText(String.valueOf(getResult() + " ="));
+                        toCalculate();
+                        toAdd(" - ");
+                    } else if (!isNull()) toAdd(" - ");
+                    isResult = false;
+                }
                 break;
             case R.id.btn_multiplication:
                 removeExcessElements();
-                if (isComplete()) {
-                    calculationField.setText(String.valueOf(getResult() + " ="));
-                    toCalculate();
-                    toAdd(" × ");
-                } else if (!isNull()) toAdd(" × ");
-                isResult = false;
+                if (!isError()) {
+                    if (isComplete() && isNumber()) {
+                        calculationField.setText(String.valueOf(getResult() + " ="));
+                        toCalculate();
+                        toAdd(" × ");
+                    } else if (!isNull()) toAdd(" × ");
+                    isResult = false;
+                }
                 break;
             case R.id.btn_devision:
                 removeExcessElements();
-                if (isComplete()) {
-                    calculationField.setText(String.valueOf(getResult() + " ="));
-                    toCalculate();
-                    toAdd(" ÷ ");
-                } else if (!isNull()) toAdd(" ÷ ");
-                isResult = false;
+                if (!isError()) {
+                    if (isComplete() && isNumber()) {
+                        calculationField.setText(String.valueOf(getResult() + " ="));
+                        toCalculate();
+                        toAdd(" ÷ ");
+                    } else if (!isNull()) toAdd(" ÷ ");
+                    isResult = false;
+                }
                 break;
             case R.id.btn_power:
                 removeExcessElements();
-                if (isComplete()) {
-                    calculationField.setText(String.valueOf(getResult() + " ="));
-                    toCalculate();
-                    toAdd(" ^ ");
-                } else if (!isNull()) toAdd(" ^ ");
-                isResult = false;
+                if (!isError()) {
+                    if (isComplete() && isNumber()) {
+                        calculationField.setText(String.valueOf(getResult() + " ="));
+                        toCalculate();
+                        toAdd(" ^ ");
+                    } else if (!isNull()) toAdd(" ^ ");
+                    isResult = false;
+                }
                 break;
 
 
@@ -164,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_percent:
                 removeExcessElements();
                 String[] temp = getResult().split(" ");
-                if (isComplete()) {
+                if (isComplete() && !isError()) {
                     if (temp[1].equals("+") || temp[1].equals("-")
                             || temp[1].equals("×") || temp[1].equals("÷")) {
                         calculationField.setText(String.valueOf(getResult() + "% ="));
@@ -174,42 +184,42 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.btn_square_root:
                 removeExcessElements();
-                if (!isNull() && !isComplete()) {
+                if (!isNull() && !isComplete() && isNumber()) {
                     calculationField.setText(String.valueOf("√ " + getResult() + " ="));
                     toCalculate();
                 }
                 break;
             case R.id.btn_sinus:
                 removeExcessElements();
-                if (!isNull() && !isComplete()) {
+                if (!isNull() && !isComplete() && isNumber()) {
                     calculationField.setText(String.valueOf("sin (" + getResult() + ") ="));
                     toCalculate();
                 }
                 break;
             case R.id.btn_cosine:
                 removeExcessElements();
-                if (!isNull() && !isComplete()) {
+                if (!isNull() && !isComplete() && isNumber()) {
                     calculationField.setText(String.valueOf("cos (" + getResult() + ") ="));
                     toCalculate();
                 }
                 break;
             case R.id.btn_tangent:
                 removeExcessElements();
-                if (!isNull() && !isComplete()) {
+                if (!isNull() && !isComplete() && isNumber()) {
                     calculationField.setText(String.valueOf("tan (" + getResult() + ") ="));
                     toCalculate();
                 }
                 break;
             case R.id.btn_natural_logarithm:
                 removeExcessElements();
-                if (!isNull() && !isComplete()) {
+                if (!isNull() && !isComplete() && isNumber()) {
                     calculationField.setText(String.valueOf("ln (" + getResult() + ") ="));
                     toCalculate();
                 }
                 break;
             case R.id.btn_logarithm:
                 removeExcessElements();
-                if (!isNull() && !isComplete()) {
+                if (!isNull() && !isComplete() && isNumber()) {
                     calculationField.setText(String.valueOf("log (" + getResult() + ") ="));
                     toCalculate();
                 }
@@ -219,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
             //работа с памятью
             case R.id.btn_memory_copy:
                 removeExcessElements();
-                if (!isNull() && !isComplete()) memoryField.setText(getResult());
+                if (!isNull() && !isComplete() && isNumber()) memoryField.setText(getResult());
                 else if (isNull()) memoryField.setText(" ");
                 break;
             case R.id.btn_memory_past:
@@ -281,6 +291,11 @@ public class MainActivity extends AppCompatActivity {
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    private boolean isError() {
+        return getResult().contains("Error") || getResult().contains("Too long result")
+                || getResult().contains("Infinity");
     }
 
     private boolean isEndOperation() {

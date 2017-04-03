@@ -2,12 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     signingConfigs {
-        config {
-            keyAlias 'MyApps'
-            keyPassword 'kulikovman'
-            storeFile file('D:/Android/KeyStore/kulikovman_key_store.jks')
-            storePassword 'kulikovman'
-        }
     }
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -23,10 +17,8 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
         }
         debug {
-            signingConfig signingConfigs.config
         }
     }
     productFlavors {
