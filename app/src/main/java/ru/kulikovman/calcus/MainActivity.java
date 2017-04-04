@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_0:
                 if (isResult || isError()) removeResult();
                 if (isNull()) toAdd("0.");
-                else if (isZero()) toAdd(".0");
+                else if (getLastElement().equals("0")) toAdd(".0");
                 else if (getLenght() < 13) toAdd("0");
                 break;
             case R.id.btn_000:
@@ -288,21 +288,12 @@ public class MainActivity extends AppCompatActivity {
         return getResult().equals("") || getResult().equals(" ");
     }
 
-    private boolean isZero() {
-        return getLastElement().equals("0");
-    }
-
     private boolean isDot() {
         return getResult().endsWith(".");
     }
 
     private boolean isNumber() {
-        try {
-            int number = Integer.parseInt(getLastSymbol());
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
+        return getLastSymbol().replaceAll("\\d", "num").contains("num");
     }
 
     private boolean isError() {
