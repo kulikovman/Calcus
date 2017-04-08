@@ -17,8 +17,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String RESULT_FIELD = "result";
-    public static final String CALCULATION_FIELD = "calculation";
     private TextView resultField, calculationField, memoryField;
     private boolean isResult = false;
 
@@ -252,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
             //копирование результата в буфер
             case R.id.resultField:
                 ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText(RESULT_FIELD, getResult());
+                ClipData clip = ClipData.newPlainText("resultField", getResult());
                 clipboard.setPrimaryClip(clip);
 
                 Toast.makeText(this, R.string.copy_co_clipboard, Toast.LENGTH_SHORT).show();
@@ -475,14 +473,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString(RESULT_FIELD, resultField.getText().toString());
-        outState.putString(CALCULATION_FIELD, calculationField.getText().toString());
+        outState.putString("resultField", resultField.getText().toString());
+        outState.putString("calculationField", calculationField.getText().toString());
+        outState.putBoolean("isResult", isResult);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        resultField.setText(savedInstanceState.getString(RESULT_FIELD));
-        calculationField.setText(savedInstanceState.getString(CALCULATION_FIELD));
+        resultField.setText(savedInstanceState.getString("resultField"));
+        calculationField.setText(savedInstanceState.getString("calculationField"));
+        isResult = savedInstanceState.getBoolean("isResult");
     }
 }
