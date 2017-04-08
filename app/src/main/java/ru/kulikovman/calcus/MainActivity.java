@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     public static final String CALCULATION_FIELD = "calculation";
     private TextView resultField, calculationField, memoryField;
     private boolean isResult = false;
-    private double num, first, second;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -368,6 +367,8 @@ public class MainActivity extends AppCompatActivity {
         String result = "Error";
 
         try {
+            double num, first, second;
+
             if (s.contains("%")) {
                 first = Double.parseDouble(temp[0]);
                 second = Double.parseDouble(temp[2].substring(0, temp[2].length() - 1));
