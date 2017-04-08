@@ -29,11 +29,11 @@ public class MainActivity extends AppCompatActivity {
         calculationField = (TextView) findViewById(R.id.calculationField);
         memoryField = (TextView) findViewById(R.id.memoryField);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorStatusBar));
-        }
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+        }*/
     }
 
 
