@@ -285,7 +285,7 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean isError() {
         return getResult().contains("Error") || getResult().contains("Too long result")
-                || getResult().contains("Infinity") || getResult().contains("NaN");
+                || getResult().contains("Not a number");
     }
 
     private boolean isEndOperation() {
@@ -432,6 +432,11 @@ public class MainActivity extends AppCompatActivity {
             }
         } catch (NumberFormatException e) {
             e.printStackTrace();
+        }
+
+        //меняем название ошибки
+        if (result.equals("NaN")){
+            result = "Not a number";
         }
 
         //сокращаем длину результата
