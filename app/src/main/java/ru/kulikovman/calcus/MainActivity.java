@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
             //очистка поля результата
             case R.id.btn_reset:
+                calculationField.setText(" ");
                 removeResult();
                 break;
             case R.id.btn_delete:
