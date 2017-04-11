@@ -5,8 +5,11 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.TextView;
@@ -72,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.btn_0:
                 if (isResult || isError()) removeResult();
-                if (isNull()) toAdd("0.");
+                if (isNull() || isEndOperation()) toAdd("0.");
                 else if (getLastElement().equals("0")) toAdd(".0");
                 else if (getLenght() < 13) toAdd("0");
                 break;
@@ -98,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
 
             //очистка поля результата
             case R.id.btn_reset:
-                calculationField.setText(" ");
                 removeResult();
                 break;
             case R.id.btn_delete:
@@ -257,6 +259,20 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
         }
+
+
+        //все кнопки перебрали
+        //дальше можно выполнить код
+        /*if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            if (getResult().length() > 13) {
+                resultField.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
+            } else resultField.setTextSize(TypedValue.COMPLEX_UNIT_SP, 47);
+        }
+        else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+
+        }*/
+
+
     }
 
 
@@ -310,6 +326,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void removeResult() {
         resultField.setText(" ");
+        calculationField.setText(" ");
         isResult = false;
     }
 

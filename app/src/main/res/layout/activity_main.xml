@@ -23,6 +23,7 @@
         android:inputType="number"
         android:onClick="onClick"
         android:textColor="#0288D1"
+
         android:textSize="47sp" />
 
     <View
