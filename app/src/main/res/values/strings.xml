@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Calcus</string>
+    <string name="app_name">Калькулятор</string>
     <string name="copy_co_clipboard">Скопировано в буфер</string>
     <string name="delete"><![CDATA[<]]></string>
     <string name="devision">÷</string>

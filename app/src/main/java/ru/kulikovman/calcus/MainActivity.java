@@ -5,11 +5,8 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-
-import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.TextView;
@@ -259,20 +256,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
         }
-
-
-        //все кнопки перебрали
-        //дальше можно выполнить код
-        /*if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            if (getResult().length() > 13) {
-                resultField.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
-            } else resultField.setTextSize(TypedValue.COMPLEX_UNIT_SP, 47);
-        }
-        else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-
-        }*/
-
-
     }
 
 
@@ -453,7 +436,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //меняем название ошибки
-        if (result.equals("NaN")){
+        if (result.equals("NaN")) {
             result = "Not a number";
         }
 
