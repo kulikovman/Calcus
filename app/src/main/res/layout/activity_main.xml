@@ -6,25 +6,95 @@
     android:orientation="vertical"
     tools:context="ru.kulikovman.calcus.MainActivity">
 
-    <TextView
-        android:id="@+id/calculationField"
-        style="@style/commonTextViewSettings"
+    <LinearLayout
+        android:id="@+id/memoryGroup"
+        style="common"
+        android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:gravity="bottom|end"
-        android:inputType="number"
-        android:textColor="#424242"
-        android:textSize="18sp" />
+        android:orientation="horizontal"
+        android:weightSum="100">
 
-    <TextView
-        android:id="@+id/resultField"
-        style="@style/commonTextViewSettings"
-        android:layout_height="80dp"
-        android:gravity="center_vertical|end"
-        android:inputType="number"
-        android:onClick="onClick"
-        android:paddingStart="0sp"
-        android:textColor="#0288D1"
-        android:textSize="47sp" />
+        <TextView
+            android:id="@+id/memoryField"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="90"
+            android:gravity="bottom|end"
+            android:text="254.35"
+            android:textColor="#4D4D4D"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/memoryMarker"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:gravity="bottom|center_horizontal"
+            android:text="@string/circle"
+            android:textColor="#FF0000"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/resultGroup"
+        style="common"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <TextView
+            android:id="@+id/resultField"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="90"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical|end"
+            android:onClick="onClick"
+            android:text="123456.78042"
+            android:textColor="#333333"
+            android:textSize="44sp" />
+
+        <TextView
+            android:id="@+id/resultOperation"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="+"
+            android:textColor="#333333"
+            android:textSize="40sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/calculationGroup"
+        style="common"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <TextView
+            android:id="@+id/calculationField"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="90"
+            android:gravity="top|end"
+            android:text="123.42 + 47842"
+            android:textColor="#999999"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/calculationMarker"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:gravity="top|center"
+            android:text="="
+            android:textColor="#999999"
+            android:textSize="20sp" />
+    </LinearLayout>
+
 
     <View
         android:layout_width="match_parent"
@@ -32,17 +102,46 @@
         android:background="@color/dividerColor" />
 
     <LinearLayout
-        android:id="@+id/groupButton1"
+        android:id="@+id/groupMemoryButton"
+        android:layout_width="match_parent"
+        android:layout_height="47sp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_MR"
+            style="@style/memoryButtonStyle"
+            android:text="MR" />
+
+        <Button
+            android:id="@+id/btn_MC"
+            style="@style/memoryButtonStyle"
+            android:text="MC" />
+
+        <Button
+            android:id="@+id/btn_M_addition"
+            style="@style/memoryButtonStyle"
+            android:text="M+" />
+
+        <Button
+            android:id="@+id/btn_M_subtraction"
+            style="@style/memoryButtonStyle"
+            android:text="M-" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/groupDeleteButton"
         style="common"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:weightSum="4"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_reset"
             style="@style/blueButtonPortrait"
-            android:layout_weight="1"
+            android:layout_weight="2"
+            android:layout_width="0sp"
             android:gravity="center_vertical"
             android:paddingStart="35sp"
             android:text="@string/reset" />
@@ -50,8 +149,16 @@
         <Button
             android:id="@+id/btn_delete"
             style="@style/blueButtonPortrait"
-            android:layout_weight="3"
+            android:layout_width="0sp"
+            android:layout_weight="1"
             android:text="@string/delete" />
+
+        <Button
+            android:id="@+id/btn_percent"
+            style="@style/blueButtonLandscape"
+            android:layout_width="0sp"
+            android:layout_weight="1"
+            android:text="@string/percent" />
     </LinearLayout>
 
     <LinearLayout
@@ -108,6 +215,8 @@
             android:id="@+id/btn_multiplication"
             style="@style/blueButtonPortrait"
             android:text="@string/multiplication" />
+
+
     </LinearLayout>
 
     <LinearLayout
