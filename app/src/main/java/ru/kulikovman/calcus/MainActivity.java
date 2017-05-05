@@ -76,19 +76,6 @@ public class MainActivity extends AppCompatActivity {
                 else if (getLastElement().equals("0")) toAdd(".0");
                 else if (getLenght() < 13) toAdd("0");
                 break;
-            case R.id.btn_000:
-                if (isResult || isError()) removeResult();
-                if (isNull() || isEndOperation()) toAdd("0.00");
-                else if (getLenght() < 11) toAdd("000");
-                break;
-            case R.id.btn_pi:
-                if (isResult || isError()) removeResult();
-                if (isNull() || isEndOperation()) toAdd("3.14159265359");
-                break;
-            case R.id.btn_e:
-                if (isResult || isError()) removeResult();
-                if (isNull() || isEndOperation()) toAdd("2.71828182846");
-                break;
             case R.id.btn_dot:
                 if (isResult || isError()) removeResult();
                 if (isNull() || isEndOperation()) toAdd("0.");
@@ -156,17 +143,6 @@ public class MainActivity extends AppCompatActivity {
                     isResult = false;
                 }
                 break;
-            case R.id.btn_power:
-                removeExcessElements();
-                if (!isError()) {
-                    if (isComplete() && isNumber()) {
-                        calculationField.setText(String.valueOf(getResult() + " ="));
-                        toCalculate();
-                        toAdd(" ^ ");
-                    } else if (!isNull()) toAdd(" ^ ");
-                    isResult = false;
-                }
-                break;
 
 
             //дополнительные операции
@@ -181,60 +157,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 break;
-            case R.id.btn_square_root:
-                removeExcessElements();
-                if (!isNull() && !isComplete() && isNumber()) {
-                    calculationField.setText(String.valueOf("√ " + getResult() + " ="));
-                    toCalculate();
-                }
-                break;
-            case R.id.btn_sinus:
-                removeExcessElements();
-                if (!isNull() && !isComplete() && isNumber()) {
-                    calculationField.setText(String.valueOf("sin (" + getResult() + ") ="));
-                    toCalculate();
-                }
-                break;
-            case R.id.btn_cosine:
-                removeExcessElements();
-                if (!isNull() && !isComplete() && isNumber()) {
-                    calculationField.setText(String.valueOf("cos (" + getResult() + ") ="));
-                    toCalculate();
-                }
-                break;
-            case R.id.btn_tangent:
-                removeExcessElements();
-                if (!isNull() && !isComplete() && isNumber()) {
-                    calculationField.setText(String.valueOf("tan (" + getResult() + ") ="));
-                    toCalculate();
-                }
-                break;
-            case R.id.btn_natural_logarithm:
-                removeExcessElements();
-                if (!isNull() && !isComplete() && isNumber()) {
-                    calculationField.setText(String.valueOf("ln (" + getResult() + ") ="));
-                    toCalculate();
-                }
-                break;
-            case R.id.btn_logarithm:
-                removeExcessElements();
-                if (!isNull() && !isComplete() && isNumber()) {
-                    calculationField.setText(String.valueOf("log (" + getResult() + ") ="));
-                    toCalculate();
-                }
-                break;
 
-
-            //работа с памятью
-            case R.id.btn_memory_copy:
-                removeExcessElements();
-                if (!isNull() && !isComplete() && isNumber()) memoryField.setText(getResult());
-                else if (isNull()) memoryField.setText(" ");
-                break;
-            case R.id.btn_memory_past:
-                if (isResult) removeResult();
-                if (isNull() || isEndOperation()) toAdd(memoryField.getText().toString());
-                break;
 
 
             //копирование результата в буфер

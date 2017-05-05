@@ -22,31 +22,21 @@
         <item name="android:onClick">onClick</item>
     </style>
 
-    <style name="blueButtonPortrait" parent="commonButtonSettings">
+
+
+
+
+    <style name="otherButtonStyle" parent="commonButtonSettings">
         <item name="android:background">@drawable/other_button_color</item>
         <item name="android:textColor">@drawable/other_text_color</item>
         <item name="android:textSize">28sp</item>
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
-    <style name="grayButtonPortrait" parent="commonButtonSettings">
+    <style name="mainButtonStyle" parent="commonButtonSettings">
         <item name="android:background">@drawable/main_button_color</item>
         <item name="android:textColor">@drawable/main_text_color</item>
         <item name="android:textSize">28sp</item>
-        <item name="android:fontFamily">sans-serif-light</item>
-    </style>
-
-    <style name="blueButtonLandscape" parent="commonButtonSettings">
-        <item name="android:background">@drawable/other_button_color</item>
-        <item name="android:textColor">@drawable/other_text_color</item>
-        <item name="android:textSize">24sp</item>
-        <item name="android:fontFamily">sans-serif-light</item>
-    </style>
-
-    <style name="grayButtonLandscape" parent="commonButtonSettings">
-        <item name="android:background">@drawable/main_button_color</item>
-        <item name="android:textColor">@drawable/main_text_color</item>
-        <item name="android:textSize">24sp</item>
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
