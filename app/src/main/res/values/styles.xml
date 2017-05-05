@@ -15,32 +15,28 @@
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
-    <style name="commonButtonSettings" parent="Theme.AppCompat.Light">
+    <style name="commonButtonStyle" parent="Theme.AppCompat.Light">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
         <item name="android:onClick">onClick</item>
     </style>
 
-
-
-
-
-    <style name="otherButtonStyle" parent="commonButtonSettings">
+    <style name="otherButtonStyle" parent="commonButtonStyle">
         <item name="android:background">@drawable/other_button_color</item>
         <item name="android:textColor">@drawable/other_text_color</item>
         <item name="android:textSize">28sp</item>
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
-    <style name="mainButtonStyle" parent="commonButtonSettings">
+    <style name="mainButtonStyle" parent="commonButtonStyle">
         <item name="android:background">@drawable/main_button_color</item>
         <item name="android:textColor">@drawable/main_text_color</item>
         <item name="android:textSize">28sp</item>
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
-    <style name="memoryButtonStyle" parent="commonButtonSettings">
+    <style name="memoryButtonStyle" parent="commonButtonStyle">
         <item name="android:background">@drawable/memory_button_color</item>
         <item name="android:textColor">@drawable/memory_text_color</item>
         <item name="android:textSize">24sp</item>

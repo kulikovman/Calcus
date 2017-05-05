@@ -21,6 +21,7 @@
             android:layout_weight="90"
             android:fontFamily="sans-serif-light"
             android:gravity="bottom|end"
+            android:onClick="onClick"
             android:text="254.35"
             android:textColor="#4D4D4D"
             android:textSize="20sp" />
@@ -70,7 +71,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="5dp"/>
+        android:layout_height="5dp" />
 
     <LinearLayout
         android:id="@+id/calculationGroup"
@@ -87,6 +88,7 @@
             android:layout_weight="90"
             android:fontFamily="sans-serif-light"
             android:gravity="top|end"
+            android:onClick="onClick"
             android:text="123.42 + 47842"
             android:textColor="#999999"
             android:textSize="20sp" />
@@ -188,7 +190,7 @@
         <Button
             android:id="@+id/btn_devision"
             style="@style/otherButtonStyle"
-            android:text="@string/devision" />
+            android:text="@string/division" />
     </LinearLayout>
 
     <LinearLayout
