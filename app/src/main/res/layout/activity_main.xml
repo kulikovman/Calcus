@@ -40,7 +40,7 @@
         android:id="@+id/resultGroup"
         style="common"
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="56dp"
         android:orientation="horizontal"
         android:weightSum="100">
 
@@ -68,11 +68,15 @@
             android:textSize="40sp" />
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"/>
+
     <LinearLayout
         android:id="@+id/calculationGroup"
         style="common"
         android:layout_width="match_parent"
-        android:layout_height="38dp"
+        android:layout_height="41dp"
         android:orientation="horizontal"
         android:weightSum="100">
 
@@ -108,26 +112,26 @@
         <Button
             android:id="@+id/btn_MR"
             style="@style/memoryButtonStyle"
-            android:text="MR" />
+            android:text="@string/mr" />
 
         <Button
             android:id="@+id/btn_MC"
             style="@style/memoryButtonStyle"
-            android:text="MC" />
+            android:text="@string/mc" />
 
         <Button
             android:id="@+id/btn_M_addition"
             style="@style/memoryButtonStyle"
-            android:text="M+" />
+            android:text="@string/m_add" />
 
         <Button
             android:id="@+id/btn_M_subtraction"
             style="@style/memoryButtonStyle"
-            android:text="M-" />
+            android:text="@string/m_sub" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/groupDeleteButton"
+        android:id="@+id/groupButton1"
         style="common"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
