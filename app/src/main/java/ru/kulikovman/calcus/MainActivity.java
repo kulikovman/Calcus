@@ -74,14 +74,21 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_0:
                 if (isResult || isError()) clearCalculation();
                 if (!isEmpty(operationField)) moveToHistory();
+
                 if (isEmpty(numberField)) addText("0.");
-                else if (getLength(numberField) < 12) addText("0");
+                else if (getLength(numberField) < 12) {
+                    if (getNumberField().equals("0")) {
+                        numberField.setText("0.0");
+                    } else addText("0");
+                }
                 break;
             case R.id.btn_dot:
                 if (isResult || isError()) clearCalculation();
                 if (!isEmpty(operationField)) moveToHistory();
+
                 if (isEmpty(numberField)) addText("0.");
-                else if (!getNumber().contains(".") && getLength(numberField) < 11) addText(".");
+                else if (!getNumberField().contains(".") && getLength(numberField) < 11)
+                    addText(".");
                 break;
 
 
@@ -92,7 +99,10 @@ public class MainActivity extends AppCompatActivity {
                 if (isResult || isError()) clearCalculation();
                 if (!isEmpty(operationField)) {
                     operationField.setText(" ");
-                } else if (getLength(numberField) > 1) removeLastSymbol(numberField);
+                } else if (getLength(numberField) > 1) {
+                    String s = numberField.getText().toString().trim();
+                    numberField.setText(s.substring(0, s.length() - 1));
+                }
                 else numberField.setText(" ");
                 break;
 
@@ -125,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_MR:
                 if (!isEmpty(numberField)) {
                     removeExcessSymbol(numberField);
-                    memoryField.setText(getNumber());
+                    memoryField.setText(getNumberField());
                     memoryMarker.setText(R.string.circle);
                 }
                 break;
@@ -143,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
                     } else first = 0.0;
                     second = Double.parseDouble(numberField.getText().toString());
 
-                    String result = String.valueOf(toRound(first + second, 11));
+                    String result = String.valueOf(roundResult(first + second, 11));
 
                     result = correctionResult(result);
                     memoryField.setText(result);
@@ -160,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                     } else first = 0.0;
                     second = Double.parseDouble(numberField.getText().toString());
 
-                    String result = String.valueOf(toRound(first - second, 11));
+                    String result = String.valueOf(roundResult(first - second, 11));
 
                     result = correctionResult(result);
                     memoryField.setText(result);
@@ -170,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             case R.id.numberField:
-                ClipData clipNumber = ClipData.newPlainText("numberField", getNumber());
+                ClipData clipNumber = ClipData.newPlainText("numberField", getNumberField());
                 clipboard.setPrimaryClip(clipNumber);
                 Toast.makeText(this, R.string.copy_co_clipboard, Toast.LENGTH_SHORT).show();
                 break;
@@ -230,14 +240,20 @@ public class MainActivity extends AppCompatActivity {
             isResult = false;
         }
         if (!isEmpty(operationField)) moveToHistory();
+
         if (getLength(numberField) < 12) {
-            String temp = getNumber() + s;
-            numberField.setText(temp);
+            if (getNumberField().equals("0")) {
+                String temp = "0." + s;
+                numberField.setText(temp);
+            } else {
+                String temp = getNumberField() + s;
+                numberField.setText(temp);
+            }
         }
     }
 
     private void moveToHistory() {
-        historyField.setText(getNumber());
+        historyField.setText(getNumberField());
         historyOperation.setText(operationField.getText().toString());
         numberField.setText(" ");
         operationField.setText(" ");
@@ -263,17 +279,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean isError() {
-        return getNumber().contains("Error") || getNumber().contains("Too long result")
-                || getNumber().contains("Not a number");
+        return getNumberField().contains("Error") || getNumberField().contains("Too long result")
+                || getNumberField().contains("Not a number");
     }
 
     private int getLength(TextView textView) {
         return textView.getText().toString().length();
-    }
-
-    private void removeLastSymbol(TextView textView) {
-        String s = textView.getText().toString().trim();
-        textView.setText(s.substring(0, s.length() - 1));
     }
 
     private void clearCalculation() {
@@ -289,19 +300,22 @@ public class MainActivity extends AppCompatActivity {
         String s = textView.getText().toString().trim();
         if (s.contains(".")) {
             while (s.endsWith("0")) {
-                removeLastSymbol(textView);
+                s = s.substring(0, s.length() - 1);
             }
+            if (s.endsWith(".")) {
+                s = s.substring(0, s.length() - 1);
+            }
+
+            textView.setText(s);
         }
-        if (s.endsWith(".")) removeLastSymbol(textView);
+
     }
 
-
-    //получение данных
-    private String getNumber() {
+    private String getNumberField() {
         return numberField.getText().toString().trim();
     }
 
-    public static double toRound(double value, int places) {
+    public static double roundResult(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
 
         BigDecimal bd = new BigDecimal(value);
@@ -330,31 +344,31 @@ public class MainActivity extends AppCompatActivity {
             if (isPercentCalculation) {
                 switch (operation) {
                     case "+":
-                        result = String.valueOf(toRound(first + (first / 100 * second), 11));
+                        result = String.valueOf(roundResult(first + (first / 100 * second), 11));
                         break;
                     case "-":
-                        result = String.valueOf(toRound(first - (first / 100 * second), 11));
+                        result = String.valueOf(roundResult(first - (first / 100 * second), 11));
                         break;
                     case "×":
-                        result = String.valueOf(toRound(first * (first / 100 * second), 11));
+                        result = String.valueOf(roundResult(first * (first / 100 * second), 11));
                         break;
                     case "÷":
-                        result = String.valueOf(toRound(first / (first / 100 * second), 11));
+                        result = String.valueOf(roundResult(first / (first / 100 * second), 11));
                         break;
                 }
             } else {
                 switch (operation) {
                     case "+":
-                        result = String.valueOf(toRound(first + second, 11));
+                        result = String.valueOf(roundResult(first + second, 11));
                         break;
                     case "-":
-                        result = String.valueOf(toRound(first - second, 11));
+                        result = String.valueOf(roundResult(first - second, 11));
                         break;
                     case "×":
-                        result = String.valueOf(toRound(first * second, 11));
+                        result = String.valueOf(roundResult(first * second, 11));
                         break;
                     case "÷":
-                        result = String.valueOf(toRound(first / second, 11));
+                        result = String.valueOf(roundResult(first / second, 11));
                         break;
                 }
             }
