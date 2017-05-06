@@ -9,7 +9,6 @@ import java.math.RoundingMode;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.TextView;
@@ -20,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
             memoryMarker, historyOperation;
 
     private boolean isResult = false;
-    private boolean isOperation = false;
     private boolean isPercentCalculation = false;
 
     @Override
@@ -41,47 +39,49 @@ public class MainActivity extends AppCompatActivity {
         view.setHapticFeedbackEnabled(true);
         view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
 
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+
         switch (view.getId()) {
             case R.id.btn_1:
-                toAddNumber("1");
+                addNumber("1");
                 break;
             case R.id.btn_2:
-                toAddNumber("2");
+                addNumber("2");
                 break;
             case R.id.btn_3:
-                toAddNumber("3");
+                addNumber("3");
                 break;
             case R.id.btn_4:
-                toAddNumber("4");
+                addNumber("4");
                 break;
             case R.id.btn_5:
-                toAddNumber("5");
+                addNumber("5");
                 break;
             case R.id.btn_6:
-                toAddNumber("6");
+                addNumber("6");
                 break;
             case R.id.btn_7:
-                toAddNumber("7");
+                addNumber("7");
                 break;
             case R.id.btn_8:
-                toAddNumber("8");
+                addNumber("8");
                 break;
             case R.id.btn_9:
-                toAddNumber("9");
+                addNumber("9");
                 break;
 
 
             case R.id.btn_0:
-                if (isError()) clearCalculation();
+                if (isResult || isError()) clearCalculation();
                 if (!isEmpty(operationField)) moveToHistory();
-                if (isEmpty(numberField)) toAdd("0.");
-                else if (getLength(numberField) < 13) toAdd("0");
+                if (isEmpty(numberField)) addText("0.");
+                else if (getLength(numberField) < 12) addText("0");
                 break;
             case R.id.btn_dot:
-                if (isError()) clearCalculation();
+                if (isResult || isError()) clearCalculation();
                 if (!isEmpty(operationField)) moveToHistory();
-                if (isEmpty(numberField)) toAdd("0.");
-                else if (!getNumber().contains(".") && getLength(numberField) < 12) toAdd(".");
+                if (isEmpty(numberField)) addText("0.");
+                else if (!getNumber().contains(".") && getLength(numberField) < 11) addText(".");
                 break;
 
 
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 if (isResult || isError()) clearCalculation();
                 if (!isEmpty(operationField)) {
                     operationField.setText(" ");
-                } else if (getLength(numberField) > 1) removeLastSymbol();
+                } else if (getLength(numberField) > 1) removeLastSymbol(numberField);
                 else numberField.setText(" ");
                 break;
 
@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 if (!isResult && isEmpty(operationField)
                         && !isEmpty(numberField) && !isEmpty(historyField)
                         && isNumber(numberField) && isNumber(historyField)) {
-                    removeExcessSymbolOfNumberField();
+                    removeExcessSymbol(numberField);
                     isPercentCalculation = true;
                     toCalculate();
                 }
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.btn_MR:
                 if (!isEmpty(numberField)) {
-                    removeExcessSymbolOfNumberField();
+                    removeExcessSymbol(numberField);
                     memoryField.setText(getNumber());
                     memoryMarker.setText(R.string.circle);
                 }
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.btn_M_addition:
                 if (!isEmpty(numberField)) {
-                    removeExcessSymbolOfNumberField();
+                    removeExcessSymbol(numberField);
                     double first, second;
 
                     if (!isEmpty(memoryField)) {
@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.btn_M_subtraction:
                 if (!isEmpty(numberField)) {
-                    removeExcessSymbolOfNumberField();
+                    removeExcessSymbol(numberField);
                     double first, second;
 
                     if (!isEmpty(memoryField)) {
@@ -170,17 +170,13 @@ public class MainActivity extends AppCompatActivity {
 
 
             case R.id.numberField:
-                ClipboardManager clipboardNumber = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                 ClipData clipNumber = ClipData.newPlainText("numberField", getNumber());
-                clipboardNumber.setPrimaryClip(clipNumber);
-
+                clipboard.setPrimaryClip(clipNumber);
                 Toast.makeText(this, R.string.copy_co_clipboard, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.memoryField:
-                ClipboardManager clipboardMemory = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                 ClipData clipMemory = ClipData.newPlainText("memoryField", memoryField.getText().toString());
-                clipboardMemory.setPrimaryClip(clipMemory);
-
+                clipboard.setPrimaryClip(clipMemory);
                 Toast.makeText(this, R.string.copy_co_clipboard, Toast.LENGTH_SHORT).show();
                 break;
 
@@ -192,12 +188,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String correctionResult(String result) {
-        //меняем название ошибки
+        //изменение названия ошибки
         if (result.equals("NaN")) {
             result = "Not a number";
         }
 
-        //сокращаем длину результата
+        //сокращение длины результата
         if (result.length() > 12) {
             if (result.toLowerCase().contains("e")) {
                 result = "Too long result";
@@ -206,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        //избавляем результат от лишних нулей
+        //удаление лишних символов
         if (result.contains(".")) {
             while (result.endsWith("0")) {
                 result = result.substring(0, result.length() - 1);
@@ -220,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setOperation(String operation) {
-        removeExcessSymbolOfNumberField();
+        removeExcessSymbol(numberField);
         if (!isEmpty(numberField)) {
             toCalculate();
             isResult = false;
@@ -228,7 +224,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void toAddNumber(String s) {
+    private void addNumber(String s) {
         if (isResult || isError()) {
             clearCalculation();
             isResult = false;
@@ -245,7 +241,6 @@ public class MainActivity extends AppCompatActivity {
         historyOperation.setText(operationField.getText().toString());
         numberField.setText(" ");
         operationField.setText(" ");
-        isOperation = false;
     }
 
     private boolean isEmpty(TextView textView) {
@@ -253,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
         return s.equals("") || s.equals(" ");
     }
 
-    private void toAdd(String s) {
+    private void addText(String s) {
         String temp = numberField.getText().toString() + s;
         numberField.setText(temp);
     }
@@ -276,8 +271,9 @@ public class MainActivity extends AppCompatActivity {
         return textView.getText().toString().length();
     }
 
-    private void removeLastSymbol() {
-        numberField.setText(getNumber().substring(0, getNumber().length() - 1));
+    private void removeLastSymbol(TextView textView) {
+        String s = textView.getText().toString().trim();
+        textView.setText(s.substring(0, s.length() - 1));
     }
 
     private void clearCalculation() {
@@ -285,17 +281,18 @@ public class MainActivity extends AppCompatActivity {
         operationField.setText(" ");
         historyField.setText(" ");
         historyOperation.setText(" ");
+        isPercentCalculation = false;
         isResult = false;
-        isOperation = false;
     }
 
-    private void removeExcessSymbolOfNumberField() {
-        if (getNumber().contains(".")) {
-            while (getNumber().endsWith("0")) {
-                removeLastSymbol();
+    private void removeExcessSymbol(TextView textView) {
+        String s = textView.getText().toString().trim();
+        if (s.contains(".")) {
+            while (s.endsWith("0")) {
+                removeLastSymbol(textView);
             }
         }
-        if (getNumber().endsWith(".")) removeLastSymbol();
+        if (s.endsWith(".")) removeLastSymbol(textView);
     }
 
 
@@ -315,7 +312,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void toCalculate() {
         if (!isEmpty(numberField) && !isEmpty(historyField) && isNumber(numberField) && isNumber(historyField)) {
-            removeExcessSymbolOfNumberField();
+            removeExcessSymbol(numberField);
             String result = "Error";
 
             String operation = historyOperation.getText().toString();
