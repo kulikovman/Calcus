@@ -372,15 +372,27 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString("numberField", numberField.getText().toString());
+        outState.putString("operationField", operationField.getText().toString());
         outState.putString("historyField", historyField.getText().toString());
+        outState.putString("historyOperation", historyOperation.getText().toString());
+        outState.putString("memoryField", memoryField.getText().toString());
+        outState.putString("memoryMarker", memoryMarker.getText().toString());
+
         outState.putBoolean("isResult", isResult);
+        outState.putBoolean("isPercentCalculation", isPercentCalculation);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         numberField.setText(savedInstanceState.getString("numberField"));
+        operationField.setText(savedInstanceState.getString("operationField"));
         historyField.setText(savedInstanceState.getString("historyField"));
+        historyOperation.setText(savedInstanceState.getString("historyOperation"));
+        memoryField.setText(savedInstanceState.getString("memoryField"));
+        memoryMarker.setText(savedInstanceState.getString("memoryMarker"));
+
         isResult = savedInstanceState.getBoolean("isResult");
+        isPercentCalculation = savedInstanceState.getBoolean("isPercentCalculation");
     }
 }
