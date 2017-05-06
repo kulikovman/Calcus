@@ -309,10 +309,8 @@ public class MainActivity extends AppCompatActivity {
             if (s.endsWith(".")) {
                 s = s.substring(0, s.length() - 1);
             }
-
             textView.setText(s);
         }
-
     }
 
     private String getNumberField() {
