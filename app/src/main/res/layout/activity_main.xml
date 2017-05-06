@@ -22,7 +22,6 @@
             android:fontFamily="sans-serif-light"
             android:gravity="bottom|end"
             android:onClick="onClick"
-            android:text="254.35"
             android:textColor="#4D4D4D"
             android:textSize="20sp" />
 
@@ -32,7 +31,6 @@
             android:layout_height="match_parent"
             android:layout_weight="10"
             android:gravity="bottom|center_horizontal"
-            android:text="@string/circle"
             android:textColor="#FF0000"
             android:textSize="22sp" />
     </LinearLayout>
@@ -46,25 +44,23 @@
         android:weightSum="100">
 
         <TextView
-            android:id="@+id/resultField"
+            android:id="@+id/numberField"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="90"
             android:fontFamily="sans-serif-light"
             android:gravity="center_vertical|end"
             android:onClick="onClick"
-            android:text="123456.78042"
             android:textColor="#333333"
             android:textSize="44sp" />
 
         <TextView
-            android:id="@+id/resultOperation"
+            android:id="@+id/operationField"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="10"
             android:fontFamily="sans-serif-light"
             android:gravity="center_vertical|center_horizontal"
-            android:text="+"
             android:textColor="#333333"
             android:textSize="40sp" />
     </LinearLayout>
@@ -82,25 +78,23 @@
         android:weightSum="100">
 
         <TextView
-            android:id="@+id/calculationField"
+            android:id="@+id/historyField"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="90"
             android:fontFamily="sans-serif-light"
             android:gravity="top|end"
             android:onClick="onClick"
-            android:text="123.42 + 47842"
             android:textColor="#999999"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/calculationMarker"
+            android:id="@+id/historyOperation"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="10"
             android:fontFamily="sans-serif-light"
             android:gravity="top|center"
-            android:text="="
             android:textColor="#999999"
             android:textSize="20sp" />
     </LinearLayout>
@@ -188,7 +182,7 @@
             android:text="@string/btn_9" />
 
         <Button
-            android:id="@+id/btn_devision"
+            android:id="@+id/btn_division"
             style="@style/otherButtonStyle"
             android:text="@string/division" />
     </LinearLayout>
