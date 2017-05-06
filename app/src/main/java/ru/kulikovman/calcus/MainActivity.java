@@ -180,14 +180,18 @@ public class MainActivity extends AppCompatActivity {
 
 
             case R.id.numberField:
-                ClipData clipNumber = ClipData.newPlainText("numberField", getNumberField());
-                clipboard.setPrimaryClip(clipNumber);
-                Toast.makeText(this, R.string.copy_co_clipboard, Toast.LENGTH_SHORT).show();
+                if (!isEmpty(numberField)) {
+                    ClipData clipNumber = ClipData.newPlainText("numberField", getNumberField());
+                    clipboard.setPrimaryClip(clipNumber);
+                    Toast.makeText(this, R.string.copy_co_clipboard, Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.memoryField:
-                ClipData clipMemory = ClipData.newPlainText("memoryField", memoryField.getText().toString());
-                clipboard.setPrimaryClip(clipMemory);
-                Toast.makeText(this, R.string.copy_co_clipboard, Toast.LENGTH_SHORT).show();
+                if (!isEmpty(memoryField)) {
+                    ClipData clipMemory = ClipData.newPlainText("memoryField", memoryField.getText().toString());
+                    clipboard.setPrimaryClip(clipMemory);
+                    Toast.makeText(this, R.string.copy_co_clipboard, Toast.LENGTH_SHORT).show();
+                }
                 break;
 
 
