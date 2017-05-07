@@ -318,6 +318,11 @@ public class MainActivity extends AppCompatActivity {
                     return result;
                 }
             }
+            if (dotPosition == 11 + minus) {
+                result = result.substring(0, 11 + minus);
+                return result;
+            }
+
             return "Too long result";
 
         } else if (numbers <= 11) return result;
