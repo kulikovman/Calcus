@@ -293,27 +293,30 @@ public class MainActivity extends AppCompatActivity {
         bd = bd.setScale(places, RoundingMode.HALF_UP);
         String result = bd.toPlainString();
 
-        if (result.length() <= 12) {
-            return result;
-        } else {
-            if (result.contains(".")) {
-                int dotPosition = result.indexOf(".");
-                if (dotPosition < 11) {
-                    result = result.substring(0, 12);
+        int numbers = result.replaceAll("\\D", "").length();
+        int minus = result.replaceAll("\\d", "").replace(".", "").length();
+        int dot = result.replaceAll("\\d", "").replace("-", "").length();
 
-                    while (result.endsWith("0")) {
-                        result = result.substring(0, result.length() - 1);
-                    }
-                    if (result.endsWith(".")) {
-                        result = result.substring(0, result.length() - 1);
-                    }
-                    if (!result.equals("0")) {
-                        return result;
-                    }
+        if (dot == 1) {
+            int dotPosition = result.indexOf(".");
+
+            if (dotPosition <= 10 + minus) {
+                result = result.substring(0, 12 + minus);
+
+                while (result.endsWith("0")) {
+                    result = result.substring(0, result.length() - 1);
+                }
+                if (result.endsWith(".")) {
+                    result = result.substring(0, result.length() - 1);
+                }
+                if (!result.equals("0")) {
+                    return result;
                 }
             }
             return "Too long result";
-        }
+
+        } else if (numbers <= 11) return result;
+        else return "Too long result";
     }
 
     private void toCalculate() {
