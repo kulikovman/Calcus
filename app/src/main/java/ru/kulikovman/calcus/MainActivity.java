@@ -74,9 +74,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_0:
                 if (isResult || isError()) clearCalculation();
                 if (!isEmpty(operationField)) moveToHistory();
-
-                if (isEmpty(numberField)) addText("0.");
-                else if (getLength(numberField) < 12) {
+                if (getLength(numberField) < 12) {
                     if (getNumberField().equals("0")) {
                         numberField.setText("0.0");
                     } else addText("0");
@@ -102,8 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if (getLength(numberField) > 1) {
                     String s = numberField.getText().toString().trim();
                     numberField.setText(s.substring(0, s.length() - 1));
-                }
-                else numberField.setText(" ");
+                } else numberField.setText(" ");
                 break;
 
 
@@ -133,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             case R.id.btn_MR:
-                if (!isEmpty(numberField)) {
+                if (!isEmpty(numberField) && !isError()) {
                     removeExcessSymbol(numberField);
                     memoryField.setText(getNumberField());
                     memoryMarker.setText(R.string.circle);
@@ -143,36 +140,34 @@ public class MainActivity extends AppCompatActivity {
                 memoryField.setText(" ");
                 memoryMarker.setText(" ");
                 break;
+
+
             case R.id.btn_M_addition:
-                if (!isEmpty(numberField)) {
+                if (!isEmpty(numberField) && !isError()) {
                     removeExcessSymbol(numberField);
+
                     double first, second;
+                    if (isEmpty(memoryField)) first = 0.0;
+                    else first = Double.parseDouble(memoryField.getText().toString().trim());
+                    second = Double.parseDouble(numberField.getText().toString().trim());
 
-                    if (!isEmpty(memoryField)) {
-                        first = Double.parseDouble(memoryField.getText().toString());
-                    } else first = 0.0;
-                    second = Double.parseDouble(numberField.getText().toString());
+                    String result = roundResult(first + second, 11);
 
-                    String result = String.valueOf(roundResult(first + second, 11));
-
-                    result = correctionResult(result);
                     memoryField.setText(result);
                     memoryMarker.setText(R.string.circle);
                 }
                 break;
             case R.id.btn_M_subtraction:
-                if (!isEmpty(numberField)) {
+                if (!isEmpty(numberField) && !isError()) {
                     removeExcessSymbol(numberField);
+
                     double first, second;
+                    if (isEmpty(memoryField)) first = 0.0;
+                    else first = Double.parseDouble(memoryField.getText().toString().trim());
+                    second = Double.parseDouble(numberField.getText().toString().trim());
 
-                    if (!isEmpty(memoryField)) {
-                        first = Double.parseDouble(memoryField.getText().toString());
-                    } else first = 0.0;
-                    second = Double.parseDouble(numberField.getText().toString());
+                    String result = roundResult(first - second, 11);
 
-                    String result = String.valueOf(roundResult(first - second, 11));
-
-                    result = correctionResult(result);
                     memoryField.setText(result);
                     memoryMarker.setText(R.string.circle);
                 }
@@ -201,40 +196,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private String correctionResult(String result) {
-        //изменение названия ошибки
-        if (result.equals("NaN")) {
-            result = "Not a number";
-        }
-
-        //сокращение длины результата
-        if (result.length() > 12) {
-            if (result.toLowerCase().contains("e")) {
-                result = "Too long result";
-            } else {
-                result = result.substring(0, 12);
-            }
-        }
-
-        //удаление лишних символов
-        if (result.contains(".")) {
-            while (result.endsWith("0")) {
-                result = result.substring(0, result.length() - 1);
-            }
-            if (result.endsWith(".")) {
-                result = result.substring(0, result.length() - 1);
-            }
-        }
-
-        return result;
-    }
-
     private void setOperation(String operation) {
-        removeExcessSymbol(numberField);
-        if (!isEmpty(numberField)) {
-            toCalculate();
-            isResult = false;
-            operationField.setText(operation);
+        if (!isError()) {
+            removeExcessSymbol(numberField);
+            if (!isEmpty(numberField)) {
+                toCalculate();
+                isResult = false;
+                operationField.setText(operation);
+            }
         }
     }
 
@@ -284,7 +253,7 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean isError() {
         return getNumberField().contains("Error") || getNumberField().contains("Too long result")
-                || getNumberField().contains("Not a number");
+                || getNumberField().contains("Infinity");
     }
 
     private int getLength(TextView textView) {
@@ -317,23 +286,44 @@ public class MainActivity extends AppCompatActivity {
         return numberField.getText().toString().trim();
     }
 
-    public static double roundResult(double value, int places) {
-        if (places < 0) throw new IllegalArgumentException();
+    public String roundResult(double value, int places) {
+        if (value == 0) return "0";
 
         BigDecimal bd = new BigDecimal(value);
         bd = bd.setScale(places, RoundingMode.HALF_UP);
-        return bd.doubleValue();
-    }
+        String result = bd.toPlainString();
 
+        if (result.length() <= 12) {
+            return result;
+        } else {
+            if (result.contains(".")) {
+                int dotPosition = result.indexOf(".");
+                if (dotPosition < 11) {
+                    result = result.substring(0, 12);
+
+                    while (result.endsWith("0")) {
+                        result = result.substring(0, result.length() - 1);
+                    }
+                    if (result.endsWith(".")) {
+                        result = result.substring(0, result.length() - 1);
+                    }
+                    if (!result.equals("0")) {
+                        return result;
+                    }
+                }
+            }
+            return "Too long result";
+        }
+    }
 
     private void toCalculate() {
         if (!isEmpty(numberField) && !isEmpty(historyField) && isNumber(numberField) && isNumber(historyField)) {
             removeExcessSymbol(numberField);
             String result = "Error";
 
-            String operation = historyOperation.getText().toString();
-            String firstNumber = historyField.getText().toString();
-            String secondNumber = numberField.getText().toString();
+            String operation = historyOperation.getText().toString().trim();
+            String firstNumber = historyField.getText().toString().trim();
+            String secondNumber = numberField.getText().toString().trim();
 
             double first = Double.parseDouble(firstNumber);
             double second = Double.parseDouble(secondNumber);
@@ -346,36 +336,44 @@ public class MainActivity extends AppCompatActivity {
             if (isPercentCalculation) {
                 switch (operation) {
                     case "+":
-                        result = String.valueOf(roundResult(first + (first / 100 * second), 11));
+                        result = roundResult(first + (first / 100 * second), 11);
                         break;
                     case "-":
-                        result = String.valueOf(roundResult(first - (first / 100 * second), 11));
+                        result = roundResult(first - (first / 100 * second), 11);
                         break;
                     case "×":
-                        result = String.valueOf(roundResult(first * (first / 100 * second), 11));
+                        if (first != 0 && second != 0) {
+                            result = roundResult(first * (first / 100 * second), 11);
+                        } else result = "0";
                         break;
                     case "÷":
-                        result = String.valueOf(roundResult(first / (first / 100 * second), 11));
+                        if (first != 0 && second != 0) {
+                            result = roundResult(first / (first / 100 * second), 11);
+                        } else if (first == 0 && second != 0) result = "0";
+                        else result = "Infinity";
                         break;
                 }
             } else {
                 switch (operation) {
                     case "+":
-                        result = String.valueOf(roundResult(first + second, 11));
+                        result = roundResult(first + second, 11);
                         break;
                     case "-":
-                        result = String.valueOf(roundResult(first - second, 11));
+                        result = roundResult(first - second, 11);
                         break;
                     case "×":
-                        result = String.valueOf(roundResult(first * second, 11));
+                        if (first != 0 && second != 0) {
+                            result = roundResult(first * second, 11);
+                        } else result = "0";
                         break;
                     case "÷":
-                        result = String.valueOf(roundResult(first / second, 11));
+                        if (first != 0 && second != 0) {
+                            result = roundResult(first / second, 11);
+                        } else if (first == 0 && second != 0) result = "0";
+                        else result = "Infinity";
                         break;
                 }
             }
-
-            result = correctionResult(result);
 
             numberField.setText(result);
             isPercentCalculation = false;
