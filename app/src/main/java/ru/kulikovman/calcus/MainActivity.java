@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_0:
                 if (isResult || isError()) clearCalculation();
                 if (!isEmpty(operationField)) moveToHistory();
-                if (getLength(numberField) < 12) {
+                if (getCountNumbers(numberField) < 11) {
                     if (getNumberField().equals("0")) {
                         numberField.setText("0.0");
                     } else addText("0");
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 if (!isEmpty(operationField)) moveToHistory();
 
                 if (isEmpty(numberField)) addText("0.");
-                else if (!getNumberField().contains(".") && getLength(numberField) < 11)
+                else if (!getNumberField().contains(".") && getCountNumbers(numberField) < 11)
                     addText(".");
                 break;
 
@@ -97,10 +97,15 @@ public class MainActivity extends AppCompatActivity {
                 if (isResult || isError()) clearCalculation();
                 if (!isEmpty(operationField)) {
                     operationField.setText(" ");
-                } else if (getLength(numberField) > 1) {
-                    String s = numberField.getText().toString().trim();
-                    numberField.setText(s.substring(0, s.length() - 1));
-                } else numberField.setText(" ");
+                } else {
+                    int length = numberField.getText().toString().trim().length();
+                    int minus = numberField.getText().toString().trim().replaceAll("\\d", "").replace(".", "").length();
+
+                    if (length > 1 + minus) {
+                        String s = numberField.getText().toString().trim();
+                        numberField.setText(s.substring(0, s.length() - 1));
+                    } else numberField.setText(" ");
+                }
                 break;
 
 
@@ -214,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
         }
         if (!isEmpty(operationField)) moveToHistory();
 
-        if (getLength(numberField) < 12) {
+        if (getCountNumbers(numberField) < 11) {
             if (getNumberField().equals("0")) {
                 String temp = "0." + s;
                 numberField.setText(temp);
@@ -256,8 +261,8 @@ public class MainActivity extends AppCompatActivity {
                 || getNumberField().contains("Infinity");
     }
 
-    private int getLength(TextView textView) {
-        return textView.getText().toString().length();
+    private int getCountNumbers(TextView textView) {
+        return textView.getText().toString().replaceAll("\\D", "").length();
     }
 
     private void clearCalculation() {
