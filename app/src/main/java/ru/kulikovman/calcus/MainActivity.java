@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -91,20 +93,22 @@ public class MainActivity extends AppCompatActivity {
 
 
             case R.id.btn_reset:
-                clearCalculation();
+                clearCalculationWithAnimation();
                 break;
             case R.id.btn_delete:
-                if (isResult || isError()) clearCalculation();
-                if (!isEmpty(operationField)) {
-                    operationField.setText(" ");
-                } else {
-                    int length = numberField.getText().toString().trim().length();
-                    int minus = numberField.getText().toString().trim().replaceAll("\\d", "").replace(".", "").length();
+                if (isResult || isError()) clearCalculationWithAnimation();
+                else {
+                    if (!isEmpty(operationField)) {
+                        operationField.setText(" ");
+                    } else {
+                        int length = numberField.getText().toString().trim().length();
+                        int minus = numberField.getText().toString().trim().replaceAll("\\d", "").replace(".", "").length();
 
-                    if (length > 1 + minus) {
-                        String s = numberField.getText().toString().trim();
-                        numberField.setText(s.substring(0, s.length() - 1));
-                    } else numberField.setText(" ");
+                        if (length > 1 + minus) {
+                            String s = numberField.getText().toString().trim();
+                            numberField.setText(s.substring(0, s.length() - 1));
+                        } else numberField.setText(" ");
+                    }
                 }
                 break;
 
@@ -142,11 +146,27 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
             case R.id.btn_MC:
-                memoryField.setText(" ");
-                memoryMarker.setText(" ");
+                Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.dissolution);
+                animation.setAnimationListener(new Animation.AnimationListener() {
+
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        memoryField.setText(" ");
+                        memoryMarker.setText(" ");
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+                    }
+                });
+
+                memoryField.startAnimation(animation);
+                memoryMarker.startAnimation(animation);
                 break;
-
-
             case R.id.btn_M_addition:
                 if (!isEmpty(numberField) && !isError()) {
                     removeExcessSymbol(numberField);
@@ -213,10 +233,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addNumber(String s) {
-        if (isResult || isError()) {
-            clearCalculation();
-            isResult = false;
-        }
+        if (isResult || isError()) clearCalculation();
         if (!isEmpty(operationField)) moveToHistory();
 
         if (getCountNumbers(numberField) < 11) {
@@ -270,8 +287,39 @@ public class MainActivity extends AppCompatActivity {
         operationField.setText(" ");
         historyField.setText(" ");
         historyOperation.setText(" ");
+
         isPercentCalculation = false;
         isResult = false;
+    }
+
+    private void clearCalculationWithAnimation() {
+        Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.dissolution);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                numberField.setText(" ");
+                operationField.setText(" ");
+                historyField.setText(" ");
+                historyOperation.setText(" ");
+
+                isPercentCalculation = false;
+                isResult = false;
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+        });
+
+        numberField.startAnimation(animation);
+        operationField.startAnimation(animation);
+        historyField.startAnimation(animation);
+        historyOperation.startAnimation(animation);
     }
 
     private void removeExcessSymbol(TextView textView) {
