@@ -92,10 +92,10 @@ public class MainActivity extends AppCompatActivity {
 
 
             case R.id.btn_reset:
-                clearCalculationWithAnimation();
+                clearCalculation();
                 break;
             case R.id.btn_delete:
-                if (isResult || isError()) clearCalculationWithAnimation();
+                if (isResult || isError()) clearCalculation();
                 else {
                     if (!isEmpty(operationField)) {
                         operationField.setText(" ");
@@ -269,36 +269,6 @@ public class MainActivity extends AppCompatActivity {
 
         isPercentCalculation = false;
         isResult = false;
-    }
-
-    private void clearCalculationWithAnimation() {
-        Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.dissolution);
-        animation.setAnimationListener(new Animation.AnimationListener() {
-
-            @Override
-            public void onAnimationStart(Animation animation) {
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                numberField.setText(" ");
-                operationField.setText(" ");
-                historyField.setText(" ");
-                historyOperation.setText(" ");
-
-                isPercentCalculation = false;
-                isResult = false;
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-            }
-        });
-
-        numberField.startAnimation(animation);
-        operationField.startAnimation(animation);
-        historyField.startAnimation(animation);
-        historyOperation.startAnimation(animation);
     }
 
     private void removeExcessSymbol(TextView textView) {
