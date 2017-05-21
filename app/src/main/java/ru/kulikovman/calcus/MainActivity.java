@@ -295,6 +295,28 @@ public class MainActivity extends AppCompatActivity {
         if (value == 0) return "0";
 
         BigDecimal bd = new BigDecimal(value);
+        String subResult = bd.toPlainString();
+
+        int minus = 0;
+        if (subResult.startsWith("-")) minus = 1;
+        int dotPosition = subResult.indexOf(".");
+
+        if (dotPosition > 0 && dotPosition <= 11 + minus) {
+            int countNumbers = subResult.substring(0, dotPosition + minus).length() - minus;
+            int round = 11 - countNumbers;
+            bd = bd.setScale(round, RoundingMode.HALF_UP);
+            return String.valueOf(bd.doubleValue());
+        } else {
+            int numbers = subResult.replaceAll("\\D", "").length();
+
+            if (numbers <= 11) return subResult;
+            else return "Too long result";
+        }
+
+
+        // Предыдущий способ округления результата
+        // Простое отсечение лишних цифр
+        /*BigDecimal bd = new BigDecimal(value);
         bd = bd.setScale(11, RoundingMode.HALF_UP);
         String result = bd.toPlainString();
 
@@ -326,7 +348,7 @@ public class MainActivity extends AppCompatActivity {
             return "Too long result";
 
         } else if (numbers <= 11) return result;
-        else return "Too long result";
+        else return "Too long result";*/
     }
 
     private void toCalculate() {
