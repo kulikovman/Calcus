@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
                     else first = Double.parseDouble(memoryField.getText().toString().trim());
                     second = Double.parseDouble(numberField.getText().toString().trim());
 
-                    String result = roundResult(first + second, 11);
+                    String result = roundResult(first + second);
 
                     memoryField.setText(result);
                     memoryMarker.setText(R.string.circle);
@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                     else first = Double.parseDouble(memoryField.getText().toString().trim());
                     second = Double.parseDouble(numberField.getText().toString().trim());
 
-                    String result = roundResult(first - second, 11);
+                    String result = roundResult(first - second);
 
                     memoryField.setText(result);
                     memoryMarker.setText(R.string.circle);
@@ -288,11 +288,14 @@ public class MainActivity extends AppCompatActivity {
         return numberField.getText().toString().trim();
     }
 
-    public String roundResult(double value, int places) {
+
+    // Получение результата операции
+    // Результат округляется и обрабатывается в этом методе
+    public String roundResult(double value) {
         if (value == 0) return "0";
 
         BigDecimal bd = new BigDecimal(value);
-        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        bd = bd.setScale(11, RoundingMode.HALF_UP);
         String result = bd.toPlainString();
 
         int numbers = result.replaceAll("\\D", "").length();
@@ -346,19 +349,19 @@ public class MainActivity extends AppCompatActivity {
             if (isPercentCalculation) {
                 switch (operation) {
                     case "+":
-                        result = roundResult(first + (first / 100 * second), 11);
+                        result = roundResult(first + (first / 100 * second));
                         break;
                     case "-":
-                        result = roundResult(first - (first / 100 * second), 11);
+                        result = roundResult(first - (first / 100 * second));
                         break;
                     case "×":
                         if (first != 0 && second != 0) {
-                            result = roundResult(first * (first / 100 * second), 11);
+                            result = roundResult(first * (first / 100 * second));
                         } else result = "0";
                         break;
                     case "÷":
                         if (first != 0 && second != 0) {
-                            result = roundResult(first / (first / 100 * second), 11);
+                            result = roundResult(first / (first / 100 * second));
                         } else if (first == 0 && second != 0) result = "0";
                         else result = "Infinity";
                         break;
@@ -366,19 +369,19 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 switch (operation) {
                     case "+":
-                        result = roundResult(first + second, 11);
+                        result = roundResult(first + second);
                         break;
                     case "-":
-                        result = roundResult(first - second, 11);
+                        result = roundResult(first - second);
                         break;
                     case "×":
                         if (first != 0 && second != 0) {
-                            result = roundResult(first * second, 11);
+                            result = roundResult(first * second);
                         } else result = "0";
                         break;
                     case "÷":
                         if (first != 0 && second != 0) {
-                            result = roundResult(first / second, 11);
+                            result = roundResult(first / second);
                         } else if (first == 0 && second != 0) result = "0";
                         else result = "Infinity";
                         break;
