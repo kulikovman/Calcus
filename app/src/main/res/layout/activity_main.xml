@@ -106,14 +106,14 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_MR"
-            style="@style/memoryButtonStyle"
-            android:text="@string/mr" />
-
-        <Button
             android:id="@+id/btn_MC"
             style="@style/memoryButtonStyle"
             android:text="@string/mc" />
+
+        <Button
+            android:id="@+id/btn_MR"
+            style="@style/memoryButtonStyle"
+            android:text="@string/mr" />
 
         <Button
             android:id="@+id/btn_M_addition"

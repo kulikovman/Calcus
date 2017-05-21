@@ -29,12 +29,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         numberField = (TextView) findViewById(R.id.numberField);
-        historyField = (TextView) findViewById(R.id.historyField);
-        memoryField = (TextView) findViewById(R.id.memoryField);
         operationField = (TextView) findViewById(R.id.operationField);
-
-        memoryMarker = (TextView) findViewById(R.id.memoryMarker);
+        historyField = (TextView) findViewById(R.id.historyField);
         historyOperation = (TextView) findViewById(R.id.historyOperation);
+        memoryField = (TextView) findViewById(R.id.memoryField);
+        memoryMarker = (TextView) findViewById(R.id.memoryMarker);
     }
 
     public void onClick(View view) {
@@ -139,33 +138,13 @@ public class MainActivity extends AppCompatActivity {
 
 
             case R.id.btn_MR:
-                if (!isEmpty(numberField) && !isError()) {
-                    removeExcessSymbol(numberField);
-                    memoryField.setText(getNumberField());
-                    memoryMarker.setText(R.string.circle);
-                }
+                if (isResult || isError()) clearCalculation();
+                if (!isEmpty(operationField)) moveToHistory();
+                numberField.setText(memoryField.getText().toString());
                 break;
             case R.id.btn_MC:
-                Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.dissolution);
-                animation.setAnimationListener(new Animation.AnimationListener() {
-
-                    @Override
-                    public void onAnimationStart(Animation animation) {
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animation animation) {
-                        memoryField.setText(" ");
-                        memoryMarker.setText(" ");
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animation animation) {
-                    }
-                });
-
-                memoryField.startAnimation(animation);
-                memoryMarker.startAnimation(animation);
+                memoryField.setText(" ");
+                memoryMarker.setText(" ");
                 break;
             case R.id.btn_M_addition:
                 if (!isEmpty(numberField) && !isError()) {
