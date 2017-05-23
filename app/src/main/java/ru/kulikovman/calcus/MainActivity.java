@@ -9,6 +9,7 @@ import java.math.RoundingMode;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.view.animation.Animation;
@@ -302,7 +303,7 @@ public class MainActivity extends AppCompatActivity {
         int dotPosition = subResult.indexOf(".");
 
         if (dotPosition > 0 && dotPosition <= 11 + minus) {
-            int countNumbers = subResult.substring(0, dotPosition + minus).length() - minus;
+            int countNumbers = subResult.substring(0, dotPosition).length() - minus;
             int round = 11 - countNumbers;
             bd = bd.setScale(round, RoundingMode.HALF_UP);
             return String.valueOf(bd.doubleValue());
@@ -312,43 +313,6 @@ public class MainActivity extends AppCompatActivity {
             if (numbers <= 11) return subResult;
             else return "Too long result";
         }
-
-
-        // Предыдущий способ округления результата
-        // Простое отсечение лишних цифр
-        /*BigDecimal bd = new BigDecimal(value);
-        bd = bd.setScale(11, RoundingMode.HALF_UP);
-        String result = bd.toPlainString();
-
-        int numbers = result.replaceAll("\\D", "").length();
-        int minus = result.replaceAll("\\d", "").replace(".", "").length();
-        int dot = result.replaceAll("\\d", "").replace("-", "").length();
-
-        if (dot == 1) {
-            int dotPosition = result.indexOf(".");
-
-            if (dotPosition <= 10 + minus) {
-                result = result.substring(0, 12 + minus);
-
-                while (result.endsWith("0")) {
-                    result = result.substring(0, result.length() - 1);
-                }
-                if (result.endsWith(".")) {
-                    result = result.substring(0, result.length() - 1);
-                }
-                if (!result.equals("0")) {
-                    return result;
-                }
-            }
-            if (dotPosition == 11 + minus) {
-                result = result.substring(0, 11 + minus);
-                return result;
-            }
-
-            return "Too long result";
-
-        } else if (numbers <= 11) return result;
-        else return "Too long result";*/
     }
 
     private void toCalculate() {
