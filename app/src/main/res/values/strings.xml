@@ -28,6 +28,8 @@
     <string name="add_to_memory">M+</string>
     <string name="subtract_from_memory">M-</string>
 
-    <string name="error_1">MR</string>
+    <string name="error">Error</string>
+    <string name="too_long_result">Too long result</string>
+    <string name="infinity">Infinity</string>
 
 </resources>

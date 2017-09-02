@@ -17,11 +17,9 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private TextView mNumberField, mHistoryField, mMemoryField, mOperationField, mMemoryMarker, mHistoryOperation;
-
-    private boolean mIsResult = false;
-    private boolean mIsPercentCalculation = false;
-
     private ClipboardManager mClipboardManager;
+
+    private boolean mIsResult, mIsPercent = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
                         && !isEmpty(mNumberField) && !isEmpty(mHistoryField)
                         && isNumber(mNumberField) && isNumber(mHistoryField)) {
                     removeExcessSymbol(mNumberField);
-                    mIsPercentCalculation = true;
+                    mIsPercent = true;
                     toCalculate();
                 }
                 break;
@@ -257,8 +255,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean isError() {
-        return getNumberField().contains("Error") || getNumberField().contains("Too long result")
-                || getNumberField().contains("Infinity");
+        String temp = getNumberField();
+        return temp.equals(getString(R.string.error)) ||
+                temp.equals(getString(R.string.too_long_result)) ||
+                temp.equals(getString(R.string.infinity));
     }
 
     private int getCountNumbers(TextView textView) {
@@ -271,7 +271,7 @@ public class MainActivity extends AppCompatActivity {
         mHistoryField.setText(" ");
         mHistoryOperation.setText(" ");
 
-        mIsPercentCalculation = false;
+        mIsPercent = false;
         mIsResult = false;
     }
 
@@ -314,14 +314,14 @@ public class MainActivity extends AppCompatActivity {
             int numbers = subResult.replaceAll("\\D", "").length();
 
             if (numbers <= 11) return subResult;
-            else return "Too long result";
+            else return getString(R.string.too_long_result);
         }
     }
 
     private void toCalculate() {
         if (!isEmpty(mNumberField) && !isEmpty(mHistoryField) && isNumber(mNumberField) && isNumber(mHistoryField)) {
             removeExcessSymbol(mNumberField);
-            String result = "Error";
+            String result = getString(R.string.error);
 
             String operation = mHistoryOperation.getText().toString().trim();
             String firstNumber = mHistoryField.getText().toString().trim();
@@ -331,11 +331,11 @@ public class MainActivity extends AppCompatActivity {
             double second = Double.parseDouble(secondNumber);
 
             String historyResult = firstNumber + " " + operation + " " + secondNumber;
-            if (mIsPercentCalculation) historyResult += "%";
+            if (mIsPercent) historyResult += "%";
             mHistoryField.setText(historyResult);
             mHistoryOperation.setText("=");
 
-            if (mIsPercentCalculation) {
+            if (mIsPercent) {
                 switch (operation) {
                     case "+":
                         result = roundResult(first + (first / 100 * second));
@@ -352,7 +352,7 @@ public class MainActivity extends AppCompatActivity {
                         if (first != 0 && second != 0) {
                             result = roundResult(first / (first / 100 * second));
                         } else if (first == 0 && second != 0) result = "0";
-                        else result = "Infinity";
+                        else result = getString(R.string.infinity);
                         break;
                 }
             } else {
@@ -372,13 +372,13 @@ public class MainActivity extends AppCompatActivity {
                         if (first != 0 && second != 0) {
                             result = roundResult(first / second);
                         } else if (first == 0 && second != 0) result = "0";
-                        else result = "Infinity";
+                        else result = getString(R.string.infinity);
                         break;
                 }
             }
 
             mNumberField.setText(result);
-            mIsPercentCalculation = false;
+            mIsPercent = false;
             mIsResult = true;
         }
     }
