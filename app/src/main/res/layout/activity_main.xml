@@ -7,8 +7,6 @@
     tools:context="ru.kulikovman.calcus.MainActivity">
 
     <LinearLayout
-        android:id="@+id/memoryGroup"
-        style="common"
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:orientation="horizontal"
@@ -36,8 +34,6 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/resultGroup"
-        style="common"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:orientation="horizontal"
@@ -70,8 +66,6 @@
         android:layout_height="5dp" />
 
     <LinearLayout
-        android:id="@+id/calculationGroup"
-        style="common"
         android:layout_width="match_parent"
         android:layout_height="41dp"
         android:orientation="horizontal"
@@ -100,7 +94,6 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/groupMemoryButton"
         android:layout_width="match_parent"
         android:layout_height="47sp"
         android:orientation="horizontal">
@@ -185,7 +178,6 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/groupButton3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -215,7 +207,6 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/groupButton4"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -243,7 +234,6 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/groupButton5"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
