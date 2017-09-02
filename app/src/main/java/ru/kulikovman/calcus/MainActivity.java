@@ -3,10 +3,8 @@ package ru.kulikovman.calcus;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.HapticFeedbackConstants;
@@ -15,22 +13,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView numberField, historyField, memoryField, operationField, memoryMarker, historyOperation;
+    private TextView mNumberField, mHistoryField, mMemoryField, mOperationField, mMemoryMarker, mHistoryOperation;
 
-    private boolean isResult = false;
-    private boolean isPercentCalculation = false;
+    private boolean mIsResult = false;
+    private boolean mIsPercentCalculation = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        numberField = (TextView) findViewById(R.id.number_field);
-        operationField = (TextView) findViewById(R.id.operation_field);
-        historyField = (TextView) findViewById(R.id.history_field);
-        historyOperation = (TextView) findViewById(R.id.history_operation);
-        memoryField = (TextView) findViewById(R.id.memory_field);
-        memoryMarker = (TextView) findViewById(R.id.memory_marker);
+        mNumberField = (TextView) findViewById(R.id.number_field);
+        mOperationField = (TextView) findViewById(R.id.operation_field);
+        mHistoryField = (TextView) findViewById(R.id.history_field);
+        mHistoryOperation = (TextView) findViewById(R.id.history_operation);
+        mMemoryField = (TextView) findViewById(R.id.memory_field);
+        mMemoryMarker = (TextView) findViewById(R.id.memory_marker);
     }
 
     public void onClick(View view) {
@@ -70,20 +68,20 @@ public class MainActivity extends AppCompatActivity {
 
 
             case R.id.btn_0:
-                if (isResult || isError()) clearCalculation();
-                if (!isEmpty(operationField)) moveToHistory();
-                if (getCountNumbers(numberField) < 11) {
+                if (mIsResult || isError()) clearCalculation();
+                if (!isEmpty(mOperationField)) moveToHistory();
+                if (getCountNumbers(mNumberField) < 11) {
                     if (getNumberField().equals("0")) {
-                        numberField.setText("0.0");
+                        mNumberField.setText("0.0");
                     } else addText("0");
                 }
                 break;
             case R.id.btn_dot:
-                if (isResult || isError()) clearCalculation();
-                if (!isEmpty(operationField)) moveToHistory();
+                if (mIsResult || isError()) clearCalculation();
+                if (!isEmpty(mOperationField)) moveToHistory();
 
-                if (isEmpty(numberField)) addText("0.");
-                else if (!getNumberField().contains(".") && getCountNumbers(numberField) < 11)
+                if (isEmpty(mNumberField)) addText("0.");
+                else if (!getNumberField().contains(".") && getCountNumbers(mNumberField) < 11)
                     addText(".");
                 break;
 
@@ -92,18 +90,18 @@ public class MainActivity extends AppCompatActivity {
                 clearCalculation();
                 break;
             case R.id.btn_delete:
-                if (isResult || isError()) clearCalculation();
+                if (mIsResult || isError()) clearCalculation();
                 else {
-                    if (!isEmpty(operationField)) {
-                        operationField.setText(" ");
+                    if (!isEmpty(mOperationField)) {
+                        mOperationField.setText(" ");
                     } else {
-                        int length = numberField.getText().toString().trim().length();
-                        int minus = numberField.getText().toString().trim().replaceAll("\\d", "").replace(".", "").length();
+                        int length = mNumberField.getText().toString().trim().length();
+                        int minus = mNumberField.getText().toString().trim().replaceAll("\\d", "").replace(".", "").length();
 
                         if (length > 1 + minus) {
-                            String s = numberField.getText().toString().trim();
-                            numberField.setText(s.substring(0, s.length() - 1));
-                        } else numberField.setText(" ");
+                            String s = mNumberField.getText().toString().trim();
+                            mNumberField.setText(s.substring(0, s.length() - 1));
+                        } else mNumberField.setText(" ");
                     }
                 }
                 break;
@@ -124,67 +122,67 @@ public class MainActivity extends AppCompatActivity {
 
 
             case R.id.btn_percent:
-                if (!isResult && isEmpty(operationField)
-                        && !isEmpty(numberField) && !isEmpty(historyField)
-                        && isNumber(numberField) && isNumber(historyField)) {
-                    removeExcessSymbol(numberField);
-                    isPercentCalculation = true;
+                if (!mIsResult && isEmpty(mOperationField)
+                        && !isEmpty(mNumberField) && !isEmpty(mHistoryField)
+                        && isNumber(mNumberField) && isNumber(mHistoryField)) {
+                    removeExcessSymbol(mNumberField);
+                    mIsPercentCalculation = true;
                     toCalculate();
                 }
                 break;
 
 
             case R.id.btn_MR:
-                if (isResult || isError()) clearCalculation();
-                if (!isEmpty(operationField)) moveToHistory();
-                numberField.setText(memoryField.getText().toString());
+                if (mIsResult || isError()) clearCalculation();
+                if (!isEmpty(mOperationField)) moveToHistory();
+                mNumberField.setText(mMemoryField.getText().toString());
                 break;
             case R.id.btn_MC:
-                memoryField.setText(" ");
-                memoryMarker.setText(" ");
+                mMemoryField.setText(" ");
+                mMemoryMarker.setText(" ");
                 break;
             case R.id.btn_M_addition:
-                if (!isEmpty(numberField) && !isError()) {
-                    removeExcessSymbol(numberField);
+                if (!isEmpty(mNumberField) && !isError()) {
+                    removeExcessSymbol(mNumberField);
 
                     double first, second;
-                    if (isEmpty(memoryField)) first = 0.0;
-                    else first = Double.parseDouble(memoryField.getText().toString().trim());
-                    second = Double.parseDouble(numberField.getText().toString().trim());
+                    if (isEmpty(mMemoryField)) first = 0.0;
+                    else first = Double.parseDouble(mMemoryField.getText().toString().trim());
+                    second = Double.parseDouble(mNumberField.getText().toString().trim());
 
                     String result = roundResult(first + second);
 
-                    memoryField.setText(result);
-                    memoryMarker.setText(R.string.red_dot);
+                    mMemoryField.setText(result);
+                    mMemoryMarker.setText(R.string.red_dot);
                 }
                 break;
             case R.id.btn_M_subtraction:
-                if (!isEmpty(numberField) && !isError()) {
-                    removeExcessSymbol(numberField);
+                if (!isEmpty(mNumberField) && !isError()) {
+                    removeExcessSymbol(mNumberField);
 
                     double first, second;
-                    if (isEmpty(memoryField)) first = 0.0;
-                    else first = Double.parseDouble(memoryField.getText().toString().trim());
-                    second = Double.parseDouble(numberField.getText().toString().trim());
+                    if (isEmpty(mMemoryField)) first = 0.0;
+                    else first = Double.parseDouble(mMemoryField.getText().toString().trim());
+                    second = Double.parseDouble(mNumberField.getText().toString().trim());
 
                     String result = roundResult(first - second);
 
-                    memoryField.setText(result);
-                    memoryMarker.setText(R.string.red_dot);
+                    mMemoryField.setText(result);
+                    mMemoryMarker.setText(R.string.red_dot);
                 }
                 break;
 
 
             case R.id.number_field:
-                if (!isEmpty(numberField)) {
-                    ClipData clipNumber = ClipData.newPlainText("numberField", getNumberField());
+                if (!isEmpty(mNumberField)) {
+                    ClipData clipNumber = ClipData.newPlainText("mNumberField", getNumberField());
                     clipboard.setPrimaryClip(clipNumber);
                     Toast.makeText(this, R.string.copy_to_clipboard, Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.memory_field:
-                if (!isEmpty(memoryField)) {
-                    ClipData clipMemory = ClipData.newPlainText("memoryField", memoryField.getText().toString());
+                if (!isEmpty(mMemoryField)) {
+                    ClipData clipMemory = ClipData.newPlainText("mMemoryField", mMemoryField.getText().toString());
                     clipboard.setPrimaryClip(clipMemory);
                     Toast.makeText(this, R.string.copy_to_clipboard, Toast.LENGTH_SHORT).show();
                 }
@@ -199,35 +197,35 @@ public class MainActivity extends AppCompatActivity {
 
     private void setOperation(String operation) {
         if (!isError()) {
-            removeExcessSymbol(numberField);
-            if (!isEmpty(numberField)) {
+            removeExcessSymbol(mNumberField);
+            if (!isEmpty(mNumberField)) {
                 toCalculate();
-                isResult = false;
-                operationField.setText(operation);
+                mIsResult = false;
+                mOperationField.setText(operation);
             }
         }
     }
 
     private void addNumber(String s) {
-        if (isResult || isError()) clearCalculation();
-        if (!isEmpty(operationField)) moveToHistory();
+        if (mIsResult || isError()) clearCalculation();
+        if (!isEmpty(mOperationField)) moveToHistory();
 
-        if (getCountNumbers(numberField) < 11) {
+        if (getCountNumbers(mNumberField) < 11) {
             if (getNumberField().equals("0")) {
                 String temp = "0." + s;
-                numberField.setText(temp);
+                mNumberField.setText(temp);
             } else {
                 String temp = getNumberField() + s;
-                numberField.setText(temp);
+                mNumberField.setText(temp);
             }
         }
     }
 
     private void moveToHistory() {
-        historyField.setText(getNumberField());
-        historyOperation.setText(operationField.getText().toString());
-        numberField.setText(" ");
-        operationField.setText(" ");
+        mHistoryField.setText(getNumberField());
+        mHistoryOperation.setText(mOperationField.getText().toString());
+        mNumberField.setText(" ");
+        mOperationField.setText(" ");
     }
 
     private boolean isEmpty(TextView textView) {
@@ -236,8 +234,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addText(String s) {
-        String temp = numberField.getText().toString() + s;
-        numberField.setText(temp);
+        String temp = mNumberField.getText().toString() + s;
+        mNumberField.setText(temp);
     }
 
     private boolean isNumber(TextView textView) {
@@ -259,13 +257,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void clearCalculation() {
-        numberField.setText(" ");
-        operationField.setText(" ");
-        historyField.setText(" ");
-        historyOperation.setText(" ");
+        mNumberField.setText(" ");
+        mOperationField.setText(" ");
+        mHistoryField.setText(" ");
+        mHistoryOperation.setText(" ");
 
-        isPercentCalculation = false;
-        isResult = false;
+        mIsPercentCalculation = false;
+        mIsResult = false;
     }
 
     private void removeExcessSymbol(TextView textView) {
@@ -282,7 +280,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String getNumberField() {
-        return numberField.getText().toString().trim();
+        return mNumberField.getText().toString().trim();
     }
 
 
@@ -312,23 +310,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void toCalculate() {
-        if (!isEmpty(numberField) && !isEmpty(historyField) && isNumber(numberField) && isNumber(historyField)) {
-            removeExcessSymbol(numberField);
+        if (!isEmpty(mNumberField) && !isEmpty(mHistoryField) && isNumber(mNumberField) && isNumber(mHistoryField)) {
+            removeExcessSymbol(mNumberField);
             String result = "Error";
 
-            String operation = historyOperation.getText().toString().trim();
-            String firstNumber = historyField.getText().toString().trim();
-            String secondNumber = numberField.getText().toString().trim();
+            String operation = mHistoryOperation.getText().toString().trim();
+            String firstNumber = mHistoryField.getText().toString().trim();
+            String secondNumber = mNumberField.getText().toString().trim();
 
             double first = Double.parseDouble(firstNumber);
             double second = Double.parseDouble(secondNumber);
 
             String historyResult = firstNumber + " " + operation + " " + secondNumber;
-            if (isPercentCalculation) historyResult += "%";
-            historyField.setText(historyResult);
-            historyOperation.setText("=");
+            if (mIsPercentCalculation) historyResult += "%";
+            mHistoryField.setText(historyResult);
+            mHistoryOperation.setText("=");
 
-            if (isPercentCalculation) {
+            if (mIsPercentCalculation) {
                 switch (operation) {
                     case "+":
                         result = roundResult(first + (first / 100 * second));
@@ -370,9 +368,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-            numberField.setText(result);
-            isPercentCalculation = false;
-            isResult = true;
+            mNumberField.setText(result);
+            mIsPercentCalculation = false;
+            mIsResult = true;
         }
     }
 
@@ -380,28 +378,28 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString("numberField", numberField.getText().toString());
-        outState.putString("operationField", operationField.getText().toString());
-        outState.putString("historyField", historyField.getText().toString());
-        outState.putString("historyOperation", historyOperation.getText().toString());
-        outState.putString("memoryField", memoryField.getText().toString());
-        outState.putString("memoryMarker", memoryMarker.getText().toString());
+        outState.putString("mNumberField", mNumberField.getText().toString());
+        outState.putString("mOperationField", mOperationField.getText().toString());
+        outState.putString("mHistoryField", mHistoryField.getText().toString());
+        outState.putString("mHistoryOperation", mHistoryOperation.getText().toString());
+        outState.putString("mMemoryField", mMemoryField.getText().toString());
+        outState.putString("mMemoryMarker", mMemoryMarker.getText().toString());
 
-        outState.putBoolean("isResult", isResult);
-        outState.putBoolean("isPercentCalculation", isPercentCalculation);
+        outState.putBoolean("mIsResult", mIsResult);
+        outState.putBoolean("mIsPercentCalculation", mIsPercentCalculation);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        numberField.setText(savedInstanceState.getString("numberField"));
-        operationField.setText(savedInstanceState.getString("operationField"));
-        historyField.setText(savedInstanceState.getString("historyField"));
-        historyOperation.setText(savedInstanceState.getString("historyOperation"));
-        memoryField.setText(savedInstanceState.getString("memoryField"));
-        memoryMarker.setText(savedInstanceState.getString("memoryMarker"));
+        mNumberField.setText(savedInstanceState.getString("mNumberField"));
+        mOperationField.setText(savedInstanceState.getString("mOperationField"));
+        mHistoryField.setText(savedInstanceState.getString("mHistoryField"));
+        mHistoryOperation.setText(savedInstanceState.getString("mHistoryOperation"));
+        mMemoryField.setText(savedInstanceState.getString("mMemoryField"));
+        mMemoryMarker.setText(savedInstanceState.getString("mMemoryMarker"));
 
-        isResult = savedInstanceState.getBoolean("isResult");
-        isPercentCalculation = savedInstanceState.getBoolean("isPercentCalculation");
+        mIsResult = savedInstanceState.getBoolean("mIsResult");
+        mIsPercentCalculation = savedInstanceState.getBoolean("mIsPercentCalculation");
     }
 }

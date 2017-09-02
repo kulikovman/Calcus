@@ -28,4 +28,6 @@
     <string name="add_to_memory">M+</string>
     <string name="subtract_from_memory">M-</string>
 
+    <string name="error_1">MR</string>
+
 </resources>
