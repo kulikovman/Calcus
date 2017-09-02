@@ -22,7 +22,7 @@
             android:fontFamily="sans-serif-light"
             android:gravity="bottom|end"
             android:onClick="onClick"
-            android:textColor="#4D4D4D"
+            android:textColor="@color/gray_7"
             android:textSize="20sp" />
 
         <TextView
@@ -31,7 +31,7 @@
             android:layout_height="match_parent"
             android:layout_weight="10"
             android:gravity="bottom|center_horizontal"
-            android:textColor="#FF0000"
+            android:textColor="@color/red_dot"
             android:textSize="22sp" />
     </LinearLayout>
 
@@ -51,7 +51,7 @@
             android:fontFamily="sans-serif-light"
             android:gravity="center_vertical|end"
             android:onClick="onClick"
-            android:textColor="#333333"
+            android:textColor="@color/gray_9"
             android:textSize="44sp" />
 
         <TextView
@@ -61,7 +61,7 @@
             android:layout_weight="10"
             android:fontFamily="sans-serif-light"
             android:gravity="center_vertical|center_horizontal"
-            android:textColor="#333333"
+            android:textColor="@color/gray_9"
             android:textSize="40sp" />
     </LinearLayout>
 
@@ -85,7 +85,7 @@
             android:fontFamily="sans-serif-light"
             android:gravity="top|end"
             android:onClick="onClick"
-            android:textColor="#999999"
+            android:textColor="@color/gray_5"
             android:textSize="20sp" />
 
         <TextView
@@ -95,7 +95,7 @@
             android:layout_weight="10"
             android:fontFamily="sans-serif-light"
             android:gravity="top|center"
-            android:textColor="#999999"
+            android:textColor="@color/gray_5"
             android:textSize="20sp" />
     </LinearLayout>
 
