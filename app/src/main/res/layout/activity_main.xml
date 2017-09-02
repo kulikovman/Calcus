@@ -120,12 +120,12 @@
             android:text="@string/memory_read" />
 
         <Button
-            android:id="@+id/btn_M_addition"
+            android:id="@+id/btn_M_add"
             style="@style/memoryButtonStyle"
             android:text="@string/add_to_memory" />
 
         <Button
-            android:id="@+id/btn_M_subtraction"
+            android:id="@+id/btn_M_sub"
             style="@style/memoryButtonStyle"
             android:text="@string/subtract_from_memory" />
     </LinearLayout>

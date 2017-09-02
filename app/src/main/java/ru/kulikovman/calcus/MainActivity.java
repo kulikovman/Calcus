@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
                 mMemoryField.setText(" ");
                 mMemoryMarker.setText(" ");
                 break;
-            case R.id.btn_M_addition:
+            case R.id.btn_M_add:
                 if (!isEmpty(mNumberField) && !isError()) {
                     removeExcessSymbol(mNumberField);
 
@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
                     mMemoryMarker.setText(R.string.red_dot);
                 }
                 break;
-            case R.id.btn_M_subtraction:
+            case R.id.btn_M_sub:
                 if (!isEmpty(mNumberField) && !isError()) {
                     removeExcessSymbol(mNumberField);
 
@@ -292,9 +292,7 @@ public class MainActivity extends AppCompatActivity {
         return mNumberField.getText().toString().trim();
     }
 
-
-    // Получение результата операции
-    // Результат округляется и обрабатывается в этом методе
+    // Обработка и округление результата вычисления
     public String roundResult(double value) {
         if (value == 0) return "0";
 
@@ -318,6 +316,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Вычисление результата
     private void toCalculate() {
         if (!isEmpty(mNumberField) && !isEmpty(mHistoryField) && isNumber(mNumberField) && isNumber(mHistoryField)) {
             removeExcessSymbol(mNumberField);
