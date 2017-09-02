@@ -12,14 +12,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView numberField, historyField, memoryField, operationField,
-            memoryMarker, historyOperation;
+    private TextView numberField, historyField, memoryField, operationField, memoryMarker, historyOperation;
 
     private boolean isResult = false;
     private boolean isPercentCalculation = false;
