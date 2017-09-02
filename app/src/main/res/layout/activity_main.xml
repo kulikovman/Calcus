@@ -112,22 +112,22 @@
         <Button
             android:id="@+id/btn_MC"
             style="@style/memoryButtonStyle"
-            android:text="@string/mc" />
+            android:text="@string/memory_clear" />
 
         <Button
             android:id="@+id/btn_MR"
             style="@style/memoryButtonStyle"
-            android:text="@string/mr" />
+            android:text="@string/memory_read" />
 
         <Button
             android:id="@+id/btn_M_addition"
             style="@style/memoryButtonStyle"
-            android:text="@string/m_add" />
+            android:text="@string/add_to_memory" />
 
         <Button
             android:id="@+id/btn_M_subtraction"
             style="@style/memoryButtonStyle"
-            android:text="@string/m_sub" />
+            android:text="@string/subtract_from_memory" />
     </LinearLayout>
 
     <LinearLayout
