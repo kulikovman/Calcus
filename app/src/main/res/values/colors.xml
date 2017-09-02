@@ -27,7 +27,10 @@
     <color name="pink">#ff5efa</color>
 
     // Дополнительные цвета
-    <color name="dividerColor">#FFFFFF</color>
-    <color name="borderButton">#9E9E9E</color>
+    <color name="divider_color">#FFFFFF</color>
+    <color name="border_button">#9E9E9E</color>
+    <color name="num_key_pressed">#0288D1</color>
+    <color name="other_button_color">#B3E5FC</color>
+    <color name="other_button_color_pressed">#90CAF9</color>
 
 </resources>

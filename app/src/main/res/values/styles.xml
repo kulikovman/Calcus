@@ -42,7 +42,7 @@
     <!-- Кнопки операций с памятью -->
     <style name="memoryButtonStyle" parent="commonButtonStyle">
         <item name="android:background">@drawable/memory_button_color</item>
-        <item name="android:textColor">@drawable/memory_text_color</item>
+        <item name="android:textColor">@color/gray_2</item>
         <item name="android:textSize">24sp</item>
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
