@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">電卓</string>
+    <string name="copy_to_clipboard">コピーされた</string>
+    <string name="error">エラー</string>
+    <string name="infinity">無限</string>
+    <string name="reset">リセット</string>
+    <string name="too_long_result">長すぎる結果</string>
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Calculator</string>
+    <string name="error">Error</string>
+    <string name="infinity">Infinity</string>
+    <string name="reset">Reset</string>
+    <string name="too_long_result">Too long result</string>
+    <string name="copy_to_clipboard">Copied to clipboard</string>
+</resources>

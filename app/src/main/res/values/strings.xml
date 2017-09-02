@@ -1,32 +1,32 @@
 <resources>
     <string name="app_name">Калькулятор</string>
 
-    <string name="delete"><![CDATA[<]]></string>
-    <string name="division">÷</string>
-    <string name="multiplication">×</string>
-    <string name="subtraction">-</string>
-    <string name="dot">.</string>
-    <string name="calculate">=</string>
-    <string name="addition">+</string>
-    <string name="percent">%</string>
-    <string name="btn_0">0</string>
-    <string name="btn_3">3</string>
-    <string name="btn_2">2</string>
-    <string name="btn_1">1</string>
-    <string name="btn_6">6</string>
-    <string name="btn_5">5</string>
-    <string name="btn_4">4</string>
-    <string name="btn_9">9</string>
-    <string name="btn_8">8</string>
-    <string name="btn_7">7</string>
-    <string name="red_dot">●</string>
+    <string name="delete" translatable="false"><![CDATA[<]]></string>
+    <string name="division" translatable="false">÷</string>
+    <string name="multiplication" translatable="false">×</string>
+    <string name="subtraction" translatable="false">-</string>
+    <string name="dot" translatable="false">.</string>
+    <string name="calculate" translatable="false">=</string>
+    <string name="addition" translatable="false">+</string>
+    <string name="percent" translatable="false">%</string>
+    <string name="btn_0" translatable="false">0</string>
+    <string name="btn_3" translatable="false">3</string>
+    <string name="btn_2" translatable="false">2</string>
+    <string name="btn_1" translatable="false">1</string>
+    <string name="btn_6" translatable="false">6</string>
+    <string name="btn_5" translatable="false">5</string>
+    <string name="btn_4" translatable="false">4</string>
+    <string name="btn_9" translatable="false">9</string>
+    <string name="btn_8" translatable="false">8</string>
+    <string name="btn_7" translatable="false">7</string>
+    <string name="red_dot" translatable="false">●</string>
 
     <string name="copy_to_clipboard">Скопировано в буфер</string>
     <string name="reset">Сброс</string>
-    <string name="memory_read">MR</string>
-    <string name="memory_clear">MC</string>
-    <string name="add_to_memory">M+</string>
-    <string name="subtract_from_memory">M-</string>
+    <string name="memory_read" translatable="false">MR</string>
+    <string name="memory_clear" translatable="false">MC</string>
+    <string name="add_to_memory" translatable="false">M+</string>
+    <string name="subtract_from_memory" translatable="false">M-</string>
 
     <string name="error">Error</string>
     <string name="too_long_result">Too long result</string>
