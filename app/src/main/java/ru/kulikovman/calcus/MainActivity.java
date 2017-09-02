@@ -373,33 +373,4 @@ public class MainActivity extends AppCompatActivity {
             mIsResult = true;
         }
     }
-
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putString("mNumberField", mNumberField.getText().toString());
-        outState.putString("mOperationField", mOperationField.getText().toString());
-        outState.putString("mHistoryField", mHistoryField.getText().toString());
-        outState.putString("mHistoryOperation", mHistoryOperation.getText().toString());
-        outState.putString("mMemoryField", mMemoryField.getText().toString());
-        outState.putString("mMemoryMarker", mMemoryMarker.getText().toString());
-
-        outState.putBoolean("mIsResult", mIsResult);
-        outState.putBoolean("mIsPercentCalculation", mIsPercentCalculation);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        mNumberField.setText(savedInstanceState.getString("mNumberField"));
-        mOperationField.setText(savedInstanceState.getString("mOperationField"));
-        mHistoryField.setText(savedInstanceState.getString("mHistoryField"));
-        mHistoryOperation.setText(savedInstanceState.getString("mHistoryOperation"));
-        mMemoryField.setText(savedInstanceState.getString("mMemoryField"));
-        mMemoryMarker.setText(savedInstanceState.getString("mMemoryMarker"));
-
-        mIsResult = savedInstanceState.getBoolean("mIsResult");
-        mIsPercentCalculation = savedInstanceState.getBoolean("mIsPercentCalculation");
-    }
 }
