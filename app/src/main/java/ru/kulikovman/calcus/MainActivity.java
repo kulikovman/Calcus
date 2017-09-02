@@ -3,8 +3,10 @@ package ru.kulikovman.calcus;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.HapticFeedbackConstants;
@@ -13,30 +15,37 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+
     private TextView mNumberField, mHistoryField, mMemoryField, mOperationField, mMemoryMarker, mHistoryOperation;
 
     private boolean mIsResult = false;
     private boolean mIsPercentCalculation = false;
+
+    private ClipboardManager mClipboardManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Инициализируем необходимые вью элементы
         mNumberField = (TextView) findViewById(R.id.number_field);
         mOperationField = (TextView) findViewById(R.id.operation_field);
         mHistoryField = (TextView) findViewById(R.id.history_field);
         mHistoryOperation = (TextView) findViewById(R.id.history_operation);
         mMemoryField = (TextView) findViewById(R.id.memory_field);
         mMemoryMarker = (TextView) findViewById(R.id.memory_marker);
+
+        // Получаем буфер обмена
+        mClipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
     }
 
     public void onClick(View view) {
+        // Включаем виброотклик для нажатых кнопок
         view.setHapticFeedbackEnabled(true);
         view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
 
-        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-
+        // Обрабатываем нажатие кнопок
         switch (view.getId()) {
             case R.id.btn_1:
                 addNumber("1");
@@ -176,14 +185,14 @@ public class MainActivity extends AppCompatActivity {
             case R.id.number_field:
                 if (!isEmpty(mNumberField)) {
                     ClipData clipNumber = ClipData.newPlainText("mNumberField", getNumberField());
-                    clipboard.setPrimaryClip(clipNumber);
+                    mClipboardManager.setPrimaryClip(clipNumber);
                     Toast.makeText(this, R.string.copy_to_clipboard, Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.memory_field:
                 if (!isEmpty(mMemoryField)) {
                     ClipData clipMemory = ClipData.newPlainText("mMemoryField", mMemoryField.getText().toString());
-                    clipboard.setPrimaryClip(clipMemory);
+                    mClipboardManager.setPrimaryClip(clipMemory);
                     Toast.makeText(this, R.string.copy_to_clipboard, Toast.LENGTH_SHORT).show();
                 }
                 break;
