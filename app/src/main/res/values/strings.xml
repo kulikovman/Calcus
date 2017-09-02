@@ -20,7 +20,7 @@
     <string name="btn_8">8</string>
     <string name="btn_7">7</string>
     <string name="reset">Сброс</string>
-    <string name="circle">●</string>
+    <string name="red_dot">●</string>
     <string name="mr">MR</string>
     <string name="mc">MC</string>
     <string name="m_add">M+</string>

@@ -9,7 +9,6 @@ import java.math.RoundingMode;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.TextView;
@@ -26,12 +25,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        numberField = (TextView) findViewById(R.id.numberField);
-        operationField = (TextView) findViewById(R.id.operationField);
-        historyField = (TextView) findViewById(R.id.historyField);
-        historyOperation = (TextView) findViewById(R.id.historyOperation);
-        memoryField = (TextView) findViewById(R.id.memoryField);
-        memoryMarker = (TextView) findViewById(R.id.memoryMarker);
+        numberField = (TextView) findViewById(R.id.number_field);
+        operationField = (TextView) findViewById(R.id.operation_field);
+        historyField = (TextView) findViewById(R.id.history_field);
+        historyOperation = (TextView) findViewById(R.id.history_operation);
+        memoryField = (TextView) findViewById(R.id.memory_field);
+        memoryMarker = (TextView) findViewById(R.id.memory_marker);
     }
 
     public void onClick(View view) {
@@ -156,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
                     String result = roundResult(first + second);
 
                     memoryField.setText(result);
-                    memoryMarker.setText(R.string.circle);
+                    memoryMarker.setText(R.string.red_dot);
                 }
                 break;
             case R.id.btn_M_subtraction:
@@ -171,19 +170,19 @@ public class MainActivity extends AppCompatActivity {
                     String result = roundResult(first - second);
 
                     memoryField.setText(result);
-                    memoryMarker.setText(R.string.circle);
+                    memoryMarker.setText(R.string.red_dot);
                 }
                 break;
 
 
-            case R.id.numberField:
+            case R.id.number_field:
                 if (!isEmpty(numberField)) {
                     ClipData clipNumber = ClipData.newPlainText("numberField", getNumberField());
                     clipboard.setPrimaryClip(clipNumber);
                     Toast.makeText(this, R.string.copy_co_clipboard, Toast.LENGTH_SHORT).show();
                 }
                 break;
-            case R.id.memoryField:
+            case R.id.memory_field:
                 if (!isEmpty(memoryField)) {
                     ClipData clipMemory = ClipData.newPlainText("memoryField", memoryField.getText().toString());
                     clipboard.setPrimaryClip(clipMemory);
