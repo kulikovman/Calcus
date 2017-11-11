@@ -9,6 +9,7 @@ import java.math.RoundingMode;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.TextView;
@@ -79,7 +80,11 @@ public class MainActivity extends AppCompatActivity {
                 if (getCountNumbers(mNumberField) < 11) {
                     if (getNumberField().equals("0")) {
                         mNumberField.setText("0.0");
-                    } else addText("0");
+                    } else if (getNumberField().equals("-0")) {
+                        mNumberField.setText("-0.0");
+                    } else {
+                        addText("0");
+                    }
                 }
                 break;
             case R.id.btn_dot:
@@ -298,17 +303,16 @@ public class MainActivity extends AppCompatActivity {
         // Включаем виброотклик для нажатых кнопок
         hapticFeedbackOn(view);
 
-        // Если поле не пустое и является числом
-        if (!isEmpty(mNumberField) || isNumber(mNumberField)) {
-            String currentNumber = getNumberField();
+        // Если поле не пустое, является числом и не является ошибкой
+        if (!isEmpty(mNumberField) && isNumber(mNumberField) && !isError()) {
+            String number = getNumberField();
 
-            if (currentNumber.startsWith("-")) {
-                currentNumber = currentNumber.substring(1, currentNumber.length());
+            if (number.startsWith("-")) {
+                number = number.substring(1, number.length());
             } else {
-                currentNumber = "-" + currentNumber;
+                number = "-" + number;
             }
-
-            mNumberField.setText(currentNumber);
+            mNumberField.setText(number);
         }
     }
 
@@ -324,6 +328,9 @@ public class MainActivity extends AppCompatActivity {
         if (getCountNumbers(mNumberField) < 11) {
             if (getNumberField().equals("0")) {
                 String temp = "0." + s;
+                mNumberField.setText(temp);
+            } else if (getNumberField().equals("-0")) {
+                String temp = "-0." + s;
                 mNumberField.setText(temp);
             } else {
                 String temp = getNumberField() + s;
@@ -352,7 +359,7 @@ public class MainActivity extends AppCompatActivity {
         mOperationField.setText(" ");
     }
 
-    // Если есть точка, то удаляет нули в конце числа
+    // Если в поле есть точка, то удаляет нули в конце числа
     private void removeExcessSymbol(TextView textView) {
         String s = textView.getText().toString().trim();
         if (s.contains(".")) {
@@ -401,8 +408,9 @@ public class MainActivity extends AppCompatActivity {
             double number = Double.parseDouble(textView.getText().toString().trim());
             return true;
         } catch (NumberFormatException ignored) {
-            return false;
         }
+
+        return false;
     }
 
     // Проверка поля на наличие данных
