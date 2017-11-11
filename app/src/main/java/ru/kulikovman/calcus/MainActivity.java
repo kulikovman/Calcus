@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnLongClickListener {
 
     private TextView mNumberField, mHistoryField, mMemoryField, mOperationField, mMemoryMarker, mHistoryOperation;
     private ClipboardManager mClipboardManager;
@@ -37,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
 
         // Получаем буфер обмена
         mClipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+
+        // Слушатель для долгих нажатий
+        mNumberField.setOnLongClickListener(this);
+        mMemoryField.setOnLongClickListener(this);
     }
 
     public void onClick(View view) {
@@ -315,6 +319,31 @@ public class MainActivity extends AppCompatActivity {
             mNumberField.setText(number);
         }
     }
+
+    @Override
+    public boolean onLongClick(View v) {
+        hapticFeedbackOn(v);
+
+        switch (v.getId()) {
+            case R.id.number_field:
+                if (!isEmpty(mNumberField)) {
+                    ClipData clipNumber = ClipData.newPlainText("mNumberField", getNumberField());
+                    mClipboardManager.setPrimaryClip(clipNumber);
+                    Toast.makeText(this, R.string.copy_to_clipboard, Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+            case R.id.memory_field:
+                if (!isEmpty(mMemoryField)) {
+                    ClipData clipMemory = ClipData.newPlainText("mMemoryField", mMemoryField.getText().toString());
+                    mClipboardManager.setPrimaryClip(clipMemory);
+                    Toast.makeText(this, R.string.copy_to_clipboard, Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+        }
+
+        return false;
+    }
+
 
     //
     // Вспомогательные методы
