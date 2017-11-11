@@ -32,6 +32,8 @@
     <color name="num_key_pressed">#0288D1</color>
     <color name="other_button_color">#B3E5FC</color>
     <color name="other_button_color_pressed">#90CAF9</color>
+    <color name="main_button_color">#F2F2F2</color>
+    <color name="main_button_color_pressed">#dedede</color>
     <color name="red_dot">#FF0000</color>
 
 </resources>
