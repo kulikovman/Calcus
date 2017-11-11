@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         // Включаем виброотклик для нажатых кнопок
         hapticFeedbackOn(view);
 
-        // Обрабатываем нажатие кнопок
+        // Обрабатываем нажатие цифровых кнопок
         switch (view.getId()) {
             case R.id.btn_1:
                 addNumber("1");
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 addNumber("9");
                 break;
 
-
+            // Обработка нажатий на ноль и точку
             case R.id.btn_0:
                 if (mIsResult || isError()) clearCalculation();
                 if (!isEmpty(mOperationField)) moveToHistory();
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                     addText(".");
                 break;
 
-
+            // Полный сброс и посимвольное удаление
             case R.id.btn_reset:
                 clearCalculation();
                 break;
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
 
-
+            // Нажатия на кнопки вычислительных операций
             case R.id.btn_addition:
                 setOperation("+");
                 break;
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                 setOperation("÷");
                 break;
 
-
+            // Нажатие на кнопку вычисления процента
             case R.id.btn_percent:
                 if (!mIsResult && isEmpty(mOperationField)
                         && !isEmpty(mNumberField) && !isEmpty(mHistoryField)
@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
 
-
+            // Кнопки работы с памятью
             case R.id.btn_MR:
                 if (mIsResult || isError()) clearCalculation();
                 if (!isEmpty(mOperationField)) moveToHistory();
@@ -178,8 +178,10 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
 
-
-            case R.id.number_field:
+            // Нажатие полей с цифрами, копирует их в буфер
+            // TODO: 11.11.2017 Реализовать тоже самое только при долгом нажатии
+            // Пока закомментировано
+            /*case R.id.number_field:
                 if (!isEmpty(mNumberField)) {
                     ClipData clipNumber = ClipData.newPlainText("mNumberField", getNumberField());
                     mClipboardManager.setPrimaryClip(clipNumber);
@@ -192,9 +194,9 @@ public class MainActivity extends AppCompatActivity {
                     mClipboardManager.setPrimaryClip(clipMemory);
                     Toast.makeText(this, R.string.copy_to_clipboard, Toast.LENGTH_SHORT).show();
                 }
-                break;
+                break;*/
 
-
+            // Кнопка выполнения рассчета
             case R.id.btn_calculate:
                 toCalculate();
                 break;
