@@ -40,8 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClick(View view) {
         // Включаем виброотклик для нажатых кнопок
-        view.setHapticFeedbackEnabled(true);
-        view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+        hapticFeedbackOn(view);
 
         // Обрабатываем нажатие кнопок
         switch (view.getId()) {
@@ -202,120 +201,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void setOperation(String operation) {
-        if (!isError()) {
-            removeExcessSymbol(mNumberField);
-            if (!isEmpty(mNumberField)) {
-                toCalculate();
-                mIsResult = false;
-                mOperationField.setText(operation);
-            }
-        }
-    }
-
-    private void addNumber(String s) {
-        if (mIsResult || isError()) clearCalculation();
-        if (!isEmpty(mOperationField)) moveToHistory();
-
-        if (getCountNumbers(mNumberField) < 11) {
-            if (getNumberField().equals("0")) {
-                String temp = "0." + s;
-                mNumberField.setText(temp);
-            } else {
-                String temp = getNumberField() + s;
-                mNumberField.setText(temp);
-            }
-        }
-    }
-
-    private void moveToHistory() {
-        mHistoryField.setText(getNumberField());
-        mHistoryOperation.setText(mOperationField.getText().toString());
-        mNumberField.setText(" ");
-        mOperationField.setText(" ");
-    }
-
-    private boolean isEmpty(TextView textView) {
-        String s = textView.getText().toString();
-        return s.equals("") || s.equals(" ");
-    }
-
-    private void addText(String s) {
-        String temp = mNumberField.getText().toString() + s;
-        mNumberField.setText(temp);
-    }
-
-    private boolean isNumber(TextView textView) {
-        try {
-            double number = Double.parseDouble(textView.getText().toString().trim());
-            return true;
-        } catch (NumberFormatException ignored) {
-            return false;
-        }
-    }
-
-    private boolean isError() {
-        String temp = getNumberField();
-        return temp.equals(getString(R.string.error)) ||
-                temp.equals(getString(R.string.too_long_result)) ||
-                temp.equals(getString(R.string.infinity));
-    }
-
-    private int getCountNumbers(TextView textView) {
-        return textView.getText().toString().replaceAll("\\D", "").length();
-    }
-
-    private void clearCalculation() {
-        mNumberField.setText(" ");
-        mOperationField.setText(" ");
-        mHistoryField.setText(" ");
-        mHistoryOperation.setText(" ");
-
-        mIsPercent = false;
-        mIsResult = false;
-    }
-
-    private void removeExcessSymbol(TextView textView) {
-        String s = textView.getText().toString().trim();
-        if (s.contains(".")) {
-            while (s.endsWith("0")) {
-                s = s.substring(0, s.length() - 1);
-            }
-            if (s.endsWith(".")) {
-                s = s.substring(0, s.length() - 1);
-            }
-            textView.setText(s);
-        }
-    }
-
-    private String getNumberField() {
-        return mNumberField.getText().toString().trim();
-    }
-
-    // Обработка и округление результата вычисления
-    public String roundResult(double value) {
-        if (value == 0) return "0";
-
-        BigDecimal bd = new BigDecimal(value);
-        String subResult = bd.toPlainString();
-
-        int minus = 0;
-        if (subResult.startsWith("-")) minus = 1;
-        int dotPosition = subResult.indexOf(".");
-
-        if (dotPosition > 0 && dotPosition <= 11 + minus) {
-            int countNumbers = subResult.substring(0, dotPosition).length() - minus;
-            int round = 11 - countNumbers;
-            bd = bd.setScale(round, RoundingMode.HALF_UP);
-            return String.valueOf(bd.doubleValue());
-        } else {
-            int numbers = subResult.replaceAll("\\D", "").length();
-
-            if (numbers <= 11) return subResult;
-            else return getString(R.string.too_long_result);
-        }
-    }
-
     // Вычисление результата
     private void toCalculate() {
         if (!isEmpty(mNumberField) && !isEmpty(mHistoryField) && isNumber(mNumberField) && isNumber(mHistoryField)) {
@@ -380,5 +265,159 @@ public class MainActivity extends AppCompatActivity {
             mIsPercent = false;
             mIsResult = true;
         }
+    }
+
+    // Обработка и округление полученного результата
+    public String roundResult(double value) {
+        if (value == 0) return "0";
+
+        BigDecimal bd = new BigDecimal(value);
+        String subResult = bd.toPlainString();
+
+        int minus = 0;
+        if (subResult.startsWith("-")) minus = 1;
+        int dotPosition = subResult.indexOf(".");
+
+        if (dotPosition > 0 && dotPosition <= 11 + minus) {
+            int countNumbers = subResult.substring(0, dotPosition).length() - minus;
+            int round = 11 - countNumbers;
+            bd = bd.setScale(round, RoundingMode.HALF_UP);
+            return String.valueOf(bd.doubleValue());
+        } else {
+            int numbers = subResult.replaceAll("\\D", "").length();
+
+            if (numbers <= 11) return subResult;
+            else return getString(R.string.too_long_result);
+        }
+    }
+
+    // Смена знака введенного числа
+    public void tapOnMainField(View view) {
+        // Включаем виброотклик для нажатых кнопок
+        hapticFeedbackOn(view);
+
+        // Если поле не пустое и является числом
+        if (!isEmpty(mNumberField) || isNumber(mNumberField)) {
+            String currentNumber = getNumberField();
+
+            if (currentNumber.startsWith("-")) {
+                currentNumber = currentNumber.substring(1, currentNumber.length());
+            } else {
+                currentNumber = "-" + currentNumber;
+            }
+
+            mNumberField.setText(currentNumber);
+        }
+    }
+
+    //
+    // Вспомогательные методы
+    //
+
+    // Добавляет цифру в поле
+    private void addNumber(String s) {
+        if (mIsResult || isError()) clearCalculation();
+        if (!isEmpty(mOperationField)) moveToHistory();
+
+        if (getCountNumbers(mNumberField) < 11) {
+            if (getNumberField().equals("0")) {
+                String temp = "0." + s;
+                mNumberField.setText(temp);
+            } else {
+                String temp = getNumberField() + s;
+                mNumberField.setText(temp);
+            }
+        }
+    }
+
+    // Вводит знак вычислительной операции в соответствующее поле
+    private void setOperation(String operation) {
+        if (!isError()) {
+            removeExcessSymbol(mNumberField);
+            if (!isEmpty(mNumberField)) {
+                toCalculate();
+                mIsResult = false;
+                mOperationField.setText(operation);
+            }
+        }
+    }
+
+    // Переносит число и знак вычислительной операции в нижние поля
+    private void moveToHistory() {
+        mHistoryField.setText(getNumberField());
+        mHistoryOperation.setText(mOperationField.getText().toString());
+        mNumberField.setText(" ");
+        mOperationField.setText(" ");
+    }
+
+    // Если есть точка, то удаляет нули в конце числа
+    private void removeExcessSymbol(TextView textView) {
+        String s = textView.getText().toString().trim();
+        if (s.contains(".")) {
+            while (s.endsWith("0")) {
+                s = s.substring(0, s.length() - 1);
+            }
+            if (s.endsWith(".")) {
+                s = s.substring(0, s.length() - 1);
+            }
+            textView.setText(s);
+        }
+    }
+
+    // Получение строки из основного числового поля
+    private String getNumberField() {
+        return mNumberField.getText().toString().trim();
+    }
+
+    // Проверяет наличие сообщения об ошибке
+    private boolean isError() {
+        String temp = getNumberField();
+        return temp.equals(getString(R.string.error)) ||
+                temp.equals(getString(R.string.too_long_result)) ||
+                temp.equals(getString(R.string.infinity));
+    }
+
+    // Считает количество цифр в числе
+    private int getCountNumbers(TextView textView) {
+        return textView.getText().toString().replaceAll("\\D", "").length();
+    }
+
+    // Очищает результат расчетов
+    private void clearCalculation() {
+        mNumberField.setText(" ");
+        mOperationField.setText(" ");
+        mHistoryField.setText(" ");
+        mHistoryOperation.setText(" ");
+
+        mIsPercent = false;
+        mIsResult = false;
+    }
+
+    // Проверка на наличие числа в поле
+    private boolean isNumber(TextView textView) {
+        try {
+            double number = Double.parseDouble(textView.getText().toString().trim());
+            return true;
+        } catch (NumberFormatException ignored) {
+            return false;
+        }
+    }
+
+    // Проверка поля на наличие данных
+    private boolean isEmpty(TextView textView) {
+        String s = textView.getText().toString();
+        return s.equals("") || s.equals(" ");
+    }
+
+    // Присоединяет текст к уже существующему в основном числовом поле
+    private void addText(String s) {
+        String temp = mNumberField.getText().toString() + s;
+        mNumberField.setText(temp);
+    }
+
+    // Подключение виброотклика к указанному вью
+    private void hapticFeedbackOn(View view) {
+        view.setHapticFeedbackEnabled(true);
+        view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
     }
 }

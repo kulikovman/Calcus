@@ -9,6 +9,7 @@
     <string name="calculate" translatable="false">=</string>
     <string name="addition" translatable="false">+</string>
     <string name="percent" translatable="false">%</string>
+    <string name="invert" translatable="false">+/-</string>
     <string name="btn_0" translatable="false">0</string>
     <string name="btn_3" translatable="false">3</string>
     <string name="btn_2" translatable="false">2</string>
