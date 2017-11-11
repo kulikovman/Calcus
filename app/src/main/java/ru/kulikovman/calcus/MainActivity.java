@@ -187,24 +187,6 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
                 }
                 break;
 
-            // Нажатие полей с цифрами, копирует их в буфер
-            // TODO: 11.11.2017 Реализовать тоже самое только при долгом нажатии
-            // Пока закомментировано
-            /*case R.id.number_field:
-                if (!isEmpty(mNumberField)) {
-                    ClipData clipNumber = ClipData.newPlainText("mNumberField", getNumberField());
-                    mClipboardManager.setPrimaryClip(clipNumber);
-                    Toast.makeText(this, R.string.copy_to_clipboard, Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case R.id.memory_field:
-                if (!isEmpty(mMemoryField)) {
-                    ClipData clipMemory = ClipData.newPlainText("mMemoryField", mMemoryField.getText().toString());
-                    mClipboardManager.setPrimaryClip(clipMemory);
-                    Toast.makeText(this, R.string.copy_to_clipboard, Toast.LENGTH_SHORT).show();
-                }
-                break;*/
-
             // Кнопка выполнения рассчета
             case R.id.btn_calculate:
                 toCalculate();
