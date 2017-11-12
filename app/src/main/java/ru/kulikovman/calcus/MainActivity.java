@@ -56,9 +56,8 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
                     ClipData clipData = ClipData.newPlainText("mNumberField", number);
                     mClipboardManager.setPrimaryClip(clipData);
 
-                    // Показываем сообщение и число
+                    // Показываем сообщение
                     Toast.makeText(this, R.string.copy_to_clipboard, Toast.LENGTH_SHORT).show();
-                    Toast.makeText(this, number, Toast.LENGTH_SHORT).show();
                     return true;
                 }
                 break;
@@ -70,9 +69,8 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
                     ClipData clipData = ClipData.newPlainText("mMemoryField", number);
                     mClipboardManager.setPrimaryClip(clipData);
 
-                    // Показываем сообщение и число
+                    // Показываем сообщение
                     Toast.makeText(this, R.string.copy_to_clipboard, Toast.LENGTH_SHORT).show();
-                    Toast.makeText(this, number, Toast.LENGTH_SHORT).show();
                     return true;
                 }
                 break;
