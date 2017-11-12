@@ -42,17 +42,50 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
         mMemoryField.setOnLongClickListener(this);
     }
 
-    /**
-     *
-     * @param view
-     */
-
-    // Обработка нажатий кнопок калькулятора
-    public void pressButton(View view) {
-        // Включаем виброотклик для нажатых кнопок
+    // Обработка длинных нажатий на цифровые поля
+    @Override
+    public boolean onLongClick(View view) {
+        // Подключаем виброотклик
         hapticFeedbackOn(view);
 
-        // Обрабатываем нажатие цифровых кнопок
+        switch (view.getId()) {
+            case R.id.number_field:
+                // Копируем в буфер число из основного поля
+                if (!isEmpty(mNumberField)) {
+                    String number = getNumberField();
+                    ClipData clipData = ClipData.newPlainText("mNumberField", number);
+                    mClipboardManager.setPrimaryClip(clipData);
+
+                    // Показываем сообщение и число
+                    Toast.makeText(this, R.string.copy_to_clipboard, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, number, Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+                break;
+
+            case R.id.memory_field:
+                // Копируем в буфер число из поля памяти
+                if (!isEmpty(mMemoryField)) {
+                    String number = mMemoryField.getText().toString();
+                    ClipData clipData = ClipData.newPlainText("mMemoryField", number);
+                    mClipboardManager.setPrimaryClip(clipData);
+
+                    // Показываем сообщение и число
+                    Toast.makeText(this, R.string.copy_to_clipboard, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, number, Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+                break;
+        }
+        return false;
+    }
+
+    // Обработка нажатий кнопок калькулятора
+    public void onClick(View view) {
+        // Подключаем виброотклик
+        hapticFeedbackOn(view);
+
+        // Нажатие цифровых кнопок
         switch (view.getId()) {
             case R.id.btn_1:
                 addNumber("1");
@@ -82,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
                 addNumber("9");
                 break;
 
-            // Обработка нажатий на ноль и точку
+            // Нажатие на ноль и точку
             case R.id.btn_0:
                 if (mIsResult || isError()) clearCalculation();
                 if (!isEmpty(mOperationField)) moveToHistory();
@@ -126,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
                 }
                 break;
 
-            // Нажатия на кнопки вычислительных операций
+            // Кнопки вычислительных операций
             case R.id.btn_addition:
                 setOperation("+");
                 break;
@@ -140,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
                 setOperation("÷");
                 break;
 
-            // Нажатие на кнопку вычисления процента
+            // Кнопка вычисления процента
             case R.id.btn_percent:
                 if (!mIsResult && isEmpty(mOperationField)
                         && !isEmpty(mNumberField) && !isEmpty(mHistoryField)
@@ -190,6 +223,11 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
                     mMemoryField.setText(result);
                     mMemoryMarker.setText(R.string.red_dot);
                 }
+                break;
+
+            // Нажатие на поле с числом
+            case R.id.number_field:
+                invertNumber();
                 break;
 
             // Кнопка выполнения рассчета
@@ -289,64 +327,6 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
         }
     }
 
-    // Обработка короткого нажатия на поле с числом
-    public void invertNumber(View view) {
-        // Подключаем виброотклик
-        hapticFeedbackOn(view);
-
-        // Если поле не пустое, является числом и не является ошибкой
-        if (!isEmpty(mNumberField) && isNumber(mNumberField) && !isError()) {
-            String number = getNumberField();
-
-            // Меняем знак числа
-            if (number.startsWith("-")) {
-                number = number.substring(1, number.length());
-            } else {
-                number = "-" + number;
-            }
-            mNumberField.setText(number);
-        }
-    }
-
-    // Обработка длинных нажатий на цифровые поля
-    @Override
-    public boolean onLongClick(View view) {
-        // Подключаем виброотклик
-        hapticFeedbackOn(view);
-
-        switch (view.getId()) {
-            case R.id.number_field:
-                // Копируем в буфер число из основного поля
-                if (!isEmpty(mNumberField)) {
-                    String number = getNumberField();
-                    ClipData clipData = ClipData.newPlainText("mNumberField", number);
-                    mClipboardManager.setPrimaryClip(clipData);
-
-                    // Показываем сообщение и число
-                    Toast.makeText(this, R.string.copy_to_clipboard, Toast.LENGTH_SHORT).show();
-                    Toast.makeText(this, number, Toast.LENGTH_SHORT).show();
-                    return true;
-                }
-                break;
-
-            case R.id.memory_field:
-                // Копируем в буфер число из поля памяти
-                if (!isEmpty(mMemoryField)) {
-                    String number = mMemoryField.getText().toString();
-                    ClipData clipData = ClipData.newPlainText("mMemoryField", number);
-                    mClipboardManager.setPrimaryClip(clipData);
-
-                    // Показываем сообщение и число
-                    Toast.makeText(this, R.string.copy_to_clipboard, Toast.LENGTH_SHORT).show();
-                    Toast.makeText(this, number, Toast.LENGTH_SHORT).show();
-                    return true;
-                }
-                break;
-        }
-        return false;
-    }
-
-
     //
     // Вспомогательные методы
     //
@@ -370,7 +350,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
         }
     }
 
-    // Вводит знак вычислительной операции в соответствующее поле
+    // Заносит знак вычислительной операции в соответствующее поле
     private void setOperation(String operation) {
         if (!isError()) {
             removeExcessSymbol(mNumberField);
@@ -454,6 +434,21 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
     private void addText(String s) {
         String temp = mNumberField.getText().toString() + s;
         mNumberField.setText(temp);
+    }
+
+    // Смена знака числа
+    public void invertNumber() {
+        // Если поле не пустое, является числом и не является ошибкой
+        if (!isEmpty(mNumberField) && isNumber(mNumberField) && !isError()) {
+            String number = getNumberField();
+
+            if (number.startsWith("-")) {
+                number = number.substring(1, number.length());
+            } else {
+                number = "-" + number;
+            }
+            mNumberField.setText(number);
+        }
     }
 
     // Подключение виброотклика к указанному вью

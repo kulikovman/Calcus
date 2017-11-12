@@ -22,7 +22,6 @@
             android:layout_weight="90"
             android:fontFamily="sans-serif-light"
             android:gravity="end"
-            android:onClick="invertNumber"
             android:textColor="@color/gray_7"
             android:textSize="20sp" />
 
@@ -48,7 +47,7 @@
             android:layout_weight="90"
             android:fontFamily="sans-serif-light"
             android:gravity="center_vertical|end"
-            android:onClick="invertNumber"
+            android:onClick="onClick"
             android:textColor="@color/gray_9"
             android:textSize="44sp" />
 
