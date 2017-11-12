@@ -42,6 +42,12 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
         mMemoryField.setOnLongClickListener(this);
     }
 
+    /**
+     *
+     * @param view
+     */
+
+    // Обработка нажатий кнопок калькулятора
     public void pressButton(View view) {
         // Включаем виброотклик для нажатых кнопок
         hapticFeedbackOn(view);
@@ -283,12 +289,16 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
         }
     }
 
-    // Смена знака введенного числа
+    // Обработка короткого нажатия на поле с числом
     public void invertNumber(View view) {
+        // Подключаем виброотклик
+        hapticFeedbackOn(view);
+
         // Если поле не пустое, является числом и не является ошибкой
         if (!isEmpty(mNumberField) && isNumber(mNumberField) && !isError()) {
             String number = getNumberField();
 
+            // Меняем знак числа
             if (number.startsWith("-")) {
                 number = number.substring(1, number.length());
             } else {
@@ -298,12 +308,13 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
         }
     }
 
+    // Обработка длинных нажатий на цифровые поля
     @Override
-    public boolean onLongClick(View v) {
+    public boolean onLongClick(View view) {
         // Подключаем виброотклик
-        hapticFeedbackOn(v);
+        hapticFeedbackOn(view);
 
-        switch (v.getId()) {
+        switch (view.getId()) {
             case R.id.number_field:
                 // Копируем в буфер число из основного поля
                 if (!isEmpty(mNumberField)) {

@@ -1,15 +1,9 @@
 <resources>
+    <!-- Системные строки -->
     <string name="app_name">Калькулятор</string>
 
-    <string name="delete" translatable="false"><![CDATA[<]]></string>
-    <string name="division" translatable="false">÷</string>
-    <string name="multiplication" translatable="false">×</string>
-    <string name="subtraction" translatable="false">-</string>
+    <!-- Кнопки калькулятора -->
     <string name="dot" translatable="false">.</string>
-    <string name="calculate" translatable="false">=</string>
-    <string name="addition" translatable="false">+</string>
-    <string name="percent" translatable="false">%</string>
-    <string name="invert" translatable="false">+/-</string>
     <string name="btn_0" translatable="false">0</string>
     <string name="btn_3" translatable="false">3</string>
     <string name="btn_2" translatable="false">2</string>
@@ -20,18 +14,27 @@
     <string name="btn_9" translatable="false">9</string>
     <string name="btn_8" translatable="false">8</string>
     <string name="btn_7" translatable="false">7</string>
-    <string name="red_dot" translatable="false">●</string>
-
-    <string name="copy_to_clipboard">Скопировано в буфер</string>
-
     <string name="reset">Сброс</string>
-    <string name="memory_read" translatable="false">MR</string>
-    <string name="memory_clear" translatable="false">MC</string>
+    <string name="delete" translatable="false"><![CDATA[<]]></string>
+    <string name="division" translatable="false">÷</string>
+    <string name="multiplication" translatable="false">×</string>
+    <string name="subtraction" translatable="false">-</string>
+    <string name="calculate" translatable="false">=</string>
+    <string name="addition" translatable="false">+</string>
+    <string name="percent" translatable="false">%</string>
     <string name="add_to_memory" translatable="false">M+</string>
     <string name="subtract_from_memory" translatable="false">M-</string>
+    <string name="memory_read" translatable="false">MR</string>
+    <string name="memory_clear" translatable="false">MC</string>
 
+    <!-- Сообщения ошибок -->
     <string name="error">Error</string>
     <string name="too_long_result">Too long result</string>
     <string name="infinity">Infinity</string>
+
+    <!-- Разные строки -->
+    <string name="red_dot" translatable="false">●</string>
+    <string name="copy_to_clipboard">Скопировано в буфер</string>
+
 
 </resources>
