@@ -15,7 +15,7 @@
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
-    <!-- Базовая часть стилей для кнопок -->
+    <!-- Базовый стиль для всех кнопок -->
     <style name="commonButtonStyle" parent="Theme.AppCompat.Light">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
@@ -23,7 +23,7 @@
         <item name="android:onClick">pressButton</item>
     </style>
 
-    <!-- Основные кнопки - цифры, точка, равно -->
+    <!-- Стиль базовых кнопок - цифры, точка, равно -->
     <style name="mainButtonStyle" parent="commonButtonStyle">
         <item name="android:background">@drawable/main_button_color</item>
         <item name="android:textColor">@drawable/main_text_color</item>
@@ -31,7 +31,7 @@
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
-    <!-- Вспомогательные кнопки - сброс, удаление, операции -->
+    <!-- Стиль кнопок операций - сброс, удаление, операции -->
     <style name="otherButtonStyle" parent="commonButtonStyle">
         <item name="android:background">@drawable/other_button_color</item>
         <item name="android:textColor">@drawable/other_text_color</item>
@@ -39,7 +39,7 @@
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
-    <!-- Кнопки операций с памятью -->
+    <!-- Стиль кнопок памяти -->
     <style name="memoryButtonStyle" parent="commonButtonStyle">
         <item name="android:background">@drawable/memory_button_color</item>
         <item name="android:textColor">@color/gray_2</item>
