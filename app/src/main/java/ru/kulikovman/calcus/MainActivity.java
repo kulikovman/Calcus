@@ -9,7 +9,6 @@ import java.math.RoundingMode;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.TextView;
@@ -43,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
         mMemoryField.setOnLongClickListener(this);
     }
 
-    public void onClick(View view) {
+    public void pressButton(View view) {
         // Включаем виброотклик для нажатых кнопок
         hapticFeedbackOn(view);
 
@@ -285,10 +284,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
     }
 
     // Смена знака введенного числа
-    public void tapOnMainField(View view) {
-        // Включаем виброотклик для нажатых кнопок
-        hapticFeedbackOn(view);
-
+    public void invertNumber(View view) {
         // Если поле не пустое, является числом и не является ошибкой
         if (!isEmpty(mNumberField) && isNumber(mNumberField) && !isError()) {
             String number = getNumberField();
@@ -304,25 +300,38 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
 
     @Override
     public boolean onLongClick(View v) {
+        // Подключаем виброотклик
         hapticFeedbackOn(v);
 
         switch (v.getId()) {
             case R.id.number_field:
+                // Копируем в буфер число из основного поля
                 if (!isEmpty(mNumberField)) {
-                    ClipData clipNumber = ClipData.newPlainText("mNumberField", getNumberField());
-                    mClipboardManager.setPrimaryClip(clipNumber);
-                    Toast.makeText(this, R.string.copy_to_clipboard, Toast.LENGTH_SHORT).show();
-                    return true;
-                }
-            case R.id.memory_field:
-                if (!isEmpty(mMemoryField)) {
-                    ClipData clipMemory = ClipData.newPlainText("mMemoryField", mMemoryField.getText().toString());
-                    mClipboardManager.setPrimaryClip(clipMemory);
-                    Toast.makeText(this, R.string.copy_to_clipboard, Toast.LENGTH_SHORT).show();
-                    return true;
-                }
-        }
+                    String number = getNumberField();
+                    ClipData clipData = ClipData.newPlainText("mNumberField", number);
+                    mClipboardManager.setPrimaryClip(clipData);
 
+                    // Показываем сообщение и число
+                    Toast.makeText(this, R.string.copy_to_clipboard, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, number, Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+                break;
+
+            case R.id.memory_field:
+                // Копируем в буфер число из поля памяти
+                if (!isEmpty(mMemoryField)) {
+                    String number = mMemoryField.getText().toString();
+                    ClipData clipData = ClipData.newPlainText("mMemoryField", number);
+                    mClipboardManager.setPrimaryClip(clipData);
+
+                    // Показываем сообщение и число
+                    Toast.makeText(this, R.string.copy_to_clipboard, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, number, Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+                break;
+        }
         return false;
     }
 

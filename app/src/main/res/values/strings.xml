@@ -23,6 +23,7 @@
     <string name="red_dot" translatable="false">●</string>
 
     <string name="copy_to_clipboard">Скопировано в буфер</string>
+
     <string name="reset">Сброс</string>
     <string name="memory_read" translatable="false">MR</string>
     <string name="memory_clear" translatable="false">MC</string>
